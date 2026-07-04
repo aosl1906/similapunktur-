@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Similapunktur Interaktiver Leitfaden</title>
+  <!-- Google Fonts: Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-Vjqpqa9X.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Crx5CNeZ.css">
+</head>
+<body>
+  
+  <header class="app-header">
+    <div class="header-logo-section">
+      <!-- Clean Text-based Logo following Maier style -->
+      <span class="brand-title">Andreas Maier</span>
+      <span class="brand-subtitle">Similapunktur Leitfaden</span>
+    </div>
+    
+    <div class="header-search-section">
+      <div class="search-box">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-input" placeholder="Symptome oder Heilmittel suchen... (z.B. Schlaflosigkeit, Lach.)" autocomplete="off">
+        <button id="clear-search-btn" class="clear-btn" title="Suche löschen" style="display: none;">&times;</button>
+        <!-- Suggestions Dropdown -->
+        <div id="search-suggestions" class="search-suggestions-dropdown" style="display: none;"></div>
+      </div>
+    </div>
+    
+    <div class="header-controls">
+      <button id="editor-toggle" class="icon-btn text-btn" title="Koordinaten-Editor ein-/ausschalten">
+        <span class="editor-icon-text">✏️ Editor</span>
+      </button>
+      <button id="theme-toggle" class="icon-btn" title="Farbschema wechseln">
+        <!-- Sun icon -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon icon -->
+        <svg class="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+  
+  <main class="app-container">
+    <!-- Left Panel: Meridian Selector & Search Results -->
+    <aside class="sidebar-left">
+      <div class="sidebar-section">
+        <h2 class="section-title">Leitbahnen (Meridiane)</h2>
+        <ul id="meridian-list" class="selector-list">
+          <!-- Dynamically populated -->
+        </ul>
+      </div>
+      
+      <!-- Liste der Punkte für die aktive Leitbahn -->
+      <div id="meridian-points-section" class="sidebar-section" style="display: none;">
+        <h2 class="section-title">Punkte der Leitbahn</h2>
+        <ul id="meridian-points-list" class="selector-list">
+          <!-- Dynamically populated -->
+        </ul>
+      </div>
+      
+      <div id="search-results-section" class="sidebar-section" style="display: none;">
+        <h2 class="section-title">Suchergebnisse (<span id="results-count">0</span>)</h2>
+        <div id="search-results-info" class="search-info-box">
+          Gefiltert nach: <strong id="search-query-display">...</strong>
+        </div>
+        <ul id="search-results-list" class="selector-list">
+          <!-- Dynamically populated -->
+        </ul>
+      </div>
+    </aside>
+    
+    <!-- Center Panel: Meridian Image Map Visualizer -->
+    <section class="visualizer-container">
+      <div id="editor-banner" class="editor-banner" style="display: none;">
+        <span>✏️ <strong>Editor-Modus aktiv:</strong> Klicken Sie auf das Bild, um den ausgewählten Punkt neu zu positionieren.</span>
+      </div>
+      <div id="canvas-wrapper" class="canvas-wrapper">
+        <!-- Visualizer Placeholder (when no meridian is selected) -->
+        <div id="visualizer-placeholder" class="visualizer-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v8"></path>
+            <path d="M8 12h8"></path>
+          </svg>
+          <p>Bitte wählen Sie eine Leitbahn aus, um die Akupunkturpunkte anzuzeigen.</p>
+        </div>
+        
+        <!-- Active image and SVG hotspot overlay -->
+        <div id="visualizer-active" class="visualizer-active" style="display: none;">
+          <img id="meridian-image" src="" alt="Anatomical Meridian Diagram">
+          <div id="svg-overlay" class="hotspot-overlay"></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Right Panel: Clinical Details -->
+    <aside class="sidebar-right">
+      <div id="detail-placeholder" class="detail-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="placeholder-icon">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <p>Wählen Sie einen Punkt auf der Grafik oder in der Suche aus, um Details anzuzeigen.</p>
+      </div>
+      
+      <div id="detail-panel" class="detail-panel" style="display: none;">
+        <!-- Flashing Warning Banner -->
+        <div id="warning-banner" class="warning-banner" style="display: none;">
+          <div class="warning-icon-wrapper">
+            <svg class="warning-alert-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="warning-text-content">
+            <strong>WARNHINWEIS / KONTRAINDIKATION:</strong>
+            <span id="warning-text">...</span>
+          </div>
+        </div>
+        
+        <header class="detail-header">
+          <div class="detail-title-row">
+            <h1 id="point-id-title">HE_3</h1>
+            <span id="point-meridian" class="badge">Herz-Leitbahn</span>
+          </div>
+          <h2 id="point-name-de" class="point-name-de">Herz 3</h2>
+          <p id="point-translation" class="point-translation">Niedriges Meer</p>
+        </header>
+        
+        <div class="detail-section font-style-italic">
+          <h3>Lokalisation</h3>
+          <p id="point-localisation">Am Ende der Beugefalte...</p>
+        </div>
+        
+        <!-- Tabbed view -->
+        <div class="detail-tabs">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="effects-tab">Wirkungen</button>
+            <button class="tab-btn" data-tab="indications-tab">Indikationen</button>
+            <button class="tab-btn" data-tab="remedies-tab">Heilmittel</button>
+            <button class="tab-btn" data-tab="rubrics-tab">Rubriken</button>
+          </div>
+          
+          <div class="tab-content-wrapper">
+            <div id="effects-tab" class="tab-pane active">
+              <ul id="effects-list" class="bullets-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+            
+            <div id="indications-tab" class="tab-pane">
+              <ul id="indications-list" class="bullets-list">
+                <!-- Dynamically populated -->
+              </ul>
+            </div>
+            
+            <div id="remedies-tab" class="tab-pane">
+              <div id="remedies-badges" class="badges-flex">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+            
+            <div id="rubrics-tab" class="tab-pane">
+              <div id="rubrics-list" class="accordion-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+  
+</body>
+</html>
