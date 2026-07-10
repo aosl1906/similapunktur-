@@ -11360,5 +11360,45 @@
   ],
   "pertussis": [
     "keuchhusten"
+  ],
+  "lob": [
+    "lobende worte",
+    "anerkennung",
+    "worte der anerkennung",
+    "belobigung",
+    "würdigung",
+    "ehrenbezeigung",
+    "streicheleinheiten"
+  ],
+  "lobende worte": [
+    "lob"
+  ],
+  "anerkennung": [
+    "lob"
+  ],
+  "worte der anerkennung": [
+    "lob"
+  ],
+  "belobigung": [
+    "lob"
+  ],
+  "würdigung": [
+    "lob"
+  ],
+  "ehrenbezeigung": [
+    "lob"
+  ],
+  "streicheleinheiten": [
+    "lob"
+  ],
+  "puls": [
+    "herzschlag",
+    "kontraktion des herzens"
+  ],
+  "herzschlag": [
+    "puls"
+  ],
+  "kontraktion des herzens": [
+    "puls"
   ]
 }
