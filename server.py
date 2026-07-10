@@ -487,10 +487,14 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
                 cur.execute("SELECT DISTINCT beschreibung FROM indikationen")
                 i_desc = [r["beschreibung"] for r in cur.fetchall()]
                 
+                # Fetch TTB rubrics
+                cur.execute("SELECT DISTINCT rubric_name FROM ttb_rubrics")
+                t_desc = [f"[TTB] {r['rubric_name']}" for r in cur.fetchall()]
+                
                 conn.close()
                 
                 # Merge and get unique list
-                all_desc = list(set(w_desc + i_desc))
+                all_desc = list(set(w_desc + i_desc + t_desc))
                 
                 # Filter out empty or extremely long text
                 suggestions = [s.strip() for s in all_desc if s and len(s) < 120]

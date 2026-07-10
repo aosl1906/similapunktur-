@@ -22,7 +22,51 @@ let activeSidebarTab: 'navigation' | 'search' | 'repertorisation' = 'navigation'
 let lastViewedPointId: string | null = null;
 let activeModalities = new Set<string>();
 const rubricsRemediesMap = new Map<string, Map<string, number>>();
+
+interface PolarMatch {
+  key1: string;
+  key2: string;
+  name1: string;
+  name2: string;
+}
+
+const POLAR_CATEGORIES: PolarMatch[] = [
+  {
+    key1: "kälte überhaupt, agg",
+    key2: "wärme überhaupt, von",
+    name1: "Kälte-Agg.",
+    name2: "Wärme-Agg."
+  },
+  {
+    key1: "kälte überhaupt, agg",
+    key2: "kälte) eines",
+    name1: "Kälte-Agg.",
+    name2: "Kälte-Lind."
+  },
+  {
+    key1: "wärme überhaupt, von",
+    key2: "äußere wärme",
+    name1: "Wärme-Agg.",
+    name2: "Wärme-Lind."
+  },
+  {
+    key1: "bewegung , agg",
+    key2: "ruhe",
+    name1: "Bewegungs-Agg.",
+    name2: "Ruhe-Agg."
+  },
+  {
+    key1: "trockenes wetter, agg",
+    key2: "feuchtes wetter, agg",
+    name1: "Trockene Luft-Agg.",
+    name2: "Feuchte Luft-Agg."
+  }
+];
+
+const remedyContraindications = new Map<string, Set<string>>();
+
 let staticBoerickeData: any = null;
+let staticTtbData: any = null;
 
 // Constants
 const MERIDIANS = [
@@ -902,8 +946,19 @@ async function loadSuggestions() {
         p.general_analysis_rubrics.forEach((r: any) => { if (r.rubric_name && r.rubric_name.length < 120) unique.add(r.rubric_name.trim()); });
       }
     });
+    
+    // Merge TTB Bönninghausen rubrics for static mode autocomplete
+    await ensureTtbDataLoaded();
+    if (staticTtbData) {
+      Object.keys(staticTtbData).forEach(rubricName => {
+        if (rubricName && rubricName.length < 120) {
+          unique.add(`[TTB] ${rubricName.trim()}`);
+        }
+      });
+    }
+    
     suggestionsList = Array.from(unique);
-    console.log(`Generated ${suggestionsList.length} unique suggestions from loaded JSON.`);
+    console.log(`Generated ${suggestionsList.length} unique suggestions from loaded JSON (including TTB).`);
     return;
   }
   
@@ -1039,20 +1094,40 @@ function showSuggestions(query: string) {
     div.dataset.index = idx.toString();
     
     const text = item.text;
-    const lowerText = text.toLowerCase();
     const lowerQuery = trimmed.toLowerCase();
-    const matchIdx = lowerText.indexOf(lowerQuery);
+    
+    let isTtb = false;
+    let displayHtml = "";
+    
+    if (text.startsWith("[TTB] ")) {
+      isTtb = true;
+      const cleanText = text.substring(6);
+      const lowerClean = cleanText.toLowerCase();
+      const matchIdx = lowerClean.indexOf(lowerQuery);
+      if (matchIdx !== -1) {
+        const before = cleanText.substring(0, matchIdx);
+        const match = cleanText.substring(matchIdx, matchIdx + trimmed.length);
+        const after = cleanText.substring(matchIdx + trimmed.length);
+        displayHtml = `${before}<strong>${match}</strong>${after}`;
+      } else {
+        displayHtml = cleanText;
+      }
+    } else {
+      const lowerText = text.toLowerCase();
+      const matchIdx = lowerText.indexOf(lowerQuery);
+      if (matchIdx !== -1) {
+        const before = text.substring(0, matchIdx);
+        const match = text.substring(matchIdx, matchIdx + trimmed.length);
+        const after = text.substring(matchIdx + trimmed.length);
+        displayHtml = `${before}<strong>${match}</strong>${after}`;
+      } else {
+        displayHtml = text;
+      }
+    }
     
     const textSpan = document.createElement("span");
     textSpan.className = "suggestion-text";
-    if (matchIdx !== -1) {
-      const before = text.substring(0, matchIdx);
-      const match = text.substring(matchIdx, matchIdx + trimmed.length);
-      const after = text.substring(matchIdx + trimmed.length);
-      textSpan.innerHTML = `${before}<strong>${match}</strong>${after}`;
-    } else {
-      textSpan.textContent = text;
-    }
+    textSpan.innerHTML = displayHtml;
     textSpan.style.flexGrow = "1";
     textSpan.style.cursor = "pointer";
     textSpan.addEventListener("click", (e) => {
@@ -1060,6 +1135,13 @@ function showSuggestions(query: string) {
       selectSuggestion(text);
     });
     div.appendChild(textSpan);
+    
+    if (isTtb) {
+      const badge = document.createElement("span");
+      badge.className = "ttb-badge-indicator";
+      badge.textContent = "TTB";
+      div.appendChild(badge);
+    }
     
     const addBtn = document.createElement("button");
     addBtn.className = "suggestion-add-btn";
@@ -1423,41 +1505,63 @@ function runRepertorisation() {
   const remedyScoresMap = new Map<string, { matches: Set<string>, score: number }>();
   
   selectedSymptoms.forEach(s => {
-    const cleanSym = s.text.toLowerCase().trim();
+    const isTtb = s.text.startsWith("[TTB] ");
+    const cleanSym = isTtb ? s.text.substring(6).toLowerCase().trim() : s.text.toLowerCase().trim();
     
-    allPointsData.forEach(p => {
-      if (p.general_analysis_rubrics) {
-        p.general_analysis_rubrics.forEach((rub: any) => {
-          if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
-            rub.remedies.forEach((rem: { name: string, grade: number }) => {
-              if (!remedyScoresMap.has(rem.name)) {
-                remedyScoresMap.set(rem.name, { matches: new Set(), score: 0 });
-              }
-              const entry = remedyScoresMap.get(rem.name)!;
-              if (!entry.matches.has(s.id)) {
-                entry.matches.add(s.id);
-                entry.score += rem.grade * s.weight;
-              }
-            });
-          }
-        });
+    if (isTtb) {
+      if (staticTtbData) {
+        const rubricKeys = Object.keys(staticTtbData);
+        const matchKey = rubricKeys.find(k => k.toLowerCase().trim() === cleanSym);
+        if (matchKey) {
+          const remedies = staticTtbData[matchKey];
+          remedies.forEach((rem: { name: string, grade: number }) => {
+            const cleanRemName = rem.name.replace(/\.$/, "");
+            if (!remedyScoresMap.has(cleanRemName)) {
+              remedyScoresMap.set(cleanRemName, { matches: new Set(), score: 0 });
+            }
+            const entry = remedyScoresMap.get(cleanRemName)!;
+            if (!entry.matches.has(s.id)) {
+              entry.matches.add(s.id);
+              entry.score += rem.grade * s.weight;
+            }
+          });
+        }
       }
-      
-      const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
-                          (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
-      if (directMatch && p.assigned_homeopathics) {
-        p.assigned_homeopathics.forEach((remName: string) => {
-          if (!remedyScoresMap.has(remName)) {
-            remedyScoresMap.set(remName, { matches: new Set(), score: 0 });
-          }
-          const entry = remedyScoresMap.get(remName)!;
-          if (!entry.matches.has(s.id)) {
-            entry.matches.add(s.id);
-            entry.score += 3 * s.weight;
-          }
-        });
-      }
-    });
+    } else {
+      allPointsData.forEach(p => {
+        if (p.general_analysis_rubrics) {
+          p.general_analysis_rubrics.forEach((rub: any) => {
+            if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
+              rub.remedies.forEach((rem: { name: string, grade: number }) => {
+                if (!remedyScoresMap.has(rem.name)) {
+                  remedyScoresMap.set(rem.name, { matches: new Set(), score: 0 });
+                }
+                const entry = remedyScoresMap.get(rem.name)!;
+                if (!entry.matches.has(s.id)) {
+                  entry.matches.add(s.id);
+                  entry.score += rem.grade * s.weight;
+                }
+              });
+            }
+          });
+        }
+        
+        const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
+                            (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
+        if (directMatch && p.assigned_homeopathics) {
+          p.assigned_homeopathics.forEach((remName: string) => {
+            if (!remedyScoresMap.has(remName)) {
+              remedyScoresMap.set(remName, { matches: new Set(), score: 0 });
+            }
+            const entry = remedyScoresMap.get(remName)!;
+            if (!entry.matches.has(s.id)) {
+              entry.matches.add(s.id);
+              entry.score += 3 * s.weight;
+            }
+          });
+        }
+      });
+    }
   });
   
   // Apply homeopathic modality boosts
@@ -1488,18 +1592,31 @@ function runRepertorisation() {
     return b.score - a.score;
   });
   
+  // Calculate polarity contraindications
+  const activeRemediesList = remedyScores.map(r => r.name);
+  updatePolarityContraindications(activeRemediesList);
+  
   // Render recommended remedies list
   const remediesList = document.getElementById("rec-remedies-list");
   if (remediesList) {
     remediesList.innerHTML = "";
     const topRemedies = remedyScores.slice(0, 15);
     topRemedies.forEach(rem => {
+      const isContraindicated = remedyContraindications.has(rem.name);
       const li = document.createElement("li");
       
       const badge = document.createElement("span");
-      badge.className = "remedy-score-badge clickable";
-      badge.textContent = `${rem.name} (${rem.score})`;
-      badge.title = "Klicken für Heilmittel-Details";
+      badge.className = isContraindicated ? "remedy-score-badge clickable contraindicated" : "remedy-score-badge clickable";
+      
+      let text = `${rem.name} (${rem.score})`;
+      if (isContraindicated) {
+        text += " ⚠️";
+        const warnings = Array.from(remedyContraindications.get(rem.name)!).join(", ");
+        badge.title = `Polaritäts-Widerspruch: ${warnings}. Klicken für Details.`;
+      } else {
+        badge.title = "Klicken für Heilmittel-Details";
+      }
+      badge.textContent = text;
       badge.addEventListener("click", () => {
         showRemedyDetails(rem.name);
       });
@@ -1525,43 +1642,66 @@ function renderMatrixTable() {
   const remedyScoresMap = new Map<string, { matches: Set<string>, score: number, grades: Record<string, number> }>();
   
   selectedSymptoms.forEach(s => {
-    const cleanSym = s.text.toLowerCase().trim();
+    const isTtb = s.text.startsWith("[TTB] ");
+    const cleanSym = isTtb ? s.text.substring(6).toLowerCase().trim() : s.text.toLowerCase().trim();
     
-    allPointsData.forEach(p => {
-      if (p.general_analysis_rubrics) {
-        p.general_analysis_rubrics.forEach((rub: any) => {
-          if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
-            rub.remedies.forEach((rem: { name: string, grade: number }) => {
-              if (!remedyScoresMap.has(rem.name)) {
-                remedyScoresMap.set(rem.name, { matches: new Set(), score: 0, grades: {} });
-              }
-              const entry = remedyScoresMap.get(rem.name)!;
-              if (!entry.matches.has(s.id)) {
-                entry.matches.add(s.id);
-                entry.score += rem.grade * s.weight;
-              }
-              entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, rem.grade);
-            });
-          }
-        });
+    if (isTtb) {
+      if (staticTtbData) {
+        const rubricKeys = Object.keys(staticTtbData);
+        const matchKey = rubricKeys.find(k => k.toLowerCase().trim() === cleanSym);
+        if (matchKey) {
+          const remedies = staticTtbData[matchKey];
+          remedies.forEach((rem: { name: string, grade: number }) => {
+            const cleanRemName = rem.name.replace(/\.$/, "");
+            if (!remedyScoresMap.has(cleanRemName)) {
+              remedyScoresMap.set(cleanRemName, { matches: new Set(), score: 0, grades: {} });
+            }
+            const entry = remedyScoresMap.get(cleanRemName)!;
+            if (!entry.matches.has(s.id)) {
+              entry.matches.add(s.id);
+              entry.score += rem.grade * s.weight;
+            }
+            entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, rem.grade);
+          });
+        }
       }
-      
-      const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
-                          (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
-      if (directMatch && p.assigned_homeopathics) {
-        p.assigned_homeopathics.forEach((remName: string) => {
-          if (!remedyScoresMap.has(remName)) {
-            remedyScoresMap.set(remName, { matches: new Set(), score: 0, grades: {} });
-          }
-          const entry = remedyScoresMap.get(remName)!;
-          if (!entry.matches.has(s.id)) {
-            entry.matches.add(s.id);
-            entry.score += 3 * s.weight;
-          }
-          entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, 3);
-        });
-      }
-    });
+    } else {
+      allPointsData.forEach(p => {
+        if (p.general_analysis_rubrics) {
+          p.general_analysis_rubrics.forEach((rub: any) => {
+            if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
+              rub.remedies.forEach((rem: { name: string, grade: number }) => {
+                if (!remedyScoresMap.has(rem.name)) {
+                  remedyScoresMap.set(rem.name, { matches: new Set(), score: 0, grades: {} });
+                }
+                const entry = remedyScoresMap.get(rem.name)!;
+                if (!entry.matches.has(s.id)) {
+                  entry.matches.add(s.id);
+                  entry.score += rem.grade * s.weight;
+                }
+                entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, rem.grade);
+              });
+            }
+          });
+        }
+        
+        const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
+                            (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
+        if (directMatch && p.assigned_homeopathics) {
+          p.assigned_homeopathics.forEach((remName: string) => {
+            if (!remedyScoresMap.has(remName)) {
+              remedyScoresMap.set(remName, { matches: new Set(), score: 0, grades: {} });
+            }
+            const entry = remedyScoresMap.get(remName)!;
+            if (!entry.matches.has(s.id)) {
+              entry.matches.add(s.id);
+              entry.score += 3 * s.weight;
+            }
+            entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, 3);
+          });
+        }
+      });
+    }
   });
   
   const sortedRemedies: Array<{ name: string, matchesCount: number, score: number, grades: Record<string, number>, modalityGrades: Record<string, number> }> = [];
@@ -1607,7 +1747,10 @@ function renderMatrixTable() {
   
   // Symptom columns
   selectedSymptoms.forEach(s => {
-    html += `<th class="symptom-header" data-symptom-id="${s.id}"><span>${s.text} <small class="dimmed" style="font-weight: normal;">(x${s.weight})</small></span></th>`;
+    const isTtb = s.text.startsWith("[TTB] ");
+    const cleanText = isTtb ? s.text.substring(6) : s.text;
+    const headerClass = isTtb ? "symptom-header ttb-symptom-header" : "symptom-header";
+    html += `<th class="${headerClass}" data-symptom-id="${s.id}"><span>${cleanText} <small class="dimmed" style="font-weight: normal;">(x${s.weight})</small></span></th>`;
   });
   
   // Modality columns headers
@@ -1634,7 +1777,15 @@ function renderMatrixTable() {
   html += `<tbody>`;
   remediesToDisplay.forEach(rem => {
     html += `<tr data-remedy="${rem.name}">`;
-    html += `<td class="remedy-cell">${rem.name}</td>`;
+    
+    const isContraindicated = remedyContraindications.has(rem.name);
+    const remCellClass = isContraindicated ? "remedy-cell contraindicated" : "remedy-cell";
+    let warningBadgeHtml = "";
+    if (isContraindicated) {
+      const warnings = Array.from(remedyContraindications.get(rem.name)!).join(", ");
+      warningBadgeHtml = `<span class="contraindicated-badge" title="Polaritäts-Widerspruch: ${warnings}">⚠️</span>`;
+    }
+    html += `<td class="${remCellClass}">${rem.name}${warningBadgeHtml}</td>`;
     
     // Symptom cells
     selectedSymptoms.forEach(s => {
@@ -1642,6 +1793,8 @@ function renderMatrixTable() {
       let badgeHtml = "";
       if (grade === 3) {
         badgeHtml = `<span class="matrix-badge grade-3" title="${rem.name}: Grad 3 für '${s.text}'"></span>`;
+      } else if (grade === 2) {
+        badgeHtml = `<span class="matrix-badge grade-2" title="${rem.name}: Grad 2 für '${s.text}'"></span>`;
       } else if (grade === 1) {
         badgeHtml = `<span class="matrix-badge grade-1" title="${rem.name}: Grad 1 für '${s.text}'"></span>`;
       }
@@ -1654,6 +1807,8 @@ function renderMatrixTable() {
       let badgeHtml = "";
       if (grade === 3) {
         badgeHtml = `<span class="matrix-badge grade-3" title="${rem.name}: Grad 3 für '${modRubric}'"></span>`;
+      } else if (grade === 2) {
+        badgeHtml = `<span class="matrix-badge grade-2" title="${rem.name}: Grad 2 für '${modRubric}'"></span>`;
       } else if (grade === 1) {
         badgeHtml = `<span class="matrix-badge grade-1" title="${rem.name}: Grad 1 für '${modRubric}'"></span>`;
       }
@@ -1783,6 +1938,100 @@ async function ensureBoerickeDataLoaded() {
   } catch (err) {
     console.error("Failed to load static Boericke Materia Medica:", err);
   }
+}
+
+async function ensureTtbDataLoaded() {
+  if (staticTtbData) return;
+  try {
+    const res = await fetch("ttb_repertory.json");
+    if (res.ok) {
+      staticTtbData = await res.json();
+      console.log("Loaded TTB Bönninghausen Repertory static database.");
+    }
+  } catch (err) {
+    console.error("Failed to load static TTB Bönninghausen Repertory:", err);
+  }
+}
+
+function findTtbGrade(remedyName: string, keyword: string): number {
+  if (!staticTtbData) return 0;
+  const cleanRem = remedyName.toLowerCase().replace(/\.$/, "").trim();
+  
+  for (const rubricName of Object.keys(staticTtbData)) {
+    if (rubricName.toLowerCase().includes(keyword.toLowerCase())) {
+      const remedies = staticTtbData[rubricName];
+      const found = remedies.find((r: any) => r.name.toLowerCase().replace(/\.$/, "").trim() === cleanRem);
+      if (found) return found.grade;
+    }
+  }
+  return 0;
+}
+
+function updatePolarityContraindications(activeRemedies: string[]) {
+  remedyContraindications.clear();
+  if (!staticTtbData) return;
+  
+  const ttbSymptoms = selectedSymptoms.filter(s => s.text.startsWith("[TTB] "));
+  if (ttbSymptoms.length === 0) return;
+  
+  activeRemedies.forEach(remName => {
+    const cleanRem = remName.toLowerCase().replace(/\.$/, "").trim();
+    ttbSymptoms.forEach(s => {
+      const cleanSym = s.text.substring(6).toLowerCase().trim();
+      
+      POLAR_CATEGORIES.forEach(pair => {
+        let isMatch = false;
+        let oppositeKeyword = "";
+        let selectedCategoryName = "";
+        let oppositeCategoryName = "";
+        
+        if (cleanSym.includes(pair.key1.toLowerCase())) {
+          isMatch = true;
+          oppositeKeyword = pair.key2;
+          selectedCategoryName = pair.name1;
+          oppositeCategoryName = pair.name2;
+        } else if (cleanSym.includes(pair.key2.toLowerCase())) {
+          isMatch = true;
+          oppositeKeyword = pair.key1;
+          selectedCategoryName = pair.name2;
+          oppositeCategoryName = pair.name1;
+        }
+        
+        if (isMatch) {
+          let selectedGrade = 0;
+          const rubricKeys = Object.keys(staticTtbData);
+          const matchKey = rubricKeys.find(k => k.toLowerCase().trim() === cleanSym);
+          if (matchKey) {
+            const remedies = staticTtbData[matchKey];
+            const found = remedies.find((r: any) => r.name.toLowerCase().replace(/\.$/, "").trim() === cleanRem);
+            if (found) selectedGrade = found.grade;
+          }
+          
+          let oppositeGrade = 0;
+          for (const key of rubricKeys) {
+            if (key.toLowerCase().includes(oppositeKeyword.toLowerCase())) {
+              const remedies = staticTtbData[key];
+              const found = remedies.find((r: any) => r.name.toLowerCase().replace(/\.$/, "").trim() === cleanRem);
+              if (found) {
+                if (found.grade > oppositeGrade) {
+                  oppositeGrade = found.grade;
+                }
+              }
+            }
+          }
+          
+          if (oppositeGrade > selectedGrade) {
+            if (!remedyContraindications.has(remName)) {
+              remedyContraindications.set(remName, new Set());
+            }
+            remedyContraindications.get(remName)!.add(
+              `${oppositeCategoryName} (Grad ${oppositeGrade}) vs. ${selectedCategoryName} (Grad ${selectedGrade})`
+            );
+          }
+        }
+      });
+    });
+  });
 }
 
 async function showRemedyDetails(remedyName: string) {
