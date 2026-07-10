@@ -861,6 +861,121 @@ function setupEventListeners() {
     tabRepBtn.addEventListener("click", () => setActiveSidebarTab('repertorisation'));
   }
 
+  // Version History Modal Listeners
+  const versionBadge = document.getElementById("version-badge");
+  const versionModal = document.getElementById("version-modal");
+  const closeVersionBtn = document.getElementById("close-version-btn");
+  if (versionBadge && versionModal && closeVersionBtn) {
+    versionBadge.addEventListener("click", () => {
+      versionModal.style.display = "flex";
+    });
+    closeVersionBtn.addEventListener("click", () => {
+      versionModal.style.display = "none";
+    });
+  }
+
+  // Feedback Modal Listeners
+  const feedbackToggle = document.getElementById("feedback-toggle");
+  const feedbackModal = document.getElementById("feedback-modal");
+  const closeFeedbackBtn = document.getElementById("close-feedback-btn");
+  if (feedbackToggle && feedbackModal && closeFeedbackBtn) {
+    feedbackToggle.addEventListener("click", () => {
+      feedbackModal.style.display = "flex";
+      const subjectInput = document.getElementById("feedback-subject") as HTMLInputElement;
+      if (subjectInput) {
+        if (lastViewedPointId) {
+          subjectInput.value = `Feedback zu Akupunkturpunkt ${getPointSynonym(lastViewedPointId)}`;
+        } else {
+          subjectInput.value = "";
+        }
+      }
+    });
+    closeFeedbackBtn.addEventListener("click", () => {
+      feedbackModal.style.display = "none";
+    });
+  }
+
+  const feedbackGithubBtn = document.getElementById("feedback-github-btn");
+  const feedbackEmailBtn = document.getElementById("feedback-email-btn");
+  const feedbackForm = document.getElementById("feedback-form") as HTMLFormElement;
+
+  if (feedbackGithubBtn && feedbackForm) {
+    feedbackGithubBtn.addEventListener("click", () => {
+      if (!feedbackForm.reportValidity()) return;
+      const cat = (document.getElementById("feedback-category") as HTMLSelectElement).value;
+      const sub = (document.getElementById("feedback-subject") as HTMLInputElement).value;
+      const body = (document.getElementById("feedback-body") as HTMLTextAreaElement).value;
+      
+      const title = `[${cat}] ${sub}`;
+      const markdownBody = `### Kategorie\n${cat}\n\n### Beschreibung\n${body}\n\n---\n*Feedback gesendet aus Similapunktur Leitfaden App*`;
+      const githubUrl = `https://github.com/aosl1906/similapunktur-/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(markdownBody)}`;
+      window.open(githubUrl, "_blank");
+      feedbackModal!.style.display = "none";
+      feedbackForm.reset();
+    });
+  }
+
+  if (feedbackEmailBtn && feedbackForm) {
+    feedbackEmailBtn.addEventListener("click", () => {
+      if (!feedbackForm.reportValidity()) return;
+      const cat = (document.getElementById("feedback-category") as HTMLSelectElement).value;
+      const sub = (document.getElementById("feedback-subject") as HTMLInputElement).value;
+      const body = (document.getElementById("feedback-body") as HTMLTextAreaElement).value;
+      
+      const email = "aosl1@gmx.de";
+      const subject = `[Similapunktur Feedback] [${cat}] ${sub}`;
+      const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+      feedbackModal!.style.display = "none";
+      feedbackForm.reset();
+    });
+  }
+
+  // Developer Data Review Modal Listeners
+  const devReviewToggle = document.getElementById("dev-review-toggle");
+  const devReviewModal = document.getElementById("dev-review-modal");
+  const closeDevReviewBtn = document.getElementById("close-dev-review-btn");
+  
+  if (devReviewToggle && devReviewModal && closeDevReviewBtn) {
+    devReviewToggle.addEventListener("click", async () => {
+      devReviewModal.style.display = "flex";
+      await ensureTtbDataLoaded();
+      await ensureBoerickeDataLoaded();
+      renderDevReviewTables();
+    });
+    closeDevReviewBtn.addEventListener("click", () => {
+      devReviewModal.style.display = "none";
+    });
+  }
+
+  const devTabButtons = document.querySelectorAll(".dev-tab-btn");
+  devTabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      devTabButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const tabTarget = btn.getAttribute("data-dev-tab");
+      document.querySelectorAll(".dev-tab-pane").forEach((pane: any) => {
+        if (pane.id === tabTarget) {
+          pane.style.display = "block";
+        } else {
+          pane.style.display = "none";
+        }
+      });
+      
+      const devSearch = document.getElementById("dev-review-search") as HTMLInputElement;
+      if (devSearch) devSearch.value = "";
+      filterDevReviewTable();
+    });
+  });
+
+  const devReviewSearch = document.getElementById("dev-review-search");
+  if (devReviewSearch) {
+    devReviewSearch.addEventListener("input", () => {
+      filterDevReviewTable();
+    });
+  }
+
   // Editor Toggle and Visualizer click
   const editorToggleEl = document.getElementById("editor-toggle") as HTMLButtonElement;
   const editorBannerEl = document.getElementById("editor-banner") as HTMLDivElement;
@@ -2032,6 +2147,130 @@ function updatePolarityContraindications(activeRemedies: string[]) {
       });
     });
   });
+}
+
+function renderDevReviewTables() {
+  const pointsBody = document.getElementById("dev-points-tbody");
+  if (pointsBody) {
+    pointsBody.innerHTML = "";
+    allPointsData.forEach(p => {
+      const tr = document.createElement("tr");
+      tr.style.borderBottom = "1px solid var(--color-border)";
+      
+      const cleanEffects = p.effects ? p.effects.join(", ") : "";
+      const cleanIndications = p.indications ? p.indications.join(", ") : "";
+      
+      const rubricsCount = p.general_analysis_rubrics ? p.general_analysis_rubrics.length : 0;
+      const remediesCount = p.assigned_homeopathics ? p.assigned_homeopathics.length : 0;
+      
+      tr.innerHTML = `
+        <td style="padding: 10px 14px; font-weight: 700; color: var(--color-primary-teal);">${getPointSynonym(p.point_id)}</td>
+        <td style="padding: 10px 14px;">${p.meridian}</td>
+        <td style="padding: 10px 14px; font-weight: 700;">${p.name_german}</td>
+        <td style="padding: 10px 14px; font-style: italic;">${p.name_chinese}</td>
+        <td style="padding: 10px 14px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cleanEffects}">${cleanEffects}</td>
+        <td style="padding: 10px 14px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cleanIndications}">${cleanIndications}</td>
+        <td style="padding: 10px 14px;">${rubricsCount} Rubriken / ${remediesCount} Heilmittel</td>
+      `;
+      pointsBody.appendChild(tr);
+    });
+  }
+
+  const remediesBody = document.getElementById("dev-remedies-tbody");
+  if (remediesBody) {
+    remediesBody.innerHTML = "";
+    const uniqueRemedies = new Set<string>();
+    allPointsData.forEach(p => {
+      if (p.assigned_homeopathics) p.assigned_homeopathics.forEach((rem: string) => uniqueRemedies.add(rem.trim()));
+      if (p.general_analysis_rubrics) {
+        p.general_analysis_rubrics.forEach((rub: any) => {
+          if (rub.remedies) rub.remedies.forEach((rem: any) => uniqueRemedies.add(rem.name.replace(/\.$/, "").trim()));
+        });
+      }
+    });
+
+    const sortedRemedies = Array.from(uniqueRemedies).sort();
+    sortedRemedies.forEach(remName => {
+      const tr = document.createElement("tr");
+      tr.style.borderBottom = "1px solid var(--color-border)";
+      
+      let botanical = "";
+      let hasDescription = "❌ Kein Text vorhanden";
+      
+      if (staticBoerickeData && staticBoerickeData[remName]) {
+        const profile = staticBoerickeData[remName];
+        botanical = profile.full_name || "";
+        hasDescription = profile.overview ? `✔️ Text vorhanden (${profile.overview.substring(0, 80)}...)` : "❌ Kein Text";
+      } else {
+        hasDescription = "❌ Text noch nicht geladen (oder fehlt)";
+      }
+
+      tr.innerHTML = `
+        <td style="padding: 10px 14px; font-weight: 700; color: var(--color-secondary-teal);">${remName}</td>
+        <td style="padding: 10px 14px; font-style: italic;">${botanical}</td>
+        <td style="padding: 10px 14px; color: var(--color-text-muted);">${hasDescription}</td>
+      `;
+      remediesBody.appendChild(tr);
+    });
+  }
+
+  const ttbBody = document.getElementById("dev-ttb-tbody");
+  if (ttbBody) {
+    ttbBody.innerHTML = "";
+    if (staticTtbData) {
+      Object.keys(staticTtbData).sort().forEach(rubricName => {
+        const tr = document.createElement("tr");
+        tr.style.borderBottom = "1px solid var(--color-border)";
+        
+        const remedies = staticTtbData[rubricName];
+        const count = remedies.length;
+        const remediesListStr = remedies.map((r: any) => `${r.name} (Grad ${r.grade}${r.guernsey ? '*' : ''})`).join(", ");
+
+        tr.innerHTML = `
+          <td style="padding: 10px 14px; font-weight: 700; color: var(--color-text-dark);">${rubricName}</td>
+          <td style="padding: 10px 14px; font-weight: 700; color: var(--color-primary-teal);">${count} Heilmittel</td>
+          <td style="padding: 10px 14px; max-width: 600px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text-muted);" title="${remediesListStr}">${remediesListStr}</td>
+        `;
+        ttbBody.appendChild(tr);
+      });
+    } else {
+      ttbBody.innerHTML = `<tr><td colspan="3" style="padding: 20px; text-align: center; color: var(--color-text-muted);">Bönninghausen Repertorium nicht geladen.</td></tr>`;
+    }
+  }
+}
+
+function filterDevReviewTable() {
+  const query = (document.getElementById("dev-review-search") as HTMLInputElement).value.toLowerCase().trim();
+  const activeTabBtn = document.querySelector(".dev-tab-btn.active");
+  if (!activeTabBtn) return;
+  
+  const tabTarget = activeTabBtn.getAttribute("data-dev-tab");
+  let tbody: HTMLElement | null = null;
+  
+  if (tabTarget === "points-review") {
+    tbody = document.getElementById("dev-points-tbody");
+  } else if (tabTarget === "remedies-review") {
+    tbody = document.getElementById("dev-remedies-tbody");
+  } else if (tabTarget === "ttb-review") {
+    tbody = document.getElementById("dev-ttb-tbody");
+  }
+  
+  if (!tbody) return;
+  
+  const rows = tbody.getElementsByTagName("tr");
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    let match = false;
+    const cells = row.getElementsByTagName("td");
+    for (let j = 0; j < cells.length; j++) {
+      const cellText = cells[j].textContent || cells[j].innerText;
+      if (cellText.toLowerCase().includes(query)) {
+        match = true;
+        break;
+      }
+    }
+    row.style.display = match ? "" : "none";
+  }
 }
 
 async function showRemedyDetails(remedyName: string) {

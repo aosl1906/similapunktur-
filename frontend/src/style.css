@@ -1747,3 +1747,56 @@ body {
   0% { transform: scale(1); opacity: 0.8; }
   100% { transform: scale(1.15); opacity: 1; }
 }
+
+/* Collaboration & Auditing Tools (Phase 6) */
+.version-badge {
+  transition: all 0.2s ease-in-out;
+}
+.version-badge:hover {
+  background-color: var(--color-border) !important;
+  color: var(--color-deep-navy) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.dev-tab-btn {
+  transition: all 0.2s ease-in-out;
+  border-color: var(--color-border) !important;
+}
+.dev-tab-btn:hover {
+  background-color: var(--color-bg-light-gray) !important;
+  border-color: var(--color-text-muted) !important;
+}
+.dev-tab-btn.active {
+  background-color: var(--color-primary-teal) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary-teal) !important;
+}
+
+.dev-review-table th {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+.dev-review-table td {
+  border-bottom: 1px solid var(--color-border);
+}
+.dev-review-table tr:hover {
+  background-color: var(--color-bg-light-gray);
+}
+
+/* Form Styles */
+#feedback-form select,
+#feedback-form input,
+#feedback-form textarea {
+  transition: all 0.2s ease-in-out;
+}
+#feedback-form select:focus,
+#feedback-form input:focus,
+#feedback-form textarea:focus {
+  border-color: var(--color-primary-teal) !important;
+  box-shadow: 0 0 0 3px rgba(18, 126, 114, 0.15);
+}
+
