@@ -485,7 +485,8 @@
     "fatigue",
     "kraftlosigkeit",
     "müdigkeit",
-    "schlapp"
+    "schlapp",
+    "mangel"
   ],
   "durchfall": [
     "darmkatarrh",
@@ -1584,19 +1585,23 @@
     "frieren",
     "frost",
     "frösteln",
-    "kälte"
+    "kälte",
+    "kaeltegefuehl"
   ],
   "kälte": [
     "frieren",
     "frost",
     "frösteln",
-    "kältegefühl"
+    "kältegefühl",
+    "kalte",
+    "kaelte"
   ],
   "frösteln": [
     "frieren",
     "frost",
     "kälte",
-    "kältegefühl"
+    "kältegefühl",
+    "kaeltegefuehl"
   ],
   "frieren": [
     "frost",
@@ -8086,7 +8091,8 @@
     "sensibilität",
     "sensitivität",
     "verständnis",
-    "zartgefühl"
+    "zartgefühl",
+    "gefuehl"
   ],
   "einfühlung": [
     "alle fäden laufen dort zusammen",
@@ -10944,7 +10950,8 @@
     "bewegung"
   ],
   "regung": [
-    "bewegung"
+    "bewegung",
+    "gefuehl"
   ],
   "lass was passieren": [
     "bewegung"
@@ -11319,7 +11326,8 @@
     "bei"
   ],
   "neben": [
-    "bei"
+    "bei",
+    "und"
   ],
   "in sachen": [
     "bei"
@@ -11340,7 +11348,8 @@
     "bei"
   ],
   "nebst": [
-    "bei"
+    "bei",
+    "und"
   ],
   "zusammen mit": [
     "bei"
@@ -11400,5 +11409,2216 @@
   ],
   "kontraktion des herzens": [
     "puls"
+  ],
+  "kalte": [
+    "härte",
+    "taubheit",
+    "herzlosigkeit",
+    "trägheit des herzens relig",
+    "gefühllosigkeit",
+    "hartherzigkeit",
+    "kälte",
+    "gleichgültigkeit"
+  ],
+  "härte": [
+    "kalte",
+    "kaelte"
+  ],
+  "taubheit": [
+    "kalte",
+    "kaelte"
+  ],
+  "herzlosigkeit": [
+    "kalte",
+    "kaelte"
+  ],
+  "trägheit des herzens relig": [
+    "kalte",
+    "kaelte"
+  ],
+  "gefühllosigkeit": [
+    "kalte",
+    "kaelte"
+  ],
+  "hartherzigkeit": [
+    "kalte",
+    "kaelte"
+  ],
+  "gleichgültigkeit": [
+    "kalte",
+    "kaelte"
+  ],
+  "uberhaupt": [
+    "schier",
+    "überhaupt",
+    "gar"
+  ],
+  "schier": [
+    "uberhaupt",
+    "ueberhaupt"
+  ],
+  "überhaupt": [
+    "uberhaupt",
+    "ueberhaupt"
+  ],
+  "gar": [
+    "uberhaupt",
+    "ueberhaupt"
+  ],
+  "agg": [
+    "allgemeines gleichbehandlungsgesetz",
+    "antidiskriminierungsgesetz"
+  ],
+  "allgemeines gleichbehandlungsgesetz": [
+    "agg"
+  ],
+  "antidiskriminierungsgesetz": [
+    "agg"
+  ],
+  "kaelte": [
+    "härte",
+    "taubheit",
+    "herzlosigkeit",
+    "trägheit des herzens relig",
+    "gefühllosigkeit",
+    "hartherzigkeit",
+    "kälte",
+    "gleichgültigkeit"
+  ],
+  "kalt": [
+    "nicht zündend",
+    "frostig",
+    "tierisch kalt",
+    "kaltherzig",
+    "arktisch",
+    "hartherzig",
+    "nicht wirklich komisch",
+    "gefühlskalt",
+    "ohne mitgefühl",
+    "frigide",
+    "kaltschnäuzig",
+    "kalt witz",
+    "saukalt",
+    "emotionslos",
+    "sehr kalt",
+    "klirrend kalt",
+    "mitleidlos",
+    "zapfig kalt",
+    "frisch",
+    "bitterkalt",
+    "kühl",
+    "arschkalt",
+    "hart",
+    "ohne echte pointe",
+    "eisekalt",
+    "unerregbar",
+    "fühllos",
+    "frostklirrend",
+    "winterlich",
+    "lieblos",
+    "zieht nicht witz",
+    "eiskalt",
+    "gefühllos",
+    "schweinekalt",
+    "herzlos",
+    "knackig kalt",
+    "eisig"
+  ],
+  "nicht zündend": [
+    "kalt"
+  ],
+  "frostig": [
+    "kalt"
+  ],
+  "tierisch kalt": [
+    "kalt"
+  ],
+  "kaltherzig": [
+    "kalt"
+  ],
+  "arktisch": [
+    "kalt"
+  ],
+  "hartherzig": [
+    "kalt"
+  ],
+  "nicht wirklich komisch": [
+    "kalt"
+  ],
+  "gefühlskalt": [
+    "kalt"
+  ],
+  "ohne mitgefühl": [
+    "kalt"
+  ],
+  "frigide": [
+    "kalt"
+  ],
+  "kaltschnäuzig": [
+    "kalt"
+  ],
+  "kalt witz": [
+    "kalt"
+  ],
+  "saukalt": [
+    "kalt"
+  ],
+  "emotionslos": [
+    "kalt"
+  ],
+  "sehr kalt": [
+    "kalt"
+  ],
+  "klirrend kalt": [
+    "kalt"
+  ],
+  "mitleidlos": [
+    "kalt"
+  ],
+  "zapfig kalt": [
+    "kalt"
+  ],
+  "frisch": [
+    "kalt"
+  ],
+  "bitterkalt": [
+    "kalt"
+  ],
+  "kühl": [
+    "kalt"
+  ],
+  "arschkalt": [
+    "kalt"
+  ],
+  "hart": [
+    "kalt"
+  ],
+  "ohne echte pointe": [
+    "kalt"
+  ],
+  "eisekalt": [
+    "kalt"
+  ],
+  "unerregbar": [
+    "kalt"
+  ],
+  "fühllos": [
+    "kalt"
+  ],
+  "frostklirrend": [
+    "kalt"
+  ],
+  "winterlich": [
+    "kalt"
+  ],
+  "lieblos": [
+    "kalt"
+  ],
+  "zieht nicht witz": [
+    "kalt"
+  ],
+  "eiskalt": [
+    "kalt"
+  ],
+  "gefühllos": [
+    "kalt"
+  ],
+  "schweinekalt": [
+    "kalt"
+  ],
+  "herzlos": [
+    "kalt"
+  ],
+  "knackig kalt": [
+    "kalt"
+  ],
+  "eisig": [
+    "kalt"
+  ],
+  "mangel": [
+    "schwäche",
+    "armut",
+    "ermangelung von",
+    "insuffizienz",
+    "einbuße",
+    "das fehlen von",
+    "fehlender nachschub",
+    "mangel an",
+    "defizit",
+    "es gibt nicht genug",
+    "seltenheit",
+    "verknappung von",
+    "dürftigkeit",
+    "wäschemangel",
+    "einer sache ermangeln",
+    "manko",
+    "nichtvorhandensein",
+    "versorgungsprobleme bei",
+    "opfer",
+    "fehlen von",
+    "abwesenheit von",
+    "schmälerung",
+    "lücke",
+    "engpass",
+    "unterversorgung mit",
+    "mankieren",
+    "knappheit",
+    "kranken an",
+    "es herrscht mangel",
+    "ausbleiben",
+    "mangeln",
+    "happern",
+    "armseligkeit",
+    "kargheit",
+    "entbehrung",
+    "minuspunkt",
+    "es fehlt an",
+    "es gibt zu wenige",
+    "schwachstelle",
+    "einschränkung",
+    "es hapert an",
+    "fehlen",
+    "not"
+  ],
+  "armut": [
+    "mangel"
+  ],
+  "ermangelung von": [
+    "mangel"
+  ],
+  "insuffizienz": [
+    "mangel"
+  ],
+  "einbuße": [
+    "mangel"
+  ],
+  "das fehlen von": [
+    "mangel"
+  ],
+  "fehlender nachschub": [
+    "mangel"
+  ],
+  "mangel an": [
+    "mangel"
+  ],
+  "defizit": [
+    "mangel"
+  ],
+  "es gibt nicht genug": [
+    "mangel"
+  ],
+  "seltenheit": [
+    "mangel"
+  ],
+  "verknappung von": [
+    "mangel"
+  ],
+  "dürftigkeit": [
+    "mangel"
+  ],
+  "wäschemangel": [
+    "mangel"
+  ],
+  "einer sache ermangeln": [
+    "mangel"
+  ],
+  "manko": [
+    "mangel"
+  ],
+  "nichtvorhandensein": [
+    "mangel"
+  ],
+  "versorgungsprobleme bei": [
+    "mangel"
+  ],
+  "opfer": [
+    "mangel"
+  ],
+  "fehlen von": [
+    "mangel"
+  ],
+  "abwesenheit von": [
+    "mangel"
+  ],
+  "schmälerung": [
+    "mangel"
+  ],
+  "lücke": [
+    "mangel"
+  ],
+  "engpass": [
+    "mangel"
+  ],
+  "unterversorgung mit": [
+    "mangel"
+  ],
+  "mankieren": [
+    "mangel"
+  ],
+  "knappheit": [
+    "mangel"
+  ],
+  "kranken an": [
+    "mangel"
+  ],
+  "es herrscht mangel": [
+    "mangel"
+  ],
+  "ausbleiben": [
+    "mangel"
+  ],
+  "mangeln": [
+    "mangel"
+  ],
+  "happern": [
+    "mangel"
+  ],
+  "armseligkeit": [
+    "mangel"
+  ],
+  "kargheit": [
+    "mangel"
+  ],
+  "entbehrung": [
+    "mangel"
+  ],
+  "minuspunkt": [
+    "mangel"
+  ],
+  "es fehlt an": [
+    "mangel"
+  ],
+  "es gibt zu wenige": [
+    "mangel"
+  ],
+  "schwachstelle": [
+    "mangel"
+  ],
+  "einschränkung": [
+    "mangel"
+  ],
+  "es hapert an": [
+    "mangel"
+  ],
+  "fehlen": [
+    "mangel"
+  ],
+  "not": [
+    "mangel"
+  ],
+  "ueber": [
+    "über zeitdauer",
+    "übertrieben",
+    "jemanden in die tasche stecken können",
+    "zu sehr",
+    "übergeblieben",
+    "oberhalb",
+    "mehr als gut tun würde",
+    "über alter",
+    "stärker",
+    "noch da",
+    "bis zum umfallen",
+    "durch",
+    "ab alter",
+    "hoch in den ern",
+    "mithilfe",
+    "noch über",
+    "bis die haare bluten",
+    "gut und gerne vor zahlen",
+    "bis zum abwinken",
+    "unter zuhilfenahme von",
+    "mit hilfe von",
+    "bis der arzt kommt",
+    "allzu",
+    "sehr gradadverb",
+    "gut",
+    "mittels",
+    "besser",
+    "übriggeblieben",
+    "zu gradadverb",
+    "vermittelst",
+    "hoch",
+    "verblieben",
+    "anhand",
+    "mehr draufhaben",
+    "im übermaß",
+    "furchtbar",
+    "hindurch zeitdauer",
+    "jemandem geblieben",
+    "ausnehmend",
+    "erstaunlich",
+    "verdächtig",
+    "satt adjektivisch",
+    "übrig",
+    "unter einsatz von",
+    "übrig geblieben",
+    "restlich",
+    "für zeitdauer",
+    "ungemein",
+    "mehr als",
+    "im wege von",
+    "auffallend",
+    "zeitausdruck in adverbialem akkusativ",
+    "bis zum tz",
+    "mehr als genug",
+    "bis zur vergasung",
+    "unglaublich adverb",
+    "obig",
+    "vermittels",
+    "überzählig",
+    "übermäßig",
+    "schrecklich",
+    "zu stark",
+    "jemandem überlegen",
+    "bis dort hinaus",
+    "arg",
+    "droben",
+    "übergenug",
+    "zu  adjektiv  adverb",
+    "bis zum gehtnichtmehr",
+    "überhalb",
+    "plus",
+    "mit",
+    "überaus",
+    "per",
+    "oben",
+    "bis zum überdruss",
+    "qua",
+    "sehr sehr",
+    "bis jemand schwarz wird",
+    "lang zeitlich",
+    "mehr als nötig",
+    "überschüssig",
+    "ungebührlich stark",
+    "verdammt",
+    "ohne ende",
+    "über die maßen",
+    "überschritten haben",
+    "über",
+    "bis es jemandem zu den ohren wieder herauskommt",
+    "unnötig stark",
+    "bis zum tezett",
+    "jenseits der",
+    "mehr als gut wäre",
+    "über gebühr",
+    "bis zum erbrechen",
+    "jemandem über",
+    "via",
+    "unverhältnismäßig",
+    "jemandem davonlaufen",
+    "verbleibend",
+    "jemandem enteilen",
+    "ad nauseam",
+    "überreichlich"
+  ],
+  "über zeitdauer": [
+    "ueber"
+  ],
+  "übertrieben": [
+    "ueber"
+  ],
+  "jemanden in die tasche stecken können": [
+    "ueber"
+  ],
+  "zu sehr": [
+    "ueber"
+  ],
+  "übergeblieben": [
+    "ueber"
+  ],
+  "oberhalb": [
+    "ueber"
+  ],
+  "mehr als gut tun würde": [
+    "ueber"
+  ],
+  "über alter": [
+    "ueber"
+  ],
+  "stärker": [
+    "ueber"
+  ],
+  "noch da": [
+    "ueber"
+  ],
+  "bis zum umfallen": [
+    "ueber"
+  ],
+  "durch": [
+    "ueber",
+    "von"
+  ],
+  "ab alter": [
+    "ueber"
+  ],
+  "hoch in den ern": [
+    "ueber"
+  ],
+  "mithilfe": [
+    "ueber"
+  ],
+  "noch über": [
+    "ueber"
+  ],
+  "bis die haare bluten": [
+    "ueber"
+  ],
+  "gut und gerne vor zahlen": [
+    "ueber"
+  ],
+  "bis zum abwinken": [
+    "ueber"
+  ],
+  "unter zuhilfenahme von": [
+    "ueber"
+  ],
+  "mit hilfe von": [
+    "ueber"
+  ],
+  "bis der arzt kommt": [
+    "ueber"
+  ],
+  "allzu": [
+    "ueber"
+  ],
+  "sehr gradadverb": [
+    "ueber"
+  ],
+  "gut": [
+    "ueber"
+  ],
+  "mittels": [
+    "ueber"
+  ],
+  "besser": [
+    "ueber"
+  ],
+  "übriggeblieben": [
+    "ueber"
+  ],
+  "zu gradadverb": [
+    "ueber"
+  ],
+  "vermittelst": [
+    "ueber"
+  ],
+  "hoch": [
+    "ueber"
+  ],
+  "verblieben": [
+    "ueber"
+  ],
+  "anhand": [
+    "ueber"
+  ],
+  "mehr draufhaben": [
+    "ueber"
+  ],
+  "im übermaß": [
+    "ueber"
+  ],
+  "furchtbar": [
+    "ueber"
+  ],
+  "hindurch zeitdauer": [
+    "ueber"
+  ],
+  "jemandem geblieben": [
+    "ueber"
+  ],
+  "ausnehmend": [
+    "ueber"
+  ],
+  "erstaunlich": [
+    "ueber"
+  ],
+  "verdächtig": [
+    "ueber"
+  ],
+  "satt adjektivisch": [
+    "ueber"
+  ],
+  "übrig": [
+    "ueber"
+  ],
+  "unter einsatz von": [
+    "ueber"
+  ],
+  "übrig geblieben": [
+    "ueber"
+  ],
+  "restlich": [
+    "ueber"
+  ],
+  "für zeitdauer": [
+    "ueber"
+  ],
+  "ungemein": [
+    "ueber"
+  ],
+  "mehr als": [
+    "ueber"
+  ],
+  "im wege von": [
+    "ueber"
+  ],
+  "auffallend": [
+    "ueber"
+  ],
+  "zeitausdruck in adverbialem akkusativ": [
+    "ueber"
+  ],
+  "bis zum tz": [
+    "ueber"
+  ],
+  "mehr als genug": [
+    "ueber"
+  ],
+  "bis zur vergasung": [
+    "ueber"
+  ],
+  "unglaublich adverb": [
+    "ueber"
+  ],
+  "obig": [
+    "ueber"
+  ],
+  "vermittels": [
+    "ueber"
+  ],
+  "überzählig": [
+    "ueber"
+  ],
+  "übermäßig": [
+    "ueber"
+  ],
+  "schrecklich": [
+    "ueber"
+  ],
+  "zu stark": [
+    "ueber"
+  ],
+  "jemandem überlegen": [
+    "ueber"
+  ],
+  "bis dort hinaus": [
+    "ueber"
+  ],
+  "arg": [
+    "ueber"
+  ],
+  "droben": [
+    "ueber"
+  ],
+  "übergenug": [
+    "ueber"
+  ],
+  "zu  adjektiv  adverb": [
+    "ueber"
+  ],
+  "bis zum gehtnichtmehr": [
+    "ueber"
+  ],
+  "überhalb": [
+    "ueber"
+  ],
+  "plus": [
+    "ueber",
+    "und"
+  ],
+  "mit": [
+    "ueber"
+  ],
+  "überaus": [
+    "ueber"
+  ],
+  "per": [
+    "ueber"
+  ],
+  "oben": [
+    "ueber"
+  ],
+  "bis zum überdruss": [
+    "ueber"
+  ],
+  "qua": [
+    "ueber"
+  ],
+  "sehr sehr": [
+    "ueber"
+  ],
+  "bis jemand schwarz wird": [
+    "ueber"
+  ],
+  "lang zeitlich": [
+    "ueber"
+  ],
+  "mehr als nötig": [
+    "ueber"
+  ],
+  "überschüssig": [
+    "ueber"
+  ],
+  "ungebührlich stark": [
+    "ueber"
+  ],
+  "verdammt": [
+    "ueber"
+  ],
+  "ohne ende": [
+    "ueber"
+  ],
+  "über die maßen": [
+    "ueber"
+  ],
+  "überschritten haben": [
+    "ueber"
+  ],
+  "über": [
+    "ueber"
+  ],
+  "bis es jemandem zu den ohren wieder herauskommt": [
+    "ueber"
+  ],
+  "unnötig stark": [
+    "ueber"
+  ],
+  "bis zum tezett": [
+    "ueber"
+  ],
+  "jenseits der": [
+    "ueber"
+  ],
+  "mehr als gut wäre": [
+    "ueber"
+  ],
+  "über gebühr": [
+    "ueber"
+  ],
+  "bis zum erbrechen": [
+    "ueber"
+  ],
+  "jemandem über": [
+    "ueber"
+  ],
+  "via": [
+    "ueber"
+  ],
+  "unverhältnismäßig": [
+    "ueber"
+  ],
+  "jemandem davonlaufen": [
+    "ueber"
+  ],
+  "verbleibend": [
+    "ueber"
+  ],
+  "jemandem enteilen": [
+    "ueber"
+  ],
+  "ad nauseam": [
+    "ueber"
+  ],
+  "überreichlich": [
+    "ueber"
+  ],
+  "ueberhaupt": [
+    "denn in fragen",
+    "überhaupt in fragen",
+    "eigentlich in fragen",
+    "schier",
+    "überhaupt",
+    "gar",
+    "denn eigentlich frage",
+    "eigentlich überhaupt in fragen",
+    "denn überhaupt frage"
+  ],
+  "denn in fragen": [
+    "ueberhaupt"
+  ],
+  "überhaupt in fragen": [
+    "ueberhaupt"
+  ],
+  "eigentlich in fragen": [
+    "ueberhaupt"
+  ],
+  "denn eigentlich frage": [
+    "ueberhaupt"
+  ],
+  "eigentlich überhaupt in fragen": [
+    "ueberhaupt"
+  ],
+  "denn überhaupt frage": [
+    "ueberhaupt"
+  ],
+  "mücken": [
+    "grillen",
+    "flausen",
+    "allüren",
+    "anwandlungen",
+    "kapriolen",
+    "spinnerei",
+    "mucken",
+    "launen"
+  ],
+  "grillen": [
+    "mücken"
+  ],
+  "flausen": [
+    "mücken"
+  ],
+  "allüren": [
+    "mücken"
+  ],
+  "anwandlungen": [
+    "mücken"
+  ],
+  "kapriolen": [
+    "mücken"
+  ],
+  "spinnerei": [
+    "mücken"
+  ],
+  "mucken": [
+    "mücken"
+  ],
+  "launen": [
+    "mücken"
+  ],
+  "kaffee": [
+    "ein haferl kaffee",
+    "ein käffchen",
+    "eine tasse kaffee",
+    "ein kaffee",
+    "wachmacher",
+    "ne tass kaff"
+  ],
+  "ein haferl kaffee": [
+    "kaffee"
+  ],
+  "ein käffchen": [
+    "kaffee"
+  ],
+  "eine tasse kaffee": [
+    "kaffee"
+  ],
+  "ein kaffee": [
+    "kaffee"
+  ],
+  "wachmacher": [
+    "kaffee"
+  ],
+  "ne tass kaff": [
+    "kaffee"
+  ],
+  "von": [
+    "von seiten",
+    "durch",
+    "seitens",
+    "vonseiten"
+  ],
+  "von seiten": [
+    "von"
+  ],
+  "seitens": [
+    "von"
+  ],
+  "vonseiten": [
+    "von"
+  ],
+  "der": [
+    "jener pronomen",
+    "ihmchen",
+    "der da",
+    "welcher",
+    "selber",
+    "dieser",
+    "selbiger",
+    "jener",
+    "der pronomen",
+    "dieser pronomen",
+    "solcher"
+  ],
+  "jener pronomen": [
+    "der"
+  ],
+  "ihmchen": [
+    "der"
+  ],
+  "der da": [
+    "der"
+  ],
+  "welcher": [
+    "der"
+  ],
+  "selber": [
+    "der"
+  ],
+  "dieser": [
+    "der"
+  ],
+  "selbiger": [
+    "der"
+  ],
+  "jener": [
+    "der"
+  ],
+  "der pronomen": [
+    "der"
+  ],
+  "dieser pronomen": [
+    "der"
+  ],
+  "solcher": [
+    "der"
+  ],
+  "kaeltegefuehl": [
+    "frostgefühl",
+    "kältegefühl",
+    "frösteln"
+  ],
+  "frostgefühl": [
+    "kaeltegefuehl"
+  ],
+  "gefuehl": [
+    "gefühlsbewegung",
+    "gespür",
+    "gemütsbewegung",
+    "vorahnung",
+    "innere stimme",
+    "gefühlserregung",
+    "gefühlsaufwallung",
+    "gefühlswallung",
+    "instinkt",
+    "so ein gefühl",
+    "vorgefühl",
+    "gefühl",
+    "affekt",
+    "empfindung",
+    "befürchtung",
+    "sentiment",
+    "sechster sinn",
+    "bauchgefühl",
+    "ahnung",
+    "besorgnis",
+    "eingebung",
+    "gefühlsregung",
+    "emotion",
+    "siebter sinn",
+    "regung",
+    "menschliche regung",
+    "spürsinn",
+    "intuition"
+  ],
+  "gefühlsbewegung": [
+    "gefuehl"
+  ],
+  "gemütsbewegung": [
+    "gefuehl"
+  ],
+  "vorahnung": [
+    "gefuehl"
+  ],
+  "innere stimme": [
+    "gefuehl"
+  ],
+  "gefühlserregung": [
+    "gefuehl"
+  ],
+  "gefühlsaufwallung": [
+    "gefuehl"
+  ],
+  "gefühlswallung": [
+    "gefuehl"
+  ],
+  "instinkt": [
+    "gefuehl"
+  ],
+  "so ein gefühl": [
+    "gefuehl"
+  ],
+  "vorgefühl": [
+    "gefuehl"
+  ],
+  "gefühl": [
+    "gefuehl"
+  ],
+  "affekt": [
+    "gefuehl"
+  ],
+  "empfindung": [
+    "gefuehl"
+  ],
+  "befürchtung": [
+    "gefuehl"
+  ],
+  "sentiment": [
+    "gefuehl"
+  ],
+  "sechster sinn": [
+    "gefuehl"
+  ],
+  "bauchgefühl": [
+    "gefuehl"
+  ],
+  "ahnung": [
+    "gefuehl"
+  ],
+  "besorgnis": [
+    "gefuehl"
+  ],
+  "eingebung": [
+    "gefuehl"
+  ],
+  "gefühlsregung": [
+    "gefuehl"
+  ],
+  "emotion": [
+    "gefuehl"
+  ],
+  "siebter sinn": [
+    "gefuehl"
+  ],
+  "menschliche regung": [
+    "gefuehl"
+  ],
+  "spürsinn": [
+    "gefuehl"
+  ],
+  "intuition": [
+    "gefuehl"
+  ],
+  "und": [
+    "daneben",
+    "noch dazu",
+    "weiters",
+    "zunehmend  komparativ",
+    "zuzüglich",
+    "wie ist es gelaufen",
+    "hierneben",
+    "na wenn schon",
+    "ab dafür",
+    "wie ist es abgelaufen",
+    "wie auch",
+    "hinzu kommt dass",
+    "ferner",
+    "sowohl",
+    "neben alldem",
+    "immer  komparativ",
+    "nun sag",
+    "überdies",
+    "spucks schon aus",
+    "nicht zuletzt",
+    "weiter",
+    "und wenn schon",
+    "und zusätzlich",
+    "na  und wennschon",
+    "darüber hinaus",
+    "hinzuaddiert zu",
+    "zumal",
+    "mit zunehmendem",
+    "wie wars",
+    "ja sogar",
+    "zusätzlich",
+    "nicht alle auf einmal",
+    "und auffordernd",
+    "i a",
+    "what shalls",
+    "dann klär mich auf",
+    "über  hinaus",
+    "erzähl",
+    "neben",
+    "und fordernd",
+    "ebenso wie",
+    "weiterhin",
+    "von mal zu mal  komparativ",
+    "was solls",
+    "ja na und",
+    "obendrein",
+    "ja mei",
+    "mehr noch",
+    "erzähl schon",
+    "unter anderem",
+    "dazu",
+    "zudem",
+    "warum nicht",
+    "sowie",
+    "kommt da jetzt noch was",
+    "des weiteren",
+    "schieß los",
+    "sowohl  als auch",
+    "zugleich",
+    "zum überfluss",
+    "so what",
+    "ebenso",
+    "wie",
+    "plus",
+    "mit wachsendem",
+    "na und",
+    "wen kümmerts",
+    "wie ist es verlaufen",
+    "jetzt sag schon",
+    "außerdem",
+    "und weiter",
+    "lass hören",
+    "mehr und mehr  adjektiv",
+    "mit wachsender",
+    "war das schon alles",
+    "nebst",
+    "im übrigen",
+    "ja und",
+    "ansonsten",
+    "warum denn nicht",
+    "zu allem überfluss",
+    "na  nu auffordernd",
+    "mit zunehmender",
+    "auch",
+    "und selbst wenn",
+    "ein übriges tun",
+    "wie noch",
+    "ist doch egal",
+    "und auch",
+    "auch weil",
+    "fürderhin",
+    "komparativ und komparativ",
+    "und dazu",
+    "inter alia",
+    "u a",
+    "raus damit"
+  ],
+  "daneben": [
+    "und"
+  ],
+  "noch dazu": [
+    "und"
+  ],
+  "weiters": [
+    "und"
+  ],
+  "zunehmend  komparativ": [
+    "und"
+  ],
+  "zuzüglich": [
+    "und"
+  ],
+  "wie ist es gelaufen": [
+    "und"
+  ],
+  "hierneben": [
+    "und"
+  ],
+  "na wenn schon": [
+    "und"
+  ],
+  "ab dafür": [
+    "und"
+  ],
+  "wie ist es abgelaufen": [
+    "und"
+  ],
+  "wie auch": [
+    "und"
+  ],
+  "hinzu kommt dass": [
+    "und"
+  ],
+  "ferner": [
+    "und"
+  ],
+  "sowohl": [
+    "und"
+  ],
+  "neben alldem": [
+    "und"
+  ],
+  "immer  komparativ": [
+    "und"
+  ],
+  "nun sag": [
+    "und"
+  ],
+  "überdies": [
+    "und"
+  ],
+  "spucks schon aus": [
+    "und"
+  ],
+  "nicht zuletzt": [
+    "und"
+  ],
+  "weiter": [
+    "und"
+  ],
+  "und wenn schon": [
+    "und"
+  ],
+  "und zusätzlich": [
+    "und"
+  ],
+  "na  und wennschon": [
+    "und"
+  ],
+  "darüber hinaus": [
+    "und"
+  ],
+  "hinzuaddiert zu": [
+    "und"
+  ],
+  "zumal": [
+    "und"
+  ],
+  "mit zunehmendem": [
+    "und"
+  ],
+  "wie wars": [
+    "und"
+  ],
+  "ja sogar": [
+    "und"
+  ],
+  "zusätzlich": [
+    "und"
+  ],
+  "nicht alle auf einmal": [
+    "und"
+  ],
+  "und auffordernd": [
+    "und"
+  ],
+  "i a": [
+    "und"
+  ],
+  "what shalls": [
+    "und"
+  ],
+  "dann klär mich auf": [
+    "und"
+  ],
+  "über  hinaus": [
+    "und"
+  ],
+  "erzähl": [
+    "und"
+  ],
+  "und fordernd": [
+    "und"
+  ],
+  "ebenso wie": [
+    "und"
+  ],
+  "weiterhin": [
+    "und"
+  ],
+  "von mal zu mal  komparativ": [
+    "und"
+  ],
+  "was solls": [
+    "und"
+  ],
+  "ja na und": [
+    "und"
+  ],
+  "obendrein": [
+    "und"
+  ],
+  "ja mei": [
+    "und"
+  ],
+  "mehr noch": [
+    "und"
+  ],
+  "erzähl schon": [
+    "und"
+  ],
+  "unter anderem": [
+    "und"
+  ],
+  "dazu": [
+    "und"
+  ],
+  "zudem": [
+    "und"
+  ],
+  "warum nicht": [
+    "und"
+  ],
+  "sowie": [
+    "und"
+  ],
+  "kommt da jetzt noch was": [
+    "und"
+  ],
+  "des weiteren": [
+    "und"
+  ],
+  "schieß los": [
+    "und"
+  ],
+  "sowohl  als auch": [
+    "und"
+  ],
+  "zugleich": [
+    "und"
+  ],
+  "zum überfluss": [
+    "und"
+  ],
+  "so what": [
+    "und"
+  ],
+  "ebenso": [
+    "und",
+    "gleich"
+  ],
+  "wie": [
+    "und",
+    "gleich"
+  ],
+  "mit wachsendem": [
+    "und"
+  ],
+  "na und": [
+    "und"
+  ],
+  "wen kümmerts": [
+    "und"
+  ],
+  "wie ist es verlaufen": [
+    "und"
+  ],
+  "jetzt sag schon": [
+    "und"
+  ],
+  "außerdem": [
+    "und"
+  ],
+  "und weiter": [
+    "und"
+  ],
+  "lass hören": [
+    "und"
+  ],
+  "mehr und mehr  adjektiv": [
+    "und"
+  ],
+  "mit wachsender": [
+    "und"
+  ],
+  "war das schon alles": [
+    "und"
+  ],
+  "im übrigen": [
+    "und"
+  ],
+  "ja und": [
+    "und"
+  ],
+  "ansonsten": [
+    "und"
+  ],
+  "warum denn nicht": [
+    "und"
+  ],
+  "zu allem überfluss": [
+    "und"
+  ],
+  "na  nu auffordernd": [
+    "und"
+  ],
+  "mit zunehmender": [
+    "und"
+  ],
+  "auch": [
+    "und"
+  ],
+  "und selbst wenn": [
+    "und"
+  ],
+  "ein übriges tun": [
+    "und"
+  ],
+  "wie noch": [
+    "und"
+  ],
+  "ist doch egal": [
+    "und"
+  ],
+  "und auch": [
+    "und"
+  ],
+  "auch weil": [
+    "und"
+  ],
+  "fürderhin": [
+    "und"
+  ],
+  "komparativ und komparativ": [
+    "und"
+  ],
+  "und dazu": [
+    "und"
+  ],
+  "inter alia": [
+    "und"
+  ],
+  "u a": [
+    "und"
+  ],
+  "raus damit": [
+    "und"
+  ],
+  "musik": [
+    "lala",
+    "tonkunst",
+    "mucke",
+    "frau musica allegorie"
+  ],
+  "lala": [
+    "musik"
+  ],
+  "tonkunst": [
+    "musik"
+  ],
+  "mucke": [
+    "musik"
+  ],
+  "frau musica allegorie": [
+    "musik"
+  ],
+  "ger": [
+    "speer",
+    "wurfspieß",
+    "spieß",
+    "lanze",
+    "wurfspeer"
+  ],
+  "speer": [
+    "ger"
+  ],
+  "wurfspieß": [
+    "ger"
+  ],
+  "spieß": [
+    "ger"
+  ],
+  "lanze": [
+    "ger"
+  ],
+  "wurfspeer": [
+    "ger"
+  ],
+  "allg": [
+    "allgemein",
+    "weithin",
+    "allseits",
+    "generell"
+  ],
+  "allgemein": [
+    "allg"
+  ],
+  "weithin": [
+    "allg"
+  ],
+  "allseits": [
+    "allg"
+  ],
+  "generell": [
+    "allg"
+  ],
+  "schwank": [
+    "ein schwank aus jemandes leben",
+    "lustige geschichte",
+    "posse theater",
+    "anekdote",
+    "burleske",
+    "döneken",
+    "eine geschichte die das leben schrieb",
+    "klamotte",
+    "posse",
+    "story"
+  ],
+  "ein schwank aus jemandes leben": [
+    "schwank"
+  ],
+  "lustige geschichte": [
+    "schwank"
+  ],
+  "posse theater": [
+    "schwank"
+  ],
+  "anekdote": [
+    "schwank"
+  ],
+  "burleske": [
+    "schwank"
+  ],
+  "döneken": [
+    "schwank"
+  ],
+  "eine geschichte die das leben schrieb": [
+    "schwank"
+  ],
+  "klamotte": [
+    "schwank"
+  ],
+  "posse": [
+    "schwank"
+  ],
+  "story": [
+    "schwank"
+  ],
+  "gleichgewicht": [
+    "ausgewogenheit",
+    "balance",
+    "equilibrium"
+  ],
+  "ausgewogenheit": [
+    "gleichgewicht"
+  ],
+  "balance": [
+    "gleichgewicht"
+  ],
+  "equilibrium": [
+    "gleichgewicht"
+  ],
+  "gleich": [
+    "schnurzegal",
+    "homogen",
+    "schnurz",
+    "es kann einen moment dauern",
+    "stehenden fußes",
+    "einer wie der andere",
+    "momentchen",
+    "so oder so",
+    "auf der stelle",
+    "verzugslos",
+    "ungesäumt",
+    "schnurzpiepe",
+    "wumpe",
+    "identisch",
+    "schmerzbefreit sein",
+    "gleich uhrzeit",
+    "es kann sich nur noch um stunden handeln",
+    "piepegal",
+    "schleunigst",
+    "sofort",
+    "umgehend",
+    "jemandem einerlei sein",
+    "schiskojenno",
+    "jetzt gleich",
+    "aus einem guss",
+    "sogleich",
+    "etwas sieht doch ein blinder mit dem krückstock",
+    "ganz gleich",
+    "schlagartig",
+    "bereits bei flüchtiger inaugenscheinnahme",
+    "schon bei flüchtiger beurteilung",
+    "schnuppe",
+    "alsbald",
+    "ident",
+    "haargenau dasselbe",
+    "schnurstracks",
+    "prompt",
+    "jemandem gleichgültig sein",
+    "auf den ersten blick erkennen",
+    "ohne umwege",
+    "ein kurzer blick genügt um zu sehen  zu erkennen",
+    "nur eine sekunde",
+    "sofort ins auge springen",
+    "ohne zeitverzug",
+    "unverzüglich",
+    "eine wie die andere",
+    "wurscht",
+    "nachher",
+    "es dauert einen moment",
+    "in ein paar minuten",
+    "furzegal",
+    "dasselbe",
+    "alles dasselbe",
+    "stante pede",
+    "fristlos",
+    "einheitlich",
+    "schittegal",
+    "ebenso",
+    "genauso",
+    "wie",
+    "ohne unterschied",
+    "sekunde",
+    "in einigen minuten",
+    "schnurzpiepegal",
+    "alles ein- und dasselbe",
+    "geradewegs",
+    "es kann sich nur um ein paar minuten handeln",
+    "pupsegal",
+    "gleich sehen",
+    "am besten gestern",
+    "sofort sehen",
+    "einfach zu sehen sein",
+    "eins wie das andere",
+    "warte mal einen augenblick",
+    "warte mal kurz",
+    "egal sein",
+    "augenblick bitte",
+    "jeden moment",
+    "keine rolle spielen",
+    "unmittelbar",
+    "ein und dasselbe",
+    "instantan",
+    "jeden augenblick",
+    "gleichartig",
+    "direkt",
+    "scheißegal",
+    "in wenigen minuten",
+    "gleichförmig",
+    "kurz vor uhrzeit",
+    "augenblicklich",
+    "ebenmäßig",
+    "dasselbe in grün",
+    "auf dem fuß folgend",
+    "postwendend",
+    "stracks"
+  ],
+  "schnurzegal": [
+    "gleich"
+  ],
+  "homogen": [
+    "gleich"
+  ],
+  "schnurz": [
+    "gleich"
+  ],
+  "es kann einen moment dauern": [
+    "gleich"
+  ],
+  "stehenden fußes": [
+    "gleich"
+  ],
+  "einer wie der andere": [
+    "gleich"
+  ],
+  "momentchen": [
+    "gleich"
+  ],
+  "so oder so": [
+    "gleich"
+  ],
+  "auf der stelle": [
+    "gleich"
+  ],
+  "verzugslos": [
+    "gleich"
+  ],
+  "ungesäumt": [
+    "gleich"
+  ],
+  "schnurzpiepe": [
+    "gleich"
+  ],
+  "wumpe": [
+    "gleich"
+  ],
+  "identisch": [
+    "gleich"
+  ],
+  "schmerzbefreit sein": [
+    "gleich"
+  ],
+  "gleich uhrzeit": [
+    "gleich"
+  ],
+  "es kann sich nur noch um stunden handeln": [
+    "gleich"
+  ],
+  "piepegal": [
+    "gleich"
+  ],
+  "schleunigst": [
+    "gleich"
+  ],
+  "sofort": [
+    "gleich"
+  ],
+  "umgehend": [
+    "gleich"
+  ],
+  "jemandem einerlei sein": [
+    "gleich"
+  ],
+  "schiskojenno": [
+    "gleich"
+  ],
+  "jetzt gleich": [
+    "gleich"
+  ],
+  "aus einem guss": [
+    "gleich"
+  ],
+  "sogleich": [
+    "gleich"
+  ],
+  "etwas sieht doch ein blinder mit dem krückstock": [
+    "gleich"
+  ],
+  "ganz gleich": [
+    "gleich"
+  ],
+  "schlagartig": [
+    "gleich"
+  ],
+  "bereits bei flüchtiger inaugenscheinnahme": [
+    "gleich"
+  ],
+  "schon bei flüchtiger beurteilung": [
+    "gleich"
+  ],
+  "schnuppe": [
+    "gleich"
+  ],
+  "alsbald": [
+    "gleich"
+  ],
+  "ident": [
+    "gleich"
+  ],
+  "haargenau dasselbe": [
+    "gleich"
+  ],
+  "schnurstracks": [
+    "gleich"
+  ],
+  "prompt": [
+    "gleich"
+  ],
+  "jemandem gleichgültig sein": [
+    "gleich"
+  ],
+  "auf den ersten blick erkennen": [
+    "gleich"
+  ],
+  "ohne umwege": [
+    "gleich"
+  ],
+  "ein kurzer blick genügt um zu sehen  zu erkennen": [
+    "gleich"
+  ],
+  "nur eine sekunde": [
+    "gleich"
+  ],
+  "sofort ins auge springen": [
+    "gleich"
+  ],
+  "ohne zeitverzug": [
+    "gleich"
+  ],
+  "unverzüglich": [
+    "gleich"
+  ],
+  "eine wie die andere": [
+    "gleich"
+  ],
+  "wurscht": [
+    "gleich"
+  ],
+  "nachher": [
+    "gleich"
+  ],
+  "es dauert einen moment": [
+    "gleich"
+  ],
+  "in ein paar minuten": [
+    "gleich"
+  ],
+  "furzegal": [
+    "gleich"
+  ],
+  "dasselbe": [
+    "gleich"
+  ],
+  "alles dasselbe": [
+    "gleich"
+  ],
+  "stante pede": [
+    "gleich"
+  ],
+  "fristlos": [
+    "gleich"
+  ],
+  "einheitlich": [
+    "gleich"
+  ],
+  "schittegal": [
+    "gleich"
+  ],
+  "genauso": [
+    "gleich"
+  ],
+  "ohne unterschied": [
+    "gleich"
+  ],
+  "sekunde": [
+    "gleich"
+  ],
+  "in einigen minuten": [
+    "gleich"
+  ],
+  "schnurzpiepegal": [
+    "gleich"
+  ],
+  "alles ein- und dasselbe": [
+    "gleich"
+  ],
+  "geradewegs": [
+    "gleich"
+  ],
+  "es kann sich nur um ein paar minuten handeln": [
+    "gleich"
+  ],
+  "pupsegal": [
+    "gleich"
+  ],
+  "gleich sehen": [
+    "gleich"
+  ],
+  "am besten gestern": [
+    "gleich"
+  ],
+  "sofort sehen": [
+    "gleich"
+  ],
+  "einfach zu sehen sein": [
+    "gleich"
+  ],
+  "eins wie das andere": [
+    "gleich"
+  ],
+  "warte mal einen augenblick": [
+    "gleich"
+  ],
+  "warte mal kurz": [
+    "gleich"
+  ],
+  "egal sein": [
+    "gleich"
+  ],
+  "augenblick bitte": [
+    "gleich"
+  ],
+  "jeden moment": [
+    "gleich"
+  ],
+  "keine rolle spielen": [
+    "gleich"
+  ],
+  "unmittelbar": [
+    "gleich"
+  ],
+  "ein und dasselbe": [
+    "gleich"
+  ],
+  "instantan": [
+    "gleich"
+  ],
+  "jeden augenblick": [
+    "gleich"
+  ],
+  "gleichartig": [
+    "gleich"
+  ],
+  "direkt": [
+    "gleich"
+  ],
+  "scheißegal": [
+    "gleich"
+  ],
+  "in wenigen minuten": [
+    "gleich"
+  ],
+  "gleichförmig": [
+    "gleich"
+  ],
+  "kurz vor uhrzeit": [
+    "gleich"
+  ],
+  "augenblicklich": [
+    "gleich"
+  ],
+  "ebenmäßig": [
+    "gleich"
+  ],
+  "dasselbe in grün": [
+    "gleich"
+  ],
+  "auf dem fuß folgend": [
+    "gleich"
+  ],
+  "postwendend": [
+    "gleich"
+  ],
+  "stracks": [
+    "gleich"
+  ],
+  "schwanken": [
+    "wackelig stehen",
+    "sich nicht festlegen wollen",
+    "im gleichgewicht halten",
+    "variieren",
+    "kippen",
+    "wippen",
+    "unentschlossen sein",
+    "eiertänze vollführen",
+    "herumeiern",
+    "einpendeln",
+    "taumeln",
+    "sich abfangen",
+    "torkeln",
+    "wanken",
+    "schwanken zwischen",
+    "ausgleichen",
+    "abgleichen",
+    "einen eiertanz aufführen",
+    "sich halten",
+    "hin- und hergerissen sein",
+    "fluktuieren",
+    "gegenhalten",
+    "in der waage halten",
+    "wackeln",
+    "schlickern",
+    "unentschieden sein",
+    "wechseln",
+    "flottieren",
+    "abwägen",
+    "sich nicht entscheiden können zwischen",
+    "herumwackeln",
+    "rollen schiff",
+    "stampfen schiff",
+    "sich gerade so halten",
+    "austarieren",
+    "ausmitteln",
+    "rumtorkeln",
+    "trudeln",
+    "schunkeln",
+    "kippeln",
+    "herumtun",
+    "balancieren",
+    "schaukeln",
+    "sich nicht festnageln lassen",
+    "sich verändern",
+    "schwenken",
+    "hin- und herpendeln",
+    "ständig volten schlagen",
+    "festlegungen vermeiden"
+  ],
+  "wackelig stehen": [
+    "schwanken"
+  ],
+  "sich nicht festlegen wollen": [
+    "schwanken"
+  ],
+  "im gleichgewicht halten": [
+    "schwanken"
+  ],
+  "variieren": [
+    "schwanken"
+  ],
+  "kippen": [
+    "schwanken"
+  ],
+  "wippen": [
+    "schwanken"
+  ],
+  "unentschlossen sein": [
+    "schwanken"
+  ],
+  "eiertänze vollführen": [
+    "schwanken"
+  ],
+  "herumeiern": [
+    "schwanken"
+  ],
+  "einpendeln": [
+    "schwanken"
+  ],
+  "taumeln": [
+    "schwanken"
+  ],
+  "sich abfangen": [
+    "schwanken"
+  ],
+  "torkeln": [
+    "schwanken"
+  ],
+  "wanken": [
+    "schwanken"
+  ],
+  "schwanken zwischen": [
+    "schwanken"
+  ],
+  "ausgleichen": [
+    "schwanken"
+  ],
+  "abgleichen": [
+    "schwanken"
+  ],
+  "einen eiertanz aufführen": [
+    "schwanken"
+  ],
+  "sich halten": [
+    "schwanken"
+  ],
+  "hin- und hergerissen sein": [
+    "schwanken"
+  ],
+  "fluktuieren": [
+    "schwanken"
+  ],
+  "gegenhalten": [
+    "schwanken"
+  ],
+  "in der waage halten": [
+    "schwanken"
+  ],
+  "wackeln": [
+    "schwanken"
+  ],
+  "schlickern": [
+    "schwanken"
+  ],
+  "unentschieden sein": [
+    "schwanken"
+  ],
+  "wechseln": [
+    "schwanken"
+  ],
+  "flottieren": [
+    "schwanken"
+  ],
+  "abwägen": [
+    "schwanken"
+  ],
+  "sich nicht entscheiden können zwischen": [
+    "schwanken"
+  ],
+  "herumwackeln": [
+    "schwanken"
+  ],
+  "rollen schiff": [
+    "schwanken"
+  ],
+  "stampfen schiff": [
+    "schwanken"
+  ],
+  "sich gerade so halten": [
+    "schwanken"
+  ],
+  "austarieren": [
+    "schwanken"
+  ],
+  "ausmitteln": [
+    "schwanken"
+  ],
+  "rumtorkeln": [
+    "schwanken"
+  ],
+  "trudeln": [
+    "schwanken"
+  ],
+  "schunkeln": [
+    "schwanken"
+  ],
+  "kippeln": [
+    "schwanken"
+  ],
+  "herumtun": [
+    "schwanken"
+  ],
+  "balancieren": [
+    "schwanken"
+  ],
+  "schaukeln": [
+    "schwanken"
+  ],
+  "sich nicht festnageln lassen": [
+    "schwanken"
+  ],
+  "sich verändern": [
+    "schwanken"
+  ],
+  "schwenken": [
+    "schwanken"
+  ],
+  "hin- und herpendeln": [
+    "schwanken"
+  ],
+  "ständig volten schlagen": [
+    "schwanken"
+  ],
+  "festlegungen vermeiden": [
+    "schwanken"
+  ],
+  "oder": [
+    "näch",
+    "nicht",
+    "woll sauerland bergisch",
+    "gelt",
+    "sonst",
+    "he regional vereinzelt",
+    "beziehungsweise",
+    "stimmts",
+    "oder norddt süddt verstreut",
+    "etwa nicht",
+    "gell",
+    "was",
+    "oder etwa nicht",
+    "gelle",
+    "nicht wahr",
+    "andernfalls"
+  ],
+  "näch": [
+    "oder"
+  ],
+  "nicht": [
+    "oder"
+  ],
+  "woll sauerland bergisch": [
+    "oder"
+  ],
+  "gelt": [
+    "oder"
+  ],
+  "sonst": [
+    "oder"
+  ],
+  "he regional vereinzelt": [
+    "oder"
+  ],
+  "beziehungsweise": [
+    "oder"
+  ],
+  "stimmts": [
+    "oder"
+  ],
+  "oder norddt süddt verstreut": [
+    "oder"
+  ],
+  "etwa nicht": [
+    "oder"
+  ],
+  "gell": [
+    "oder"
+  ],
+  "was": [
+    "oder"
+  ],
+  "oder etwa nicht": [
+    "oder"
+  ],
+  "gelle": [
+    "oder"
+  ],
+  "nicht wahr": [
+    "oder"
+  ],
+  "andernfalls": [
+    "oder"
   ]
 }
