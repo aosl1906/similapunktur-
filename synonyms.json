@@ -1549,7 +1549,8 @@
     "hibbeligkeit",
     "nervosität",
     "rastlosigkeit",
-    "unruhe"
+    "unruhe",
+    "wut"
   ],
   "hibbeligkeit": [
     "aufgeregtheit",
@@ -13620,5 +13621,146 @@
   ],
   "andernfalls": [
     "oder"
+  ],
+  "frust": [
+    "desillusion",
+    "frustration",
+    "enttäuschung",
+    "unzufriedenheit"
+  ],
+  "desillusion": [
+    "frust"
+  ],
+  "frustration": [
+    "frust"
+  ],
+  "enttäuschung": [
+    "frust"
+  ],
+  "unzufriedenheit": [
+    "frust"
+  ],
+  "wut": [
+    "empörung",
+    "zorn",
+    "wüterei",
+    "erbostheit",
+    "indignation",
+    "aufgebrachtheit",
+    "furor",
+    "aufgebrachtsein",
+    "feindseligkeit",
+    "jähzorn",
+    "aufgeregtheit",
+    "aufregung",
+    "rage",
+    "gefrett",
+    "wut im bauch",
+    "echauffiertheit",
+    "entrüstung",
+    "verärgerung",
+    "cholerik",
+    "ingrimm",
+    "echauffierung",
+    "ärger",
+    "gfrett",
+    "heiliger zorn",
+    "empörtheit",
+    "brast",
+    "böses blut",
+    "scheißwut",
+    "gereiztheit",
+    "stinkwut",
+    "raserei"
+  ],
+  "empörung": [
+    "wut"
+  ],
+  "zorn": [
+    "wut"
+  ],
+  "wüterei": [
+    "wut"
+  ],
+  "erbostheit": [
+    "wut"
+  ],
+  "indignation": [
+    "wut"
+  ],
+  "aufgebrachtheit": [
+    "wut"
+  ],
+  "furor": [
+    "wut"
+  ],
+  "aufgebrachtsein": [
+    "wut"
+  ],
+  "feindseligkeit": [
+    "wut"
+  ],
+  "jähzorn": [
+    "wut"
+  ],
+  "aufregung": [
+    "wut"
+  ],
+  "rage": [
+    "wut"
+  ],
+  "gefrett": [
+    "wut"
+  ],
+  "wut im bauch": [
+    "wut"
+  ],
+  "echauffiertheit": [
+    "wut"
+  ],
+  "entrüstung": [
+    "wut"
+  ],
+  "verärgerung": [
+    "wut"
+  ],
+  "cholerik": [
+    "wut"
+  ],
+  "ingrimm": [
+    "wut"
+  ],
+  "echauffierung": [
+    "wut"
+  ],
+  "ärger": [
+    "wut"
+  ],
+  "gfrett": [
+    "wut"
+  ],
+  "heiliger zorn": [
+    "wut"
+  ],
+  "empörtheit": [
+    "wut"
+  ],
+  "brast": [
+    "wut"
+  ],
+  "böses blut": [
+    "wut"
+  ],
+  "scheißwut": [
+    "wut"
+  ],
+  "gereiztheit": [
+    "wut"
+  ],
+  "stinkwut": [
+    "wut"
+  ],
+  "raserei": [
+    "wut"
   ]
 }

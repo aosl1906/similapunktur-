@@ -8,16 +8,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-DEqB9Dpu.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BgOyW6Q3.css">
+  <script type="module" crossorigin src="./assets/index-Bst0rEOz.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Dq9lkhW0.css">
 </head>
 <body>
   
   <header class="app-header">
-    <div class="header-logo-section">
-      <!-- Clean Text-based Logo following Maier style -->
-      <span class="brand-title">Andreas Maier</span>
-      <span class="brand-subtitle">Similapunktur Leitfaden</span>
+    <div class="header-logo-section" style="display: flex; align-items: center; gap: 12px;">
+      <div class="logo-text-wrapper">
+        <span class="brand-title">Andreas Maier</span>
+        <span class="brand-subtitle">Similapunktur Leitfaden</span>
+      </div>
+      <span id="version-badge" class="version-badge" title="Versionsverlauf anzeigen" style="cursor: pointer; background-color: var(--color-bg-light-gray); color: var(--color-text-dark); font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid var(--color-border);">v1.3.0</span>
     </div>
     
     <div class="header-search-section">
@@ -34,6 +36,12 @@
     </div>
     
     <div class="header-controls">
+      <button id="dev-review-toggle" class="icon-btn text-btn" title="Entwickler-Datenreview ein-/ausschalten" style="margin-right: 8px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1.5px solid var(--color-border); border-radius: 6px; background: none; font-weight: 700; font-size: 13px; color: var(--color-text-dark); cursor: pointer;">
+        <span>📊 Datenreview</span>
+      </button>
+      <button id="feedback-toggle" class="icon-btn text-btn" title="Feedback / Änderungswunsch senden" style="margin-right: 12px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1.5px solid var(--color-border); border-radius: 6px; background: none; font-weight: 700; font-size: 13px; color: var(--color-text-dark); cursor: pointer;">
+        <span>💬 Feedback</span>
+      </button>
       <button id="editor-toggle" class="icon-btn text-btn" title="Koordinaten-Editor ein-/ausschalten">
         <span class="editor-icon-text">✏️ Editor</span>
       </button>
@@ -274,6 +282,181 @@
         <div id="matrix-table-container" class="matrix-table-container">
           <!-- Dynamische Tabelle wird hier gerendert -->
         </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Version History Modal -->
+  <div id="version-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 600px; width: 90vw;">
+      <header class="modal-header">
+        <div class="modal-title-area">
+          <h2>Versionsverlauf</h2>
+          <p class="modal-subtitle">Entwicklungsgeschichte & Phasen-Updates</p>
+        </div>
+        <button id="close-version-btn" class="modal-close-btn" title="Schließen">&times;</button>
+      </header>
+      <div class="modal-body" style="overflow-y: auto; max-height: 70vh; padding: 24px;">
+        <div class="changelog-list">
+          <div class="changelog-item" style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+              v1.3.0 (10. Juli 2026)
+              <span class="badge" style="background-color: #fff9db; color: #e67e22; border-color: #f39c12; font-size: 10px;">Bönninghausen TTB</span>
+            </h3>
+            <p style="font-size: 13.5px; font-weight: 700; color: var(--color-text-dark); margin-bottom: 6px;">Bönninghausen TTB & Polaritätsanalyse</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
+              <li>Extraktion von 2.254 Symptomrubriken aus dem TTB von Clemens von Bönninghausen.</li>
+              <li>Einbindung in Autocomplete mit speziellen goldenen TTB-Markierungen.</li>
+              <li>Automatische Polaritätsanalyse-Engine zur Aufdeckung klinischer Widersprüche.</li>
+              <li>Hervorhebung kontraindizierter Mittel (⚠️) in Matrix-Ansicht und Empfehlungsliste.</li>
+            </ul>
+          </div>
+          <div class="changelog-item" style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px;">v1.2.0 (10. Juli 2026)</h3>
+            <p style="font-size: 13.5px; font-weight: 700; color: var(--color-text-dark); margin-bottom: 6px;">Materia Medica Integration</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
+              <li>Extraktion aller 326 Heilmittel-Beschreibungen von William Boericke.</li>
+              <li>Erstellung einer detaillierten Profilseite mit botanischen Vollnamen und klinischem Kurzportrait.</li>
+              <li>Lademethodik über performantes Lazy Loading und Aufbereitung der Anatomiesektionen im Akkordeon-Stil.</li>
+            </ul>
+          </div>
+          <div class="changelog-item" style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px;">v1.1.0 (10. Juli 2026)</h3>
+            <p style="font-size: 13.5px; font-weight: 700; color: var(--color-text-dark); margin-bottom: 6px;">Homöopathische Modalitäten</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
+              <li>Implementierung von 8 vordefinierten Modalitäten-Chips (Verschlimmerungen wie 💧 Feuchtigkeit, ❄️ Kälte).</li>
+              <li>Rechnungs-Boost (Grad * 2) im Empfehlungsalgorithmus.</li>
+              <li>Transponierte Matrix-Spaltenerweiterungen mit bernsteinfarbener Grade-Hervorhebung.</li>
+            </ul>
+          </div>
+          <div class="changelog-item">
+            <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px;">v1.0.0 (10. Juli 2026)</h3>
+            <p style="font-size: 13.5px; font-weight: 700; color: var(--color-text-dark); margin-bottom: 6px;">Erster Prototyp</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
+              <li>Interaktive Karte der 12 Hauptleitbahnen (Meridiane).</li>
+              <li>Symptomsuche (88 klassische Rubriken) und Transponierte Repertorisierungs-Matrix.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Feedback / Findings Modal -->
+  <div id="feedback-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 650px; width: 90vw;">
+      <header class="modal-header">
+        <div class="modal-title-area">
+          <h2>Feedback / Änderungswunsch erfassen</h2>
+          <p class="modal-subtitle">Direkte Erfassung von Tickets und Findings</p>
+        </div>
+        <button id="close-feedback-btn" class="modal-close-btn" title="Schließen">&times;</button>
+      </header>
+      <div class="modal-body" style="padding: 24px;">
+        <form id="feedback-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 6px;">Kategorie</label>
+            <select id="feedback-category" style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: 6px; padding: 0 12px; outline: none; font-family: inherit; font-size: 14px;">
+              <option value="Datenfehler">🐞 Datenfehler / Korrektur (Punkt, Symptom, Mittel)</option>
+              <option value="Verbesserungsvorschlag">💡 Verbesserungsvorschlag / UX Idee</option>
+              <option value="Systemfehler">⚠️ technischer Systemfehler</option>
+              <option value="Sonstiges">📝 Allgemeines Feedback / Sonstiges</option>
+            </select>
+          </div>
+          
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 6px;">Betreff / Thema</label>
+            <input type="text" id="feedback-subject" placeholder="z.B. Schreibfehler bei Heilmittel Puls. oder Indikation bei Herz 3" style="width: 100%; height: 40px; border: 1px solid var(--color-border); border-radius: 6px; padding: 0 12px; outline: none; font-family: inherit; font-size: 14px;" required>
+          </div>
+          
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 6px;">Detaillierte Beschreibung</label>
+            <textarea id="feedback-body" placeholder="Beschreibe hier möglichst genau, was geändert werden soll oder welcher Fehler aufgefallen ist..." style="width: 100%; height: 120px; border: 1px solid var(--color-border); border-radius: 6px; padding: 12px; outline: none; font-family: inherit; resize: vertical; font-size: 14px;" required></textarea>
+          </div>
+          
+          <div class="feedback-actions" style="display: flex; gap: 12px; margin-top: 8px;">
+            <button type="button" id="feedback-github-btn" class="matrix-btn" style="flex: 1; margin: 0; background-color: var(--color-primary-teal); color: #fff; height: 42px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              🐙 Auf GitHub melden (Empfohlen)
+            </button>
+            <button type="button" id="feedback-email-btn" class="matrix-btn" style="flex: 1; margin: 0; background-color: var(--color-deep-navy); color: #fff; height: 42px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              ✉️ Per E-Mail senden
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Developer Data Review Modal -->
+  <div id="dev-review-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 1400px; width: 95vw; height: 90vh;">
+      <header class="modal-header">
+        <div class="modal-title-area">
+          <h2>Datenreview-Dashboard (Entwicklermodus)</h2>
+          <p class="modal-subtitle">Systematische Strukturprüfung aller Tabellen</p>
+        </div>
+        <div class="dev-tabs" style="display: flex; gap: 8px; margin-left: 24px; margin-right: 24px; flex-grow: 1;">
+          <button class="dev-tab-btn active" data-dev-tab="points-review" style="padding: 6px 12px; background: none; border: 1.5px solid var(--color-border); border-radius: 6px; font-weight: 700; font-size: 13px; color: var(--color-text-dark); cursor: pointer;">Akupunkturpunkte</button>
+          <button class="dev-tab-btn" data-dev-tab="remedies-review" style="padding: 6px 12px; background: none; border: 1.5px solid var(--color-border); border-radius: 6px; font-weight: 700; font-size: 13px; color: var(--color-text-dark); cursor: pointer;">Heilmittel (Boericke)</button>
+          <button class="dev-tab-btn" data-dev-tab="ttb-review" style="padding: 6px 12px; background: none; border: 1.5px solid var(--color-border); border-radius: 6px; font-weight: 700; font-size: 13px; color: var(--color-text-dark); cursor: pointer;">Bönninghausen (TTB)</button>
+        </div>
+        <button id="close-dev-review-btn" class="modal-close-btn" title="Schließen">&times;</button>
+      </header>
+      <div class="modal-body" style="padding: 18px; display: flex; flex-direction: column; overflow: hidden; height: calc(90vh - 80px);">
+        
+        <div class="dev-search-bar" style="margin-bottom: 12px; display: flex; gap: 8px;">
+          <input type="text" id="dev-review-search" placeholder="Tabelle durchsuchen..." style="flex-grow: 1; height: 38px; border: 1px solid var(--color-border); border-radius: 19px; padding: 0 16px; outline: none; font-size: 14px;">
+        </div>
+        
+        <div id="points-review" class="dev-tab-pane active" style="flex-grow: 1; overflow: auto; border: 1px solid var(--color-border); border-radius: 8px;">
+          <table class="dev-review-table" style="width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left;">
+            <thead style="background-color: var(--color-bg-light-gray); position: sticky; top: 0; z-index: 10;">
+              <tr>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Punkt</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Meridian</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Deutscher Name</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Chinesischer Name</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Wirkungen</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Indikationen</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Heilmittel</th>
+              </tr>
+            </thead>
+            <tbody id="dev-points-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="remedies-review" class="dev-tab-pane" style="flex-grow: 1; overflow: auto; border: 1px solid var(--color-border); border-radius: 8px; display: none;">
+          <table class="dev-review-table" style="width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left;">
+            <thead style="background-color: var(--color-bg-light-gray); position: sticky; top: 0; z-index: 10;">
+              <tr>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border); width: 120px;">Kürzel</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border); width: 250px;">Botanischer Name</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Materia Medica Portrait (Boericke)</th>
+              </tr>
+            </thead>
+            <tbody id="dev-remedies-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="ttb-review" class="dev-tab-pane" style="flex-grow: 1; overflow: auto; border: 1px solid var(--color-border); border-radius: 8px; display: none;">
+          <table class="dev-review-table" style="width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left;">
+            <thead style="background-color: var(--color-bg-light-gray); position: sticky; top: 0; z-index: 10;">
+              <tr>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border); width: 350px;">TTB Rubrik</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border); width: 120px;">Treffer (Heilmittel)</th>
+                <th style="padding: 10px 14px; border-bottom: 1px solid var(--color-border);">Mittel-Liste (mit Grad)</th>
+              </tr>
+            </thead>
+            <tbody id="dev-ttb-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+        
       </div>
     </div>
   </div>
