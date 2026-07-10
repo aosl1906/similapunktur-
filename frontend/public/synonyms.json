@@ -11390,5 +11390,15 @@
   ],
   "streicheleinheiten": [
     "lob"
+  ],
+  "puls": [
+    "herzschlag",
+    "kontraktion des herzens"
+  ],
+  "herzschlag": [
+    "puls"
+  ],
+  "kontraktion des herzens": [
+    "puls"
   ]
 }

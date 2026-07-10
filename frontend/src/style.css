@@ -1411,3 +1411,297 @@ body {
   background-color: var(--color-primary-teal) !important;
   color: #ffffff !important;
 }
+
+/* Remedy Profile / Materia Medica Styles */
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary-teal);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  margin-bottom: 14px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+  color: var(--color-secondary-teal);
+  transform: translateX(-2px);
+}
+
+.remedy-badge.clickable,
+.badge-remedy.clickable,
+.pill-subremedy.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.remedy-badge.clickable:hover,
+.badge-remedy.clickable:hover,
+.pill-subremedy.clickable:hover {
+  transform: translateY(-1px);
+  background-color: var(--color-primary-teal) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary-teal) !important;
+}
+
+.matrix-table td.remedy-cell {
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.matrix-table td.remedy-cell:hover {
+  background-color: rgba(39, 133, 117, 0.08) !important;
+  color: var(--color-primary-teal) !important;
+  font-weight: 900;
+}
+
+.remedy-point-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background-color: #f8fafb;
+  border: 1px solid var(--color-bg-light-gray);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+}
+
+.remedy-point-item.clickable {
+  cursor: pointer;
+}
+
+.remedy-point-item.clickable:hover {
+  border-color: var(--color-primary-teal);
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(39, 133, 117, 0.08);
+  transform: translateY(-1px);
+}
+
+.remedy-point-item .point-badge {
+  background-color: var(--color-deep-navy);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  min-width: 52px;
+  text-align: center;
+}
+
+.remedy-point-item .point-info {
+  flex-grow: 1;
+  margin-left: 12px;
+  text-align: left;
+}
+
+.remedy-point-item .point-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.remedy-point-item .rubric-name {
+  font-size: 11px;
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+.remedy-point-item .grade-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.remedy-point-item .grade-badge.grade-3 {
+  background-color: #e6f3f0;
+  color: var(--color-primary-teal);
+  border: 1px solid rgba(39, 133, 117, 0.2);
+}
+
+.remedy-point-item .grade-badge.grade-1 {
+  background-color: #f1f3f5;
+  color: var(--color-text-light);
+  border: 1px solid var(--color-bg-light-gray);
+}
+
+/* Homeopathic Modalities (Aggravations) Styles */
+.modalities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.modality-chip {
+  background-color: var(--color-bg-light-gray);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-bg-light-gray);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modality-chip:hover {
+  border-color: var(--color-text-light);
+  transform: translateY(-1px);
+}
+
+.modality-chip.active {
+  background-color: #fff9db !important;
+  color: #e67e22 !important;
+  border-color: #f39c12 !important;
+  box-shadow: 0 2px 4px rgba(230, 126, 34, 0.15);
+}
+
+.modality-chip.active:hover {
+  transform: scale(1.02);
+}
+
+/* Matrix Table Modalities */
+.matrix-table th.modality-header {
+  background-color: #fff9db !important;
+  color: #e67e22 !important;
+  border-bottom: 2px solid #f39c12 !important;
+}
+
+.matrix-table td.modality-cell-active {
+  background-color: #fffdf5;
+}
+
+.matrix-table td.modality-cell-active.grade-3 {
+  color: #e67e22 !important;
+  font-weight: 900 !important;
+  background-color: #fff4cc !important;
+}
+
+.matrix-table td.modality-cell-active.grade-1 {
+  color: #f39c12 !important;
+  font-weight: 700 !important;
+  background-color: #fffdf0 !important;
+}
+
+/* Boericke Materia Medica Styles */
+.remedy-full-name {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-top: -6px;
+  margin-bottom: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+.remedy-overview-box {
+  background-color: var(--color-bg-light-gray);
+  border-left: 3px solid var(--color-primary-teal);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+}
+
+.remedy-overview-box strong {
+  color: var(--color-primary-teal);
+}
+
+.materia-medica-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-top: 24px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-bg-light-gray);
+  padding-bottom: 6px;
+}
+
+.materia-medica-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.accordion-item {
+  border: 1px solid var(--color-bg-light-gray);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.accordion-item:hover {
+  border-color: rgba(39, 133, 117, 0.3);
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background-color: var(--color-bg-light-gray);
+}
+
+.accordion-header .arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+  color: var(--color-text-light);
+}
+
+.accordion-item.active .accordion-header {
+  background-color: rgba(39, 133, 117, 0.05);
+  color: var(--color-primary-teal);
+}
+
+.accordion-item.active .accordion-header .arrow {
+  transform: rotate(180deg);
+  color: var(--color-primary-teal);
+}
+
+.accordion-content {
+  display: none;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+  border-top: 1px solid var(--color-bg-light-gray);
+  background-color: #fafbfc;
+}
+
+.accordion-item.active .accordion-content {
+  display: block;
+}
+
+
+

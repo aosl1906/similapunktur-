@@ -339,8 +339,85 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
                 
             except Exception as e:
                 self.send_error_response(500, str(e))
+        elif path == "/api/remedy-details":
+            remedy_name = query_params.get("name", [None])[0]
+            if not remedy_name:
+                self.send_error_response(400, "Missing 'name' parameter")
+                return
+                
+            try:
+                remedy = remedy_name.strip()
+                if not remedy.endswith('.'):
+                    remedy += '.'
+                    
+                conn = get_db_connection()
+                cur = conn.cursor()
+                
+                # Query associated rubrics and points
+                cur.execute('''
+                    SELECT g.punkt_id, p.name_de, g.rubrik_name, rh.grade
+                    FROM rubrik_heilmittel rh
+                    JOIN general_analysis_rubriken g ON rh.rubrik_id = g.id
+                    JOIN punkte p ON g.punkt_id = p.id
+                    WHERE LOWER(rh.remedy_name) = LOWER(?)
+                    ORDER BY rh.grade DESC, g.punkt_id ASC
+                ''', (remedy,))
+                rubrics = []
+                for r in cur.fetchall():
+                    rubrics.append({
+                        "point_id": r["punkt_id"],
+                        "point_name": r["name_de"],
+                        "rubric_name": r["rubrik_name"],
+                        "grade": r["grade"]
+                    })
+                    
+                # Query direct point mappings (homoeopathika)
+                cur.execute('''
+                    SELECT h.punkt_id, p.name_de
+                    FROM homoeopathika h
+                    JOIN punkte p ON h.punkt_id = p.id
+                    WHERE LOWER(h.mittel_abkuerzung) = LOWER(?)
+                ''', (remedy,))
+                direct_points = []
+                for r in cur.fetchall():
+                    direct_points.append({
+                        "point_id": r["punkt_id"],
+                        "point_name": r["name_de"]
+                    })
+                    
+                # Query remedy descriptions (Materia Medica)
+                cur.execute('''
+                SELECT remedy_name, overview, sections_json
+                FROM remedy_descriptions
+                WHERE LOWER(remedy_abbr) = LOWER(?)
+                ''', (remedy,))
+                desc_row = cur.fetchone()
+                
+                description = None
+                if desc_row:
+                    try:
+                        sections = json.loads(desc_row["sections_json"])
+                    except:
+                        sections = {}
+                    description = {
+                        "full_name": desc_row["remedy_name"],
+                        "overview": desc_row["overview"],
+                        "sections": sections
+                    }
+
+                conn.close()
+                
+                self.send_json_response({
+                    "remedy": remedy,
+                    "rubrics": rubrics,
+                    "direct_points": direct_points,
+                    "description": description
+                })
+                
+            except Exception as e:
+                self.send_error_response(500, str(e))
             return
-            
+
         # 4. API Endpoint: Points by Meridian
         elif path == "/api/points-by-meridian":
             meridian_name = query_params.get("name", [None])[0]

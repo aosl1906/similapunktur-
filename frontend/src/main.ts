@@ -19,6 +19,10 @@ interface SelectedSymptom {
 let selectedSymptoms: SelectedSymptom[] = [];
 let recommendedPointsSet = new Set<string>();
 let activeSidebarTab: 'navigation' | 'search' | 'repertorisation' = 'navigation';
+let lastViewedPointId: string | null = null;
+let activeModalities = new Set<string>();
+const rubricsRemediesMap = new Map<string, Map<string, number>>();
+let staticBoerickeData: any = null;
 
 // Constants
 const MERIDIANS = [
@@ -103,6 +107,27 @@ async function init() {
     if (res.ok) {
       allPointsData = await res.json();
       console.log(`Loaded ${allPointsData.length} points from static JSON.`);
+      
+      // Build rubricsRemediesMap for O(1) lookups
+      allPointsData.forEach(p => {
+        if (p.general_analysis_rubrics) {
+          p.general_analysis_rubrics.forEach((rub: any) => {
+            let remMap = rubricsRemediesMap.get(rub.rubric_name);
+            if (!remMap) {
+              remMap = new Map<string, number>();
+              rubricsRemediesMap.set(rub.rubric_name, remMap);
+            }
+            if (rub.remedies) {
+              rub.remedies.forEach((rem: any) => {
+                const existing = remMap!.get(rem.name) || 0;
+                if (rem.grade > existing) {
+                  remMap!.set(rem.name, rem.grade);
+                }
+              });
+            }
+          });
+        }
+      });
       
       if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
         isStaticMode = true;
@@ -256,6 +281,7 @@ function drawHotspots() {
 // 4. Select Point & Load Details
 async function selectPoint(pointId: string) {
   currentPointId = pointId;
+  lastViewedPointId = pointId;
   
   // Highlight in SVG
   svgOverlayEl.querySelectorAll(".hotspot-group").forEach((g) => {
@@ -306,6 +332,14 @@ function renderPointDetails(data: any) {
   // Show detail panel
   detailPlaceholderEl.style.display = "none";
   detailPanelEl.style.display = "flex";
+  
+  // Reset remedy view toggle
+  const locSection = detailPanelEl.querySelector(".detail-section") as HTMLElement;
+  const tabsSection = detailPanelEl.querySelector(".detail-tabs") as HTMLElement;
+  if (locSection) locSection.style.display = "block";
+  if (tabsSection) tabsSection.style.display = "block";
+  const remedyView = document.getElementById("remedy-details-view");
+  if (remedyView) remedyView.style.display = "none";
   
   // Warning banner
   const warning = data.precautions_or_contraindications;
@@ -368,8 +402,10 @@ function renderPointDetails(data: any) {
   if (data.assigned_homeopathics && data.assigned_homeopathics.length > 0) {
     data.assigned_homeopathics.forEach((rem: string) => {
       const span = document.createElement("span");
-      span.className = "badge-remedy";
+      span.className = "badge-remedy clickable";
       span.textContent = rem;
+      span.title = "Klicken für Heilmittel-Details";
+      span.addEventListener("click", () => showRemedyDetails(rem));
       remediesBadgesEl.appendChild(span);
     });
   } else {
@@ -410,8 +446,10 @@ function renderPointDetails(data: any) {
       
       rub.remedies.forEach((r: { name: string, grade: number }) => {
         const pill = document.createElement("span");
-        pill.className = `pill-subremedy grade-${r.grade}`;
+        pill.className = `pill-subremedy grade-${r.grade} clickable`;
         pill.textContent = r.name;
+        pill.title = "Klicken für Heilmittel-Details";
+        pill.addEventListener("click", () => showRemedyDetails(r.name));
         
         // Highlight if matches search query (case-insensitive and ignoring dot)
         const nameClean = r.name.toLowerCase().replace('.', '');
@@ -817,6 +855,24 @@ function setupEventListeners() {
     
     updatePointCoordinate(currentPointId, x_percent, y_percent);
   });
+
+  // Modality Toggles Click Event Listeners
+  const modalityChips = document.querySelectorAll(".modality-chip");
+  modalityChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const rubric = chip.getAttribute("data-rubric");
+      if (rubric) {
+        if (activeModalities.has(rubric)) {
+          activeModalities.delete(rubric);
+          chip.classList.remove("active");
+        } else {
+          activeModalities.add(rubric);
+          chip.classList.add("active");
+        }
+        runRepertorisation();
+      }
+    });
+  });
 }
 
 function updateSuggestionSelection(items: NodeListOf<Element>) {
@@ -1188,6 +1244,7 @@ function updateSymptomBasketUI() {
   const placeholder = document.getElementById("symptom-basket-placeholder");
   const list = document.getElementById("selected-symptoms-list");
   const resultsPreview = document.getElementById("repertorisation-results");
+  const modalitiesSection = document.getElementById("modalities-section");
   
   if (!placeholder || !list || !resultsPreview) return;
   
@@ -1211,6 +1268,12 @@ function updateSymptomBasketUI() {
     placeholder.style.display = "block";
     list.style.display = "none";
     resultsPreview.style.display = "none";
+    if (modalitiesSection) modalitiesSection.style.display = "none";
+    
+    // Clear modalities on empty basket
+    activeModalities.clear();
+    document.querySelectorAll(".modality-chip").forEach(chip => chip.classList.remove("active"));
+    
     list.innerHTML = "";
     return;
   }
@@ -1218,6 +1281,7 @@ function updateSymptomBasketUI() {
   placeholder.style.display = "none";
   list.style.display = "flex";
   resultsPreview.style.display = "block";
+  if (modalitiesSection) modalitiesSection.style.display = "block";
   
   list.innerHTML = "";
   selectedSymptoms.forEach(s => {
@@ -1396,6 +1460,20 @@ function runRepertorisation() {
     });
   });
   
+  // Apply homeopathic modality boosts
+  remedyScoresMap.forEach((entry, remName) => {
+    activeModalities.forEach(modRubric => {
+      const remMap = rubricsRemediesMap.get(modRubric);
+      if (remMap) {
+        const grade = remMap.get(remName);
+        if (grade) {
+          // Boost score by grade * 2
+          entry.score += grade * 2;
+        }
+      }
+    });
+  });
+  
   const remedyScores: Array<{ name: string, matchesCount: number, score: number }> = [];
   remedyScoresMap.forEach((val, name) => {
     remedyScores.push({
@@ -1419,12 +1497,11 @@ function runRepertorisation() {
       const li = document.createElement("li");
       
       const badge = document.createElement("span");
-      badge.className = "remedy-score-badge";
+      badge.className = "remedy-score-badge clickable";
       badge.textContent = `${rem.name} (${rem.score})`;
-      badge.title = `${rem.matchesCount} von ${selectedSymptoms.length} Symptomen abgedeckt`;
+      badge.title = "Klicken für Heilmittel-Details";
       badge.addEventListener("click", () => {
-        searchInputEl.value = rem.name;
-        handleSearch(rem.name);
+        showRemedyDetails(rem.name);
       });
       
       li.appendChild(badge);
@@ -1487,13 +1564,29 @@ function renderMatrixTable() {
     });
   });
   
-  const sortedRemedies: Array<{ name: string, matchesCount: number, score: number, grades: Record<string, number> }> = [];
+  const sortedRemedies: Array<{ name: string, matchesCount: number, score: number, grades: Record<string, number>, modalityGrades: Record<string, number> }> = [];
   remedyScoresMap.forEach((val, name) => {
+    // Modality boost calculation
+    let modalityScore = 0;
+    const modalityGrades: Record<string, number> = {};
+    
+    activeModalities.forEach(modRubric => {
+      const remMap = rubricsRemediesMap.get(modRubric);
+      if (remMap) {
+        const grade = remMap.get(name);
+        if (grade) {
+          modalityScore += grade * 2;
+          modalityGrades[modRubric] = grade;
+        }
+      }
+    });
+    
     sortedRemedies.push({
       name,
       matchesCount: val.matches.size,
-      score: val.score,
-      grades: val.grades
+      score: val.score + modalityScore,
+      grades: val.grades,
+      modalityGrades
     });
   });
   
@@ -1515,6 +1608,20 @@ function renderMatrixTable() {
   // Symptom columns
   selectedSymptoms.forEach(s => {
     html += `<th class="symptom-header" data-symptom-id="${s.id}"><span>${s.text} <small class="dimmed" style="font-weight: normal;">(x${s.weight})</small></span></th>`;
+  });
+  
+  // Modality columns headers
+  activeModalities.forEach(modRubric => {
+    let cleanHeaderName = modRubric
+      .replace(", Agg.", "")
+      .replace("Teils, wie Kopf, Hände, usw. in kaltem Wasser, usw. Agg.", "Kaltes Wasser")
+      .replace("Wasser feuchte Räume, usw. Agg.", "Feuchtigkeit")
+      .replace("Überhitzung, usw. Agg.", "Überhitzung")
+      .trim();
+    if (cleanHeaderName.length > 20) {
+      cleanHeaderName = cleanHeaderName.substring(0, 18) + "...";
+    }
+    html += `<th class="symptom-header modality-header" title="${modRubric}"><span>⚡ ${cleanHeaderName}</span></th>`;
   });
   
   // Totals headers
@@ -1541,6 +1648,19 @@ function renderMatrixTable() {
       html += `<td class="matrix-cell" data-symptom-id="${s.id}"><div class="matrix-badge-wrapper">${badgeHtml}</div></td>`;
     });
     
+    // Modality cells
+    activeModalities.forEach(modRubric => {
+      const grade = rem.modalityGrades[modRubric] || 0;
+      let badgeHtml = "";
+      if (grade === 3) {
+        badgeHtml = `<span class="matrix-badge grade-3" title="${rem.name}: Grad 3 für '${modRubric}'"></span>`;
+      } else if (grade === 1) {
+        badgeHtml = `<span class="matrix-badge grade-1" title="${rem.name}: Grad 1 für '${modRubric}'"></span>`;
+      }
+      const cellClass = grade ? "matrix-cell modality-cell-active" : "matrix-cell";
+      html += `<td class="${cellClass}"><div class="matrix-badge-wrapper">${badgeHtml}</div></td>`;
+    });
+    
     // Totals cells
     html += `<td class="total-cell">${rem.matchesCount}</td>`;
     html += `<td class="total-cell font-bold">${rem.score}</td>`;
@@ -1551,7 +1671,7 @@ function renderMatrixTable() {
   
   container.innerHTML = html;
   
-  // Add interactive column highlights
+  // Add interactive column highlights & remedy cell clicks
   const table = container.querySelector(".matrix-table") as HTMLTableElement;
   if (table) {
     const cells = table.querySelectorAll("[data-symptom-id]");
@@ -1568,6 +1688,19 @@ function renderMatrixTable() {
           table.querySelectorAll(`[data-symptom-id="${symId}"]`).forEach(el => {
             el.classList.remove("col-highlight");
           });
+        });
+      }
+    });
+    
+    // Wire up clicking on remedy cell to open remedy details
+    table.querySelectorAll(".remedy-cell").forEach(cell => {
+      const cellEl = cell as HTMLElement;
+      const remedyName = cellEl.textContent;
+      if (remedyName) {
+        cellEl.addEventListener("click", () => {
+          const matrixModal = document.getElementById("matrix-modal");
+          if (matrixModal) matrixModal.style.display = "none";
+          showRemedyDetails(remedyName);
         });
       }
     });
@@ -1592,6 +1725,279 @@ function setActiveSidebarTab(tabName: 'navigation' | 'search' | 'repertorisation
   if (contentNav) contentNav.classList.toggle("active", tabName === 'navigation');
   if (contentSearch) contentSearch.classList.toggle("active", tabName === 'search');
   if (contentRep) contentRep.classList.toggle("active", tabName === 'repertorisation');
+}
+
+function getRemedyDetailsClientSide(remedyName: string) {
+  const cleanName = remedyName.toLowerCase().replace(/\.$/, "").trim();
+  const rubrics: any[] = [];
+  const direct_points: any[] = [];
+  
+  allPointsData.forEach(p => {
+    // Check general_analysis_rubrics
+    if (p.general_analysis_rubrics) {
+      p.general_analysis_rubrics.forEach((rub: any) => {
+        if (rub.remedies) {
+          rub.remedies.forEach((rem: any) => {
+            const cleanRem = rem.name.toLowerCase().replace(/\.$/, "").trim();
+            if (cleanRem === cleanName) {
+              rubrics.push({
+                point_id: p.point_id,
+                point_name: p.name_german,
+                rubric_name: rub.rubric_name,
+                grade: rem.grade
+              });
+            }
+          });
+        }
+      });
+    }
+    
+    // Check assigned_homeopathics (direct mapping)
+    if (p.assigned_homeopathics) {
+      p.assigned_homeopathics.forEach((rem: string) => {
+        const cleanRem = rem.toLowerCase().replace(/\.$/, "").trim();
+        if (cleanRem === cleanName) {
+          direct_points.push({
+            point_id: p.point_id,
+            point_name: p.name_german
+          });
+        }
+      });
+    }
+  });
+  
+  // Sort rubrics by grade descending
+  rubrics.sort((a, b) => b.grade - a.grade);
+  
+  return { remedy: remedyName, rubrics, direct_points };
+}
+
+async function ensureBoerickeDataLoaded() {
+  if (staticBoerickeData) return;
+  try {
+    const res = await fetch("boericke_materia_medica.json");
+    if (res.ok) {
+      staticBoerickeData = await res.json();
+      console.log("Loaded Boericke Materia Medica static database.");
+    }
+  } catch (err) {
+    console.error("Failed to load static Boericke Materia Medica:", err);
+  }
+}
+
+async function showRemedyDetails(remedyName: string) {
+  // Show detail panel and hide placeholder
+  detailPlaceholderEl.style.display = "none";
+  detailPanelEl.style.display = "flex";
+  
+  // Hide warning banner
+  warningBannerEl.style.display = "none";
+  
+  // Update header titles
+  pointIdTitleEl.textContent = remedyName;
+  pointMeridianBadgeEl.textContent = "Homöopathikum";
+  pointNameDeEl.textContent = "Heilmittel-Profil";
+  pointTranslationEl.textContent = "Similapunktur Resonanzanalyse";
+  
+  // Hide point-specific sections
+  const locSection = detailPanelEl.querySelector(".detail-section") as HTMLElement;
+  const tabsSection = detailPanelEl.querySelector(".detail-tabs") as HTMLElement;
+  if (locSection) locSection.style.display = "none";
+  if (tabsSection) tabsSection.style.display = "none";
+  
+  // Create or retrieve remedy details view container
+  let remedyView = document.getElementById("remedy-details-view");
+  if (!remedyView) {
+    remedyView = document.createElement("div");
+    remedyView.id = "remedy-details-view";
+    remedyView.style.padding = "16px 0";
+    detailPanelEl.appendChild(remedyView);
+  }
+  remedyView.style.display = "block";
+  
+  // Load data (either from API or client-side static lookup)
+  let data: any = null;
+  try {
+    if (isStaticMode && allPointsData.length > 0) {
+      data = getRemedyDetailsClientSide(remedyName);
+    } else {
+      const res = await fetch(`/api/remedy-details?name=${encodeURIComponent(remedyName)}`);
+      data = await res.json();
+    }
+  } catch (err) {
+    console.warn("Failed to load remedy details from API, falling back client-side.", err);
+    data = getRemedyDetailsClientSide(remedyName);
+  }
+  
+  // Lazy-load description in static/fallback modes
+  if (data && !data.description) {
+    await ensureBoerickeDataLoaded();
+    if (staticBoerickeData) {
+      const cleanRemName = remedyName.toLowerCase().replace(/\.$/, "").trim();
+      const matchKey = Object.keys(staticBoerickeData).find(key => {
+        const cleanKey = key.toLowerCase().replace(/\.$/, "").trim();
+        return cleanKey === cleanRemName;
+      });
+      if (matchKey) {
+        data.description = staticBoerickeData[matchKey];
+      }
+    }
+  }
+  
+  if (!data) {
+    remedyView.innerHTML = "<p class='dimmed'>Fehler beim Laden des Heilmittel-Profils.</p>";
+    return;
+  }
+  
+  // Render details
+  let html = "";
+  
+  // Back button
+  if (lastViewedPointId) {
+    const synonym = getPointSynonym(lastViewedPointId);
+    html += `<button id="remedy-back-btn" class="back-btn">← Zurück zu ${synonym}</button>`;
+  } else {
+    html += `<button id="remedy-back-btn" class="back-btn">← Zurück</button>`;
+  }
+  
+  // Render Materia Medica Description if available
+  if (data.description) {
+    const desc = data.description;
+    html += `<div class="remedy-full-name">${desc.name}</div>`;
+    if (desc.overview) {
+      html += `
+        <div class="remedy-overview-box">
+          <strong>Klinisches Portrait:</strong> ${desc.overview}
+        </div>
+      `;
+    }
+    
+    // Render anatomical sections inside accordion
+    const sectionKeys = Object.keys(desc.sections);
+    if (sectionKeys.length > 0) {
+      html += `<div class="materia-medica-section-title">Arzneimittelbild (Boericke)</div>`;
+      html += `<div class="materia-medica-accordion">`;
+      sectionKeys.forEach((secName) => {
+        const secText = desc.sections[secName];
+        if (secText) {
+          html += `
+            <div class="accordion-item">
+              <button class="accordion-header">
+                <span>${secName}</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="accordion-content">
+                ${secText}
+              </div>
+            </div>
+          `;
+        }
+      });
+      html += `</div>`;
+    }
+  }
+  
+  html += `<div class="detail-section" style="margin-top: 0;">`;
+  html += `<h3>Indizierte Akupunkturpunkte (${data.rubrics.length})</h3>`;
+  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, deren Symptom-Rubriken dieses Mittel abdecken:</p>`;
+  
+  if (data.rubrics.length > 0) {
+    data.rubrics.forEach((r: any) => {
+      const syn = getPointSynonym(r.point_id);
+      html += `
+        <div class="remedy-point-item clickable" data-point-id="${r.point_id}" title="Klicken, um zu Punkt ${syn} zu springen">
+          <div class="point-badge">${syn}</div>
+          <div class="point-info">
+            <div class="point-name">${r.point_name}</div>
+            <div class="rubric-name">${r.rubric_name}</div>
+          </div>
+          <span class="grade-badge grade-${r.grade}">Grad ${r.grade}</span>
+        </div>
+      `;
+    });
+  } else {
+    html += `<p class="dimmed" style="padding: 8px 0;">Keine symptomatischen Punktverbindungen gefunden.</p>`;
+  }
+  html += `</div>`;
+  
+  html += `<div class="detail-section" style="margin-top: 20px;">`;
+  html += `<h3>Direkt zugeordnete Punkte (${data.direct_points.length})</h3>`;
+  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, bei denen dieses Mittel als Haupt-Homöopathikum eingetragen ist:</p>`;
+  
+  if (data.direct_points.length > 0) {
+    data.direct_points.forEach((dp: any) => {
+      const syn = getPointSynonym(dp.point_id);
+      html += `
+        <div class="remedy-point-item clickable" data-point-id="${dp.point_id}" title="Klicken, um zu Punkt ${syn} zu springen">
+          <div class="point-badge">${syn}</div>
+          <div class="point-info">
+            <div class="point-name">${dp.point_name}</div>
+          </div>
+          <span class="grade-badge grade-3">Direkt</span>
+        </div>
+      `;
+    });
+  } else {
+    html += `<p class="dimmed" style="padding: 8px 0;">Keine direkten Punktzuordnungen gefunden.</p>`;
+  }
+  html += `</div>`;
+  
+  remedyView.innerHTML = html;
+  
+  // Attach Event Listeners
+  const backBtn = document.getElementById("remedy-back-btn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      // Restore point details view
+      remedyView!.style.display = "none";
+      if (locSection) locSection.style.display = "block";
+      if (tabsSection) tabsSection.style.display = "block";
+      
+      if (lastViewedPointId) {
+        selectPoint(lastViewedPointId);
+      } else {
+        detailPlaceholderEl.style.display = "flex";
+        detailPanelEl.style.display = "none";
+      }
+    });
+  }
+  
+  // Point clicks
+  remedyView.querySelectorAll(".remedy-point-item.clickable").forEach(item => {
+    item.addEventListener("click", () => {
+      const ptId = (item as HTMLElement).dataset.pointId;
+      if (ptId) {
+        // Switch meridian if necessary
+        let ptMeridian = "";
+        const pt = allPointsData.find(p => p.point_id === ptId);
+        if (pt) ptMeridian = pt.meridian;
+        
+        if (ptMeridian) {
+          const li = meridianListEl.querySelector(`li[data-name="${ptMeridian}"]`) as HTMLLIElement;
+          if (li) {
+            selectMeridian(ptMeridian, li);
+          }
+        }
+        
+        // Restore point view
+        remedyView!.style.display = "none";
+        if (locSection) locSection.style.display = "block";
+        if (tabsSection) tabsSection.style.display = "block";
+        
+        selectPoint(ptId);
+      }
+    });
+  });
+
+  // Accordion clicks
+  remedyView.querySelectorAll(".materia-medica-accordion .accordion-header").forEach(header => {
+    header.addEventListener("click", () => {
+      const item = header.parentElement;
+      if (item) {
+        item.classList.toggle("active");
+      }
+    });
+  });
 }
 
 // Start
