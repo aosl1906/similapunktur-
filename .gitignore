@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+frontend/dist/
+
+# Configuration and IDEs
+.agents/
+.gemini/
+.idea/
+.vscode/
+
+# Large documents and raw assets (avoid GitHub size limit)
+*.docx
+*.doc
+*.rtf
+*.pdf
+
+# Generated data
+__pycache__/
+*.pyc
+out/*.db
+out/*.db-journal
+
+# Local environment / system files
+Thumbs.db
+Desktop.ini
+.DS_Store

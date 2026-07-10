@@ -1,0 +1,1598 @@
+// State Management
+let currentMeridian: string | null = null;
+let currentPointId: string | null = null;
+let activePoints: any[] = [];
+let matchedPointIds: Set<string> = new Set();
+let currentSearchQuery = "";
+let isEditorActive = false;
+let suggestionsList: string[] = [];
+let activeSuggestionIndex = -1;
+let allPointsData: any[] = [];
+let isStaticMode = false;
+let synonymsData: Record<string, string[]> = {};
+
+interface SelectedSymptom {
+  id: string;
+  text: string;
+  weight: number;
+}
+let selectedSymptoms: SelectedSymptom[] = [];
+let recommendedPointsSet = new Set<string>();
+let activeSidebarTab: 'navigation' | 'search' | 'repertorisation' = 'navigation';
+
+// Constants
+const MERIDIANS = [
+  { id: "herz", name: "Herz-Leitbahn" },
+  { id: "duenndarm", name: "Dünndarm-Leitbahn" },
+  { id: "blase", name: "Blasen-Leitbahn" },
+  { id: "niere", name: "Nieren-Leitbahn" },
+  { id: "perikard", name: "Perikard-Leitbahn" },
+  { id: "dreifacherwaermer", name: "Dreifacherwärmer-Leitbahn" },
+  { id: "gallenblase", name: "Gallenblasen-Leitbahn" },
+  { id: "leber", name: "Leber-Leitbahn" },
+  { id: "lunge", name: "Lungen-Leitbahn" },
+  { id: "dickdarm", name: "Dickdarm-Leitbahn" },
+  { id: "magen", name: "Magen-Leitbahn" },
+  { id: "milz_pankreas", name: "Milz-Pankreas-Leitbahn" },
+  { id: "konzeptionsgefaess", name: "Konzeptionsgefäß" },
+  { id: "lenkergefaess", name: "Lenkergefäß" },
+  { id: "extrapunkte", name: "Extrapunkte" }
+];
+
+// DOM Elements
+const meridianListEl = document.getElementById("meridian-list") as HTMLUListElement;
+const canvasWrapperEl = document.getElementById("canvas-wrapper") as HTMLDivElement;
+const visualizerPlaceholderEl = document.getElementById("visualizer-placeholder") as HTMLDivElement;
+const visualizerActiveEl = document.getElementById("visualizer-active") as HTMLDivElement;
+const meridianImageEl = document.getElementById("meridian-image") as HTMLImageElement;
+const svgOverlayEl = document.getElementById("svg-overlay") as HTMLDivElement;
+const themeToggleEl = document.getElementById("theme-toggle") as HTMLButtonElement;
+const sunIconEl = themeToggleEl.querySelector(".sun-icon") as SVGElement;
+const moonIconEl = themeToggleEl.querySelector(".moon-icon") as SVGElement;
+
+// Search DOM
+const searchInputEl = document.getElementById("search-input") as HTMLInputElement;
+const clearSearchBtnEl = document.getElementById("clear-search-btn") as HTMLButtonElement;
+const searchResultsSectionEl = document.getElementById("search-results-section") as HTMLDivElement;
+const resultsCountEl = document.getElementById("results-count") as HTMLSpanElement;
+const searchQueryDisplayEl = document.getElementById("search-query-display") as HTMLSpanElement;
+const searchResultsListEl = document.getElementById("search-results-list") as HTMLUListElement;
+
+// Meridian Points DOM
+const meridianPointsSectionEl = document.getElementById("meridian-points-section") as HTMLDivElement;
+const meridianPointsListEl = document.getElementById("meridian-points-list") as HTMLUListElement;
+
+// Detail DOM
+const detailPlaceholderEl = document.getElementById("detail-placeholder") as HTMLDivElement;
+const detailPanelEl = document.getElementById("detail-panel") as HTMLDivElement;
+const warningBannerEl = document.getElementById("warning-banner") as HTMLDivElement;
+const warningTextEl = document.getElementById("warning-text") as HTMLSpanElement;
+const pointIdTitleEl = document.getElementById("point-id-title") as HTMLHeadingElement;
+const pointMeridianBadgeEl = document.getElementById("point-meridian") as HTMLSpanElement;
+const pointNameDeEl = document.getElementById("point-name-de") as HTMLHeadingElement;
+const pointTranslationEl = document.getElementById("point-translation") as HTMLParagraphElement;
+const pointLocalisationEl = document.getElementById("point-localisation") as HTMLParagraphElement;
+const effectsListEl = document.getElementById("effects-list") as HTMLUListElement;
+const indicationsListEl = document.getElementById("indications-list") as HTMLUListElement;
+const remediesBadgesEl = document.getElementById("remedies-badges") as HTMLDivElement;
+const rubricsListEl = document.getElementById("rubrics-list") as HTMLDivElement;
+
+// Custom Tooltip Element
+let tooltipEl: HTMLDivElement | null = null;
+
+// Initialize App
+async function loadSynonyms() {
+  try {
+    const res = await fetch("synonyms.json");
+    if (res.ok) {
+      synonymsData = await res.json();
+      console.log(`Loaded ${Object.keys(synonymsData).length} synonym groups.`);
+    }
+  } catch (err) {
+    console.warn("Failed to load synonyms.json, falling back.", err);
+  }
+}
+
+async function init() {
+  renderMeridianList();
+  await loadSynonyms();
+  
+  // Try to load static JSON database
+  try {
+    const res = await fetch("similapunktur.json");
+    if (res.ok) {
+      allPointsData = await res.json();
+      console.log(`Loaded ${allPointsData.length} points from static JSON.`);
+      
+      if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+        isStaticMode = true;
+        const editorToggleBtn = document.getElementById("toggle-editor-btn");
+        if (editorToggleBtn) {
+          editorToggleBtn.style.display = "none";
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to load static similapunktur.json, falling back to API.", err);
+  }
+
+  setupEventListeners();
+  await loadSuggestions();
+  
+  // Auto-select first meridian
+  const firstMeridianLi = meridianListEl.querySelector("li");
+  if (firstMeridianLi) {
+    const name = firstMeridianLi.dataset.name || "";
+    selectMeridian(name, firstMeridianLi);
+  }
+}
+
+// 1. Render Meridian List
+function renderMeridianList() {
+  meridianListEl.innerHTML = "";
+  MERIDIANS.forEach((m) => {
+    const li = document.createElement("li");
+    li.dataset.id = m.id;
+    li.dataset.name = m.name;
+    li.innerHTML = `
+      <div class="point-title-row">
+        <span>${m.name}</span>
+      </div>
+    `;
+    li.addEventListener("click", () => selectMeridian(m.name, li));
+    meridianListEl.appendChild(li);
+  });
+}
+
+// 2. Select Meridian
+async function selectMeridian(name: string, element: HTMLLIElement) {
+  // Clear active classes
+  meridianListEl.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+  element.classList.add("active");
+  
+  currentMeridian = name;
+  
+  try {
+    if (isStaticMode && allPointsData.length > 0) {
+      activePoints = allPointsData
+        .filter(p => p.meridian === name)
+        .map(p => ({
+          id: p.point_id,
+          name_de: p.name_german,
+          translation: p.name_translation,
+          meridian: p.meridian,
+          warning: p.precautions_or_contraindications,
+          visuals: p.visuals
+        }));
+    } else {
+      const res = await fetch(`/api/points-by-meridian?name=${encodeURIComponent(name)}`);
+      const data = await res.json();
+      
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
+      activePoints = data.points;
+    }
+    
+    // Set active visualizer
+    if (activePoints.length > 0) {
+      const imgFilename = activePoints[0].visuals.image_filename;
+      meridianImageEl.src = `assets/${imgFilename}`;
+      
+      visualizerPlaceholderEl.style.display = "none";
+      visualizerActiveEl.style.display = "inline-block";
+      
+      // Render overlay circles
+      drawHotspots();
+      
+      // Render points list in sidebar
+      renderMeridianPointsList();
+    }
+  } catch (err) {
+    console.error("Error loading meridian points:", err);
+  }
+}
+
+// 3. Draw Hotspots
+function drawHotspots() {
+  if (!svgOverlayEl) return;
+  svgOverlayEl.innerHTML = "";
+  
+  const isSearchActive = matchedPointIds.size > 0;
+  
+  activePoints.forEach((p) => {
+    const cx = p.visuals.relative_coordinates.x_percent;
+    const cy = p.visuals.relative_coordinates.y_percent;
+    
+    const g = document.createElement("div");
+    g.className = "hotspot-group";
+    g.dataset.id = p.id;
+    g.style.left = `${cx}%`;
+    g.style.top = `${cy}%`;
+    
+    const isRepertorisationActive = recommendedPointsSet.size > 0;
+    
+    // Highlight matched state or recommended state
+    if (isRepertorisationActive) {
+      if (recommendedPointsSet.has(p.id)) {
+        g.classList.add("recommended");
+      } else {
+        g.classList.add("dimmed");
+      }
+    } else if (isSearchActive) {
+      if (matchedPointIds.has(p.id)) {
+        g.classList.add("matched");
+      } else {
+        g.classList.add("dimmed");
+      }
+    }
+    
+    if (p.id === currentPointId) {
+      g.classList.add("active");
+    }
+    
+    // Outer pulsing ring
+    const outer = document.createElement("div");
+    outer.className = "hotspot-outer";
+    
+    // Inner solid point
+    const inner = document.createElement("div");
+    inner.className = "hotspot-inner";
+    
+    g.appendChild(outer);
+    g.appendChild(inner);
+    
+    // Tooltip and Click events
+    g.addEventListener("mouseenter", (e) => showTooltip(p.name_de, p.translation, e));
+    g.addEventListener("mousemove", (e) => updateTooltipPosition(e));
+    g.addEventListener("mouseleave", () => hideTooltip());
+    g.addEventListener("click", () => selectPoint(p.id));
+    
+    svgOverlayEl.appendChild(g);
+  });
+}
+
+// 4. Select Point & Load Details
+async function selectPoint(pointId: string) {
+  currentPointId = pointId;
+  
+  // Highlight in SVG
+  svgOverlayEl.querySelectorAll(".hotspot-group").forEach((g) => {
+    const el = g as HTMLDivElement;
+    if (el.dataset.id === pointId) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+  
+  // Highlight in Lists
+  document.querySelectorAll(".selector-list li").forEach((li) => {
+    const el = li as HTMLLIElement;
+    if (el.dataset.id === pointId) {
+      el.classList.add("active");
+    } else {
+      if (el.parentElement?.id !== "meridian-list") {
+        el.classList.remove("active");
+      }
+    }
+  });
+
+  try {
+    if (isStaticMode && allPointsData.length > 0) {
+      const pt = allPointsData.find(p => p.point_id === pointId);
+      if (pt) {
+        renderPointDetails(pt);
+      }
+    } else {
+      const res = await fetch(`/api/point-details?id=${pointId}`);
+      const data = await res.json();
+      
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
+      
+      renderPointDetails(data);
+    }
+  } catch (err) {
+    console.error("Error loading point details:", err);
+  }
+}
+
+// 5. Render Point Details
+function renderPointDetails(data: any) {
+  // Show detail panel
+  detailPlaceholderEl.style.display = "none";
+  detailPanelEl.style.display = "flex";
+  
+  // Warning banner
+  const warning = data.precautions_or_contraindications;
+  if (warning) {
+    warningTextEl.textContent = warning;
+    warningBannerEl.style.display = "flex";
+  } else {
+    warningBannerEl.style.display = "none";
+  }
+  
+  // Basic info
+  pointIdTitleEl.textContent = getPointSynonym(data.point_id);
+  pointMeridianBadgeEl.textContent = data.meridian;
+  pointNameDeEl.textContent = data.name_german;
+  pointTranslationEl.textContent = data.name_translation || "Ohne Übersetzung";
+  pointLocalisationEl.textContent = data.localisation_text;
+  
+  // Tab 1: Wirkungen
+  effectsListEl.innerHTML = "";
+  if (data.effects && data.effects.length > 0) {
+    data.effects.forEach((eff: string) => {
+      const li = document.createElement("li");
+      li.textContent = eff;
+      
+      const addTrigger = document.createElement("span");
+      addTrigger.className = "add-symptom-trigger";
+      addTrigger.innerHTML = "+";
+      addTrigger.title = "Symptom zum Fall hinzufügen";
+      addTrigger.addEventListener("click", () => addSymptom(eff));
+      li.appendChild(addTrigger);
+      
+      effectsListEl.appendChild(li);
+    });
+  } else {
+    effectsListEl.innerHTML = "<li>Keine Wirkungen hinterlegt.</li>";
+  }
+  
+  // Tab 2: Indikationen
+  indicationsListEl.innerHTML = "";
+  if (data.indications && data.indications.length > 0) {
+    data.indications.forEach((ind: string) => {
+      const li = document.createElement("li");
+      li.textContent = ind;
+      
+      const addTrigger = document.createElement("span");
+      addTrigger.className = "add-symptom-trigger";
+      addTrigger.innerHTML = "+";
+      addTrigger.title = "Indikation zum Fall hinzufügen";
+      addTrigger.addEventListener("click", () => addSymptom(ind));
+      li.appendChild(addTrigger);
+      
+      indicationsListEl.appendChild(li);
+    });
+  } else {
+    indicationsListEl.innerHTML = "<li>Keine Indikationen hinterlegt.</li>";
+  }
+  
+  // Tab 3: Remedies
+  remediesBadgesEl.innerHTML = "";
+  if (data.assigned_homeopathics && data.assigned_homeopathics.length > 0) {
+    data.assigned_homeopathics.forEach((rem: string) => {
+      const span = document.createElement("span");
+      span.className = "badge-remedy";
+      span.textContent = rem;
+      remediesBadgesEl.appendChild(span);
+    });
+  } else {
+    remediesBadgesEl.innerHTML = "<p>Keine spezifischen Homöopathika zugeordnet.</p>";
+  }
+  
+  // Tab 4: Rubrics
+  rubricsListEl.innerHTML = "";
+  if (data.general_analysis_rubrics && data.general_analysis_rubrics.length > 0) {
+    data.general_analysis_rubrics.forEach((rub: any, idx: number) => {
+      const item = document.createElement("div");
+      item.className = "accordion-item";
+      
+      // Header
+      const header = document.createElement("div");
+      header.className = "accordion-header";
+      
+      const titleSpan = document.createElement("span");
+      titleSpan.textContent = rub.rubric_name;
+      header.appendChild(titleSpan);
+      
+      const addTrigger = document.createElement("span");
+      addTrigger.className = "add-symptom-trigger";
+      addTrigger.innerHTML = "+";
+      addTrigger.title = "Rubrik zum Fall hinzufügen";
+      addTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        addSymptom(rub.rubric_name);
+      });
+      header.appendChild(addTrigger);
+      
+      // Body
+      const body = document.createElement("div");
+      body.className = "accordion-body";
+      
+      const pillsContainer = document.createElement("div");
+      pillsContainer.className = "remedies-list-pills";
+      
+      rub.remedies.forEach((r: { name: string, grade: number }) => {
+        const pill = document.createElement("span");
+        pill.className = `pill-subremedy grade-${r.grade}`;
+        pill.textContent = r.name;
+        
+        // Highlight if matches search query (case-insensitive and ignoring dot)
+        const nameClean = r.name.toLowerCase().replace('.', '');
+        const qClean = currentSearchQuery ? currentSearchQuery.toLowerCase().replace('.', '') : "";
+        if (qClean && (nameClean === qClean || nameClean.startsWith(qClean))) {
+          pill.classList.add("bold");
+        }
+        
+        pillsContainer.appendChild(pill);
+      });
+      
+      body.appendChild(pillsContainer);
+      item.appendChild(header);
+      item.appendChild(body);
+      
+      // Toggle
+      header.addEventListener("click", () => {
+        item.classList.toggle("active");
+      });
+      
+      // Open first one by default
+      if (idx === 0) {
+        item.classList.add("active");
+      }
+      
+      rubricsListEl.appendChild(item);
+    });
+  } else {
+    rubricsListEl.innerHTML = "<p>Keine Rubriken der Allgemein-Analyse hinterlegt.</p>";
+  }
+}
+
+function getClientSynonyms(query: string): string[] {
+  const clean = query.trim().toLowerCase();
+  const words = clean.match(/[a-zA-ZäöüÄÖÜßéèàáíóúñ]+/g) || [];
+  const syns = new Set<string>();
+  words.forEach(w => {
+    if (synonymsData[w]) {
+      synonymsData[w].forEach(s => syns.add(s));
+    }
+  });
+  return Array.from(syns);
+}
+
+// 6. Search Symptoms & Remedies
+async function handleSearch(query: string) {
+  currentSearchQuery = query.trim();
+  
+  if (!currentSearchQuery) {
+    clearSearch();
+    return;
+  }
+  
+  clearSearchBtnEl.style.display = "block";
+  
+  try {
+    let symMatches: any[] = [];
+    let remMatches: any[] = [];
+    
+    if (isStaticMode && allPointsData.length > 0) {
+      const qLower = currentSearchQuery.toLowerCase();
+      const querySyns = getClientSynonyms(qLower);
+      
+      allPointsData.forEach((p) => {
+        let matchedText = "";
+        let matchedSynonym = "";
+        
+        // Check exact match first
+        const effectMatch = p.effects.find((e: string) => e.toLowerCase().includes(qLower));
+        if (effectMatch) {
+          matchedText = effectMatch;
+        } else {
+          // Check synonyms
+          for (const syn of querySyns) {
+            const m = p.effects.find((e: string) => e.toLowerCase().includes(syn));
+            if (m) {
+              matchedText = m;
+              matchedSynonym = syn;
+              break;
+            }
+          }
+        }
+        
+        if (!matchedText) {
+          const indMatch = p.indications.find((i: string) => i.toLowerCase().includes(qLower));
+          if (indMatch) {
+            matchedText = indMatch;
+          } else {
+            // Check synonyms
+            for (const syn of querySyns) {
+              const m = p.indications.find((i: string) => i.toLowerCase().includes(syn));
+              if (m) {
+                matchedText = m;
+                matchedSynonym = syn;
+                break;
+              }
+            }
+          }
+        }
+        
+        if (matchedText) {
+          symMatches.push({
+            id: p.point_id,
+            name_de: p.name_german,
+            meridian: p.meridian,
+            match_text: matchedText,
+            matched_synonym: matchedSynonym || null
+          });
+        }
+        
+        const remedyMatch = p.assigned_homeopathics.find((h: string) => h.toLowerCase().replace('.', '').includes(qLower.replace('.', '')));
+        if (remedyMatch) {
+          remMatches.push({
+            id: p.point_id,
+            name_de: p.name_german,
+            meridian: p.meridian,
+            sources: [remedyMatch]
+          });
+        }
+      });
+    } else {
+      // 1. Fetch symptom matches
+      const symRes = await fetch(`/api/search-symptoms?q=${encodeURIComponent(currentSearchQuery)}`);
+      const symData = await symRes.json();
+      symMatches = symData.matches || [];
+      
+      // 2. Fetch remedy matches
+      const remRes = await fetch(`/api/points-by-remedy?name=${encodeURIComponent(currentSearchQuery)}`);
+      const remData = await remRes.json();
+      remMatches = remData.points || [];
+    }
+    
+    // Merge results
+    const combinedPointsMap = new Map<string, any>();
+    matchedPointIds.clear();
+    
+    symMatches.forEach((m: any) => {
+      matchedPointIds.add(m.id);
+      let subtext = `Symptom: ${m.match_text}`;
+      if (m.matched_synonym) {
+        subtext += ` (Gefunden über: '${m.matched_synonym}')`;
+      }
+      combinedPointsMap.set(m.id, {
+        id: m.id,
+        name_de: m.name_de,
+        meridian: m.meridian,
+        subtext: subtext
+      });
+    });
+    
+    remMatches.forEach((m: any) => {
+      matchedPointIds.add(m.id);
+      const sourceStr = m.sources.join(", ");
+      combinedPointsMap.set(m.id, {
+        id: m.id,
+        name_de: m.name_de,
+        meridian: m.meridian,
+        subtext: `Heilmittel (${sourceStr})`
+      });
+    });
+    
+    // Update SVG overlay matching state
+    drawHotspots();
+    
+    // Populate search sidebar
+    const tabSearchBtn = document.getElementById("tab-search-btn");
+    if (tabSearchBtn) tabSearchBtn.style.display = "inline-flex";
+    setActiveSidebarTab('search');
+    
+    resultsCountEl.textContent = matchedPointIds.size.toString();
+    searchQueryDisplayEl.textContent = `"${currentSearchQuery}"`;
+    
+    searchResultsListEl.innerHTML = "";
+    combinedPointsMap.forEach((pt) => {
+      const li = document.createElement("li");
+      li.dataset.id = pt.id;
+      if (pt.id === currentPointId) {
+        li.classList.add("active");
+      }
+      li.innerHTML = `
+        <div class="point-title-row">
+          <span>${pt.name_de}</span>
+          <span class="point-id-badge">${getPointSynonym(pt.id)}</span>
+        </div>
+        <div class="point-sub">${pt.subtext}</div>
+      `;
+      li.addEventListener("click", () => selectPoint(pt.id));
+      searchResultsListEl.appendChild(li);
+    });
+    
+  } catch (err) {
+    console.error("Search failed:", err);
+  }
+}
+
+// 7. Clear Search
+function clearSearch() {
+  currentSearchQuery = "";
+  searchInputEl.value = "";
+  clearSearchBtnEl.style.display = "none";
+  searchResultsSectionEl.style.display = "none";
+  if (currentMeridian && meridianPointsSectionEl) {
+    meridianPointsSectionEl.style.display = "block";
+  }
+  matchedPointIds.clear();
+  drawHotspots();
+  
+  // Hide search tab button and go back to navigation
+  const tabSearchBtn = document.getElementById("tab-search-btn");
+  if (tabSearchBtn) tabSearchBtn.style.display = "none";
+  setActiveSidebarTab('navigation');
+}
+
+// 8. Custom Tooltip
+function showTooltip(name: string, translation: string | null, event: MouseEvent) {
+  if (!tooltipEl) {
+    tooltipEl = document.createElement("div");
+    tooltipEl.className = "hotspot-tooltip";
+    document.body.appendChild(tooltipEl);
+  }
+  
+  const transText = translation ? ` (${translation})` : "";
+  tooltipEl.textContent = `${name}${transText}`;
+  tooltipEl.style.display = "block";
+  
+  updateTooltipPosition(event);
+}
+
+function updateTooltipPosition(event: MouseEvent) {
+  if (!tooltipEl) return;
+  tooltipEl.style.left = `${event.pageX + 12}px`;
+  tooltipEl.style.top = `${event.pageY + 12}px`;
+}
+
+function hideTooltip() {
+  if (tooltipEl) {
+    tooltipEl.style.display = "none";
+  }
+}
+
+// 9. Setup Event Listeners
+function setupEventListeners() {
+  // Theme Toggle
+  themeToggleEl.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    
+    if (nextTheme === "dark") {
+      sunIconEl.style.display = "none";
+      moonIconEl.style.display = "block";
+    } else {
+      sunIconEl.style.display = "block";
+      moonIconEl.style.display = "none";
+    }
+  });
+  
+  // Search Input debounced + Autocomplete
+  let searchTimeout: number;
+  searchInputEl.addEventListener("input", () => {
+    clearTimeout(searchTimeout);
+    const val = searchInputEl.value;
+    showSuggestions(val);
+    searchTimeout = setTimeout(() => {
+      handleSearch(val);
+    }, 250) as unknown as number;
+  });
+  
+  // Clear search button
+  clearSearchBtnEl.addEventListener("click", () => {
+    clearSearch();
+    const dropdown = document.getElementById("search-suggestions");
+    if (dropdown) dropdown.style.display = "none";
+  });
+  
+  // Details tabs navigation
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active from all buttons
+      tabButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      // Hide all panes
+      const tabTarget = btn.getAttribute("data-tab");
+      const panes = document.querySelectorAll(".tab-pane");
+      panes.forEach((pane) => {
+        if (pane.id === tabTarget) {
+          pane.classList.add("active");
+        } else {
+          pane.classList.remove("active");
+        }
+      });
+    });
+  });
+
+  // Autocomplete suggestions: focus and keyboard events
+  searchInputEl.addEventListener("focus", () => {
+    showSuggestions(searchInputEl.value);
+  });
+
+  searchInputEl.addEventListener("keydown", (e) => {
+    const dropdown = document.getElementById("search-suggestions");
+    if (!dropdown || dropdown.style.display === "none") return;
+    
+    const items = dropdown.querySelectorAll(".suggestion-item");
+    if (items.length === 0) return;
+    
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      activeSuggestionIndex = (activeSuggestionIndex + 1) % items.length;
+      updateSuggestionSelection(items);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      activeSuggestionIndex = (activeSuggestionIndex - 1 + items.length) % items.length;
+      updateSuggestionSelection(items);
+    } else if (e.key === "Enter") {
+      if (activeSuggestionIndex >= 0 && activeSuggestionIndex < items.length) {
+        e.preventDefault();
+        const selectedItem = items[activeSuggestionIndex] as HTMLDivElement;
+        const text = selectedItem.textContent || "";
+        selectSuggestion(text);
+      }
+    } else if (e.key === "Escape") {
+      dropdown.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const dropdown = document.getElementById("search-suggestions");
+    if (dropdown && !searchInputEl.contains(e.target as Node) && !dropdown.contains(e.target as Node)) {
+      dropdown.style.display = "none";
+    }
+  });
+
+  // Repertorisation Matrix Close/Open Event Listeners
+  const closeMatrixBtn = document.getElementById("close-matrix-btn");
+  const matrixModal = document.getElementById("matrix-modal");
+  if (closeMatrixBtn && matrixModal) {
+    closeMatrixBtn.addEventListener("click", () => {
+      matrixModal.style.display = "none";
+    });
+  }
+  
+  const openMatrixBtn = document.getElementById("open-matrix-btn");
+  if (openMatrixBtn && matrixModal) {
+    openMatrixBtn.addEventListener("click", () => {
+      matrixModal.style.display = "flex";
+      renderMatrixTable();
+    });
+  }
+
+  // Sidebar Tab Clicks
+  const tabNavBtn = document.getElementById("tab-nav-btn");
+  const tabSearchBtn = document.getElementById("tab-search-btn");
+  const tabRepBtn = document.getElementById("tab-rep-btn");
+  
+  if (tabNavBtn) {
+    tabNavBtn.addEventListener("click", () => setActiveSidebarTab('navigation'));
+  }
+  if (tabSearchBtn) {
+    tabSearchBtn.addEventListener("click", () => setActiveSidebarTab('search'));
+  }
+  if (tabRepBtn) {
+    tabRepBtn.addEventListener("click", () => setActiveSidebarTab('repertorisation'));
+  }
+
+  // Editor Toggle and Visualizer click
+  const editorToggleEl = document.getElementById("editor-toggle") as HTMLButtonElement;
+  const editorBannerEl = document.getElementById("editor-banner") as HTMLDivElement;
+
+  if (editorToggleEl) {
+    editorToggleEl.addEventListener("click", () => {
+      isEditorActive = !isEditorActive;
+      if (isEditorActive) {
+        editorToggleEl.classList.add("active");
+        if (editorBannerEl) editorBannerEl.style.display = "block";
+        svgOverlayEl.classList.add("editor-active-cursor");
+        showToastNotification("Editor-Modus aktiviert!");
+      } else {
+        editorToggleEl.classList.remove("active");
+        if (editorBannerEl) editorBannerEl.style.display = "none";
+        svgOverlayEl.classList.remove("editor-active-cursor");
+        showToastNotification("Editor-Modus deaktiviert.");
+      }
+    });
+  }
+
+  svgOverlayEl.addEventListener("click", (e) => {
+    if (!isEditorActive || !currentPointId) return;
+    
+    const target = e.target as HTMLElement;
+    if (target.classList.contains("hotspot-inner") || target.classList.contains("hotspot-outer")) {
+      return;
+    }
+    
+    const rect = svgOverlayEl.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const x_percent = parseFloat(((x / rect.width) * 100).toFixed(2));
+    const y_percent = parseFloat(((y / rect.height) * 100).toFixed(2));
+    
+    updatePointCoordinate(currentPointId, x_percent, y_percent);
+  });
+}
+
+function updateSuggestionSelection(items: NodeListOf<Element>) {
+  items.forEach((item, idx) => {
+    if (idx === activeSuggestionIndex) {
+      item.classList.add("selected");
+      item.scrollIntoView({ block: "nearest" });
+    } else {
+      item.classList.remove("selected");
+    }
+  });
+}
+
+// --- helper functions for editor and autocomplete ---
+
+async function loadSuggestions() {
+  if (allPointsData.length > 0) {
+    const unique = new Set<string>();
+    allPointsData.forEach(p => {
+      if (p.effects) {
+        p.effects.forEach((e: string) => { if (e && e.length < 120) unique.add(e.trim()); });
+      }
+      if (p.indications) {
+        p.indications.forEach((i: string) => { if (i && i.length < 120) unique.add(i.trim()); });
+      }
+      if (p.general_analysis_rubrics) {
+        p.general_analysis_rubrics.forEach((r: any) => { if (r.rubric_name && r.rubric_name.length < 120) unique.add(r.rubric_name.trim()); });
+      }
+    });
+    suggestionsList = Array.from(unique);
+    console.log(`Generated ${suggestionsList.length} unique suggestions from loaded JSON.`);
+    return;
+  }
+  
+  try {
+    const res = await fetch('/api/symptom-suggestions');
+    const data = await res.json();
+    suggestionsList = data.suggestions || [];
+  } catch (err) {
+    console.error("Failed to load suggestions:", err);
+  }
+}
+
+function levenshteinDistance(s1: string, s2: string): number {
+  const m = s1.length;
+  const n = s2.length;
+  const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(
+          dp[i - 1][j] + 1,    // deletion
+          dp[i][j - 1] + 1,    // insertion
+          dp[i - 1][j - 1] + 1 // substitution
+        );
+      }
+    }
+  }
+  return dp[m][n];
+}
+
+function scoreSingleSuggestion(suggestion: string, query: string): number {
+  const s = suggestion.toLowerCase();
+  const q = query.toLowerCase();
+  
+  if (s === q) return 100;
+  if (s.startsWith(q)) return 90;
+  
+  const idx = s.indexOf(q);
+  if (idx !== -1) {
+    if (idx > 0 && (s[idx - 1] === ' ' || s[idx - 1] === '-')) {
+      return 85;
+    }
+    return 70;
+  }
+  
+  const words = s.split(/[\s,.-]+/);
+  let bestWordScore = 0;
+  
+  for (const word of words) {
+    if (word.length < 3) continue;
+    
+    if (word.startsWith(q)) {
+      bestWordScore = Math.max(bestWordScore, 80);
+      continue;
+    }
+    
+    const qLen = q.length;
+    if (qLen >= 3) {
+      const maxDistance = qLen <= 4 ? 1 : 2;
+      let minWordDist = 999;
+      
+      for (let len = Math.max(3, qLen - 1); len <= Math.min(word.length, qLen + 1); len++) {
+        const prefix = word.substring(0, len);
+        const dist = levenshteinDistance(q, prefix);
+        if (dist < minWordDist) {
+          minWordDist = dist;
+        }
+      }
+      
+      if (minWordDist <= maxDistance) {
+        const score = 60 - minWordDist * 15;
+        bestWordScore = Math.max(bestWordScore, score);
+      }
+    }
+  }
+  
+  return bestWordScore;
+}
+
+function scoreSuggestion(suggestion: string, query: string): number {
+  const s = suggestion.toLowerCase();
+  const q = query.toLowerCase();
+  
+  const querySyns = getClientSynonyms(q);
+  const terms = [q, ...querySyns];
+  
+  let bestScore = 0;
+  for (const term of terms) {
+    const score = scoreSingleSuggestion(s, term);
+    // Slight penalty to synonym matches so exact term matches rank first
+    const finalScore = term === q ? score : score * 0.92;
+    if (finalScore > bestScore) {
+      bestScore = finalScore;
+    }
+  }
+  
+  return bestScore;
+}
+
+function showSuggestions(query: string) {
+  const dropdown = document.getElementById("search-suggestions");
+  if (!dropdown) return;
+  
+  if (!query || query.trim().length < 2) {
+    dropdown.style.display = "none";
+    return;
+  }
+  
+  const trimmed = query.trim();
+  const scored = suggestionsList
+    .map(s => ({ text: s, score: scoreSuggestion(s, trimmed) }))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+    
+  if (scored.length === 0) {
+    dropdown.style.display = "none";
+    return;
+  }
+  
+  dropdown.innerHTML = "";
+  activeSuggestionIndex = -1;
+  
+  scored.forEach((item, idx) => {
+    const div = document.createElement("div");
+    div.className = "suggestion-item";
+    div.dataset.index = idx.toString();
+    
+    const text = item.text;
+    const lowerText = text.toLowerCase();
+    const lowerQuery = trimmed.toLowerCase();
+    const matchIdx = lowerText.indexOf(lowerQuery);
+    
+    const textSpan = document.createElement("span");
+    textSpan.className = "suggestion-text";
+    if (matchIdx !== -1) {
+      const before = text.substring(0, matchIdx);
+      const match = text.substring(matchIdx, matchIdx + trimmed.length);
+      const after = text.substring(matchIdx + trimmed.length);
+      textSpan.innerHTML = `${before}<strong>${match}</strong>${after}`;
+    } else {
+      textSpan.textContent = text;
+    }
+    textSpan.style.flexGrow = "1";
+    textSpan.style.cursor = "pointer";
+    textSpan.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectSuggestion(text);
+    });
+    div.appendChild(textSpan);
+    
+    const addBtn = document.createElement("button");
+    addBtn.className = "suggestion-add-btn";
+    addBtn.textContent = "+";
+    addBtn.title = "Symptom hinzufügen";
+    addBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      addSymptom(text);
+      dropdown.style.display = "none";
+      clearSearch();
+    });
+    div.appendChild(addBtn);
+    
+    dropdown.appendChild(div);
+  });
+  
+  dropdown.style.display = "block";
+}
+
+function selectSuggestion(text: string) {
+  searchInputEl.value = text;
+  clearSearchBtnEl.style.display = "block";
+  const dropdown = document.getElementById("search-suggestions");
+  if (dropdown) {
+    dropdown.style.display = "none";
+  }
+  handleSearch(text);
+}
+
+async function updatePointCoordinate(pointId: string, x_percent: number, y_percent: number) {
+  try {
+    const response = await fetch('/api/update-point-coordinate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        point_id: pointId,
+        x_percent: x_percent,
+        y_percent: y_percent
+      })
+    });
+    
+    const result = await response.json();
+    if (result.success) {
+      const pt = activePoints.find(p => p.id === pointId);
+      if (pt) {
+        pt.visuals.relative_coordinates.x_percent = x_percent;
+        pt.visuals.relative_coordinates.y_percent = y_percent;
+      }
+      const ptAll = allPointsData.find(p => p.point_id === pointId);
+      if (ptAll) {
+        ptAll.visuals.relative_coordinates.x_percent = x_percent;
+        ptAll.visuals.relative_coordinates.y_percent = y_percent;
+      }
+      drawHotspots();
+      showToastNotification(`Punkt ${pointId} neu platziert!`);
+    } else {
+      alert("Fehler beim Speichern der Koordinaten: " + result.error);
+    }
+  } catch (err) {
+    console.error("Failed to save coordinate:", err);
+    alert("Netzwerkfehler beim Speichern der Koordinaten.");
+  }
+}
+
+function getPointSynonym(id: string): string {
+  const parts = id.split('_');
+  const prefix = parts[0];
+  const num = parts[1] || '';
+  const isMann = id.includes('_MANN');
+  const suffix = isMann ? ' (Felix Mann)' : '';
+  
+  const map: Record<string, string> = {
+    'HE': `HE ${num} (HT ${num}/H ${num})`,
+    'SI': `SI ${num} (Dü ${num})`,
+    'BL': `BL ${num} (B ${num})`,
+    'KI': `KI ${num} (K ${num})`,
+    'PC': `PC ${num} (KS ${num})`,
+    'TE': `TE ${num} (SJ ${num}/3E ${num})`,
+    'GB': `GB ${num} (G ${num})`,
+    'LR': `LR ${num} (LV ${num}/Le ${num})`,
+    'LU': `LU ${num} (L ${num})`,
+    'LI': `LI ${num} (Di ${num})`,
+    'ST': `ST ${num} (M ${num})`,
+    'SP': `SP ${num} (MP ${num})`,
+    'CV': `CV ${num} (KG ${num}/Ren ${num})`,
+    'GV': `GV ${num} (LG ${num}/Du ${num})`,
+    'EX': `EX ${num}`
+  };
+  
+  return (map[prefix] || id.replace('_', ' ')) + suffix;
+}
+
+function renderMeridianPointsList() {
+  if (!meridianPointsListEl || !meridianPointsSectionEl) return;
+  
+  meridianPointsListEl.innerHTML = "";
+  
+  activePoints.forEach((p) => {
+    const li = document.createElement("li");
+    li.dataset.id = p.id;
+    if (p.id === currentPointId) {
+      li.classList.add("active");
+    }
+    
+    li.innerHTML = `
+      <div class="point-title-row">
+        <span>${p.name_de}</span>
+        <span class="point-id-badge">${getPointSynonym(p.id)}</span>
+      </div>
+    `;
+    
+    li.addEventListener("click", () => {
+      selectPoint(p.id);
+    });
+    
+    meridianPointsListEl.appendChild(li);
+  });
+  
+  meridianPointsSectionEl.style.display = "block";
+}
+
+function showToastNotification(message: string) {
+  let toast = document.getElementById("editor-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "editor-toast";
+    toast.className = "editor-toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add("show");
+  
+  setTimeout(() => {
+    toast?.classList.remove("show");
+  }, 3000);
+}
+
+// --- Repertorisation & Symptom Combination Functions ---
+
+function addSymptom(text: string) {
+  text = text.trim();
+  if (!text) return;
+  
+  // Check if already exists (case-insensitive)
+  if (selectedSymptoms.some(s => s.text.toLowerCase() === text.toLowerCase())) {
+    showToastNotification("Symptom bereits im Fall vorhanden!");
+    return;
+  }
+  
+  const id = "sym_" + Math.random().toString(36).substr(2, 9);
+  selectedSymptoms.push({ id, text, weight: 1 });
+  
+  updateSymptomBasketUI();
+  runRepertorisation();
+  showToastNotification(`Symptom "${text}" hinzugefügt.`);
+}
+
+function removeSymptom(id: string) {
+  const sym = selectedSymptoms.find(s => s.id === id);
+  const name = sym ? sym.text : "";
+  selectedSymptoms = selectedSymptoms.filter(s => s.id !== id);
+  
+  updateSymptomBasketUI();
+  runRepertorisation();
+  if (name) {
+    showToastNotification(`Symptom "${name}" entfernt.`);
+  }
+}
+
+function updateSymptomWeight(id: string, weight: number) {
+  const sym = selectedSymptoms.find(s => s.id === id);
+  if (sym) {
+    sym.weight = weight;
+    runRepertorisation();
+    showToastNotification(`Gewichtung für "${sym.text}" geändert auf x${weight}.`);
+  }
+}
+
+function updateSymptomBasketUI() {
+  const placeholder = document.getElementById("symptom-basket-placeholder");
+  const list = document.getElementById("selected-symptoms-list");
+  const resultsPreview = document.getElementById("repertorisation-results");
+  
+  if (!placeholder || !list || !resultsPreview) return;
+  
+  // Update badge count
+  const badge = document.getElementById("basket-badge");
+  if (badge) {
+    if (selectedSymptoms.length > 0) {
+      badge.textContent = selectedSymptoms.length.toString();
+      badge.style.display = "inline-flex";
+      
+      // Trigger pulse animation
+      badge.classList.remove("pulse-animation");
+      void badge.offsetWidth; // Trigger reflow
+      badge.classList.add("pulse-animation");
+    } else {
+      badge.style.display = "none";
+    }
+  }
+  
+  if (selectedSymptoms.length === 0) {
+    placeholder.style.display = "block";
+    list.style.display = "none";
+    resultsPreview.style.display = "none";
+    list.innerHTML = "";
+    return;
+  }
+  
+  placeholder.style.display = "none";
+  list.style.display = "flex";
+  resultsPreview.style.display = "block";
+  
+  list.innerHTML = "";
+  selectedSymptoms.forEach(s => {
+    const li = document.createElement("li");
+    li.className = "symptom-chip";
+    
+    const textSpan = document.createElement("span");
+    textSpan.className = "symptom-chip-text";
+    textSpan.textContent = s.text;
+    li.appendChild(textSpan);
+    
+    const controlsDiv = document.createElement("div");
+    controlsDiv.className = "symptom-chip-controls";
+    
+    const weightSelect = document.createElement("select");
+    weightSelect.className = "symptom-weight-select";
+    weightSelect.title = "Gewichtung des Symptoms";
+    for (let w = 1; w <= 3; w++) {
+      const opt = document.createElement("option");
+      opt.value = w.toString();
+      opt.textContent = `x${w}`;
+      if (s.weight === w) opt.selected = true;
+      weightSelect.appendChild(opt);
+    }
+    weightSelect.addEventListener("change", () => {
+      updateSymptomWeight(s.id, parseInt(weightSelect.value));
+    });
+    controlsDiv.appendChild(weightSelect);
+    
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "symptom-delete-btn";
+    deleteBtn.innerHTML = "&times;";
+    deleteBtn.title = "Symptom entfernen";
+    deleteBtn.addEventListener("click", () => removeSymptom(s.id));
+    controlsDiv.appendChild(deleteBtn);
+    
+    li.appendChild(controlsDiv);
+    list.appendChild(li);
+  });
+}
+
+function doesPointMatchSymptom(p: any, symText: string): boolean {
+  const cleanSym = symText.toLowerCase().trim();
+  
+  // 1. Direct match in effects
+  if (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) return true;
+  
+  // 2. Direct match in indications
+  if (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym))) return true;
+  
+  // 3. Direct match in rubrics
+  if (p.general_analysis_rubrics && p.general_analysis_rubrics.some((r: any) => r.rubric_name.toLowerCase().includes(cleanSym))) return true;
+  
+  // 4. Synonym match
+  const cleanQuery = cleanSym.replace('.', '');
+  for (const key in synonymsData) {
+    const group = synonymsData[key];
+    const inGroup = group.some(term => term.toLowerCase().replace('.', '').includes(cleanQuery)) || key.toLowerCase().replace('.', '').includes(cleanQuery);
+    if (inGroup) {
+      for (const term of [key, ...group]) {
+        const cleanTerm = term.toLowerCase();
+        if (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanTerm))) return true;
+        if (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanTerm))) return true;
+        if (p.general_analysis_rubrics && p.general_analysis_rubrics.some((r: any) => r.rubric_name.toLowerCase().includes(cleanTerm))) return true;
+      }
+    }
+  }
+  
+  return false;
+}
+
+function runRepertorisation() {
+  if (selectedSymptoms.length === 0) {
+    recommendedPointsSet.clear();
+    drawHotspots();
+    return;
+  }
+  
+  // Calculate point matches
+  const pointScores: Array<{ p: any, matchedCount: number, score: number }> = [];
+  
+  allPointsData.forEach(p => {
+    let matchedCount = 0;
+    let score = 0;
+    
+    selectedSymptoms.forEach(s => {
+      if (doesPointMatchSymptom(p, s.text)) {
+        matchedCount++;
+        score += s.weight;
+      }
+    });
+    
+    if (matchedCount > 0) {
+      pointScores.push({ p, matchedCount, score });
+    }
+  });
+  
+  // Sort points: matches desc, score desc
+  pointScores.sort((a, b) => {
+    if (b.matchedCount !== a.matchedCount) return b.matchedCount - a.matchedCount;
+    return b.score - a.score;
+  });
+  
+  recommendedPointsSet = new Set(pointScores.map(item => item.p.point_id));
+  drawHotspots(); // Re-draw hotspots to trigger recommended pulsing
+  
+  // Render recommended points list
+  const pointsList = document.getElementById("rec-points-list");
+  if (pointsList) {
+    pointsList.innerHTML = "";
+    const topPoints = pointScores.slice(0, 5);
+    topPoints.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "recommendation-item";
+      li.dataset.id = item.p.point_id;
+      
+      const titleSpan = document.createElement("span");
+      titleSpan.className = "recommendation-title";
+      titleSpan.textContent = `${getPointSynonym(item.p.point_id)} - ${item.p.name_german}`;
+      titleSpan.style.cursor = "pointer";
+      titleSpan.addEventListener("click", () => {
+        selectPoint(item.p.point_id);
+      });
+      li.appendChild(titleSpan);
+      
+      const badge = document.createElement("span");
+      badge.className = "match-badge";
+      badge.textContent = `${item.matchedCount}/${selectedSymptoms.length}`;
+      li.appendChild(badge);
+      
+      pointsList.appendChild(li);
+    });
+    if (pointScores.length === 0) {
+      pointsList.innerHTML = "<li class='dimmed' style='padding: 8px;'>Keine passenden Punkte gefunden.</li>";
+    }
+  }
+  
+  // Calculate remedy matches
+  const remedyScoresMap = new Map<string, { matches: Set<string>, score: number }>();
+  
+  selectedSymptoms.forEach(s => {
+    const cleanSym = s.text.toLowerCase().trim();
+    
+    allPointsData.forEach(p => {
+      if (p.general_analysis_rubrics) {
+        p.general_analysis_rubrics.forEach((rub: any) => {
+          if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
+            rub.remedies.forEach((rem: { name: string, grade: number }) => {
+              if (!remedyScoresMap.has(rem.name)) {
+                remedyScoresMap.set(rem.name, { matches: new Set(), score: 0 });
+              }
+              const entry = remedyScoresMap.get(rem.name)!;
+              if (!entry.matches.has(s.id)) {
+                entry.matches.add(s.id);
+                entry.score += rem.grade * s.weight;
+              }
+            });
+          }
+        });
+      }
+      
+      const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
+                          (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
+      if (directMatch && p.assigned_homeopathics) {
+        p.assigned_homeopathics.forEach((remName: string) => {
+          if (!remedyScoresMap.has(remName)) {
+            remedyScoresMap.set(remName, { matches: new Set(), score: 0 });
+          }
+          const entry = remedyScoresMap.get(remName)!;
+          if (!entry.matches.has(s.id)) {
+            entry.matches.add(s.id);
+            entry.score += 3 * s.weight;
+          }
+        });
+      }
+    });
+  });
+  
+  const remedyScores: Array<{ name: string, matchesCount: number, score: number }> = [];
+  remedyScoresMap.forEach((val, name) => {
+    remedyScores.push({
+      name,
+      matchesCount: val.matches.size,
+      score: val.score
+    });
+  });
+  
+  remedyScores.sort((a, b) => {
+    if (b.matchesCount !== a.matchesCount) return b.matchesCount - a.matchesCount;
+    return b.score - a.score;
+  });
+  
+  // Render recommended remedies list
+  const remediesList = document.getElementById("rec-remedies-list");
+  if (remediesList) {
+    remediesList.innerHTML = "";
+    const topRemedies = remedyScores.slice(0, 15);
+    topRemedies.forEach(rem => {
+      const li = document.createElement("li");
+      
+      const badge = document.createElement("span");
+      badge.className = "remedy-score-badge";
+      badge.textContent = `${rem.name} (${rem.score})`;
+      badge.title = `${rem.matchesCount} von ${selectedSymptoms.length} Symptomen abgedeckt`;
+      badge.addEventListener("click", () => {
+        searchInputEl.value = rem.name;
+        handleSearch(rem.name);
+      });
+      
+      li.appendChild(badge);
+      remediesList.appendChild(li);
+    });
+    if (remedyScores.length === 0) {
+      remediesList.innerHTML = "<li class='dimmed' style='padding: 8px 0;'>Keine passenden Heilmittel gefunden.</li>";
+    }
+  }
+}
+
+function renderMatrixTable() {
+  const container = document.getElementById("matrix-table-container");
+  if (!container) return;
+  
+  if (selectedSymptoms.length === 0) {
+    container.innerHTML = "<p class='dimmed' style='padding: 24px;'>Keine Symptome im Fall vorhanden.</p>";
+    return;
+  }
+  
+  const remedyScoresMap = new Map<string, { matches: Set<string>, score: number, grades: Record<string, number> }>();
+  
+  selectedSymptoms.forEach(s => {
+    const cleanSym = s.text.toLowerCase().trim();
+    
+    allPointsData.forEach(p => {
+      if (p.general_analysis_rubrics) {
+        p.general_analysis_rubrics.forEach((rub: any) => {
+          if (rub.rubric_name.toLowerCase().includes(cleanSym)) {
+            rub.remedies.forEach((rem: { name: string, grade: number }) => {
+              if (!remedyScoresMap.has(rem.name)) {
+                remedyScoresMap.set(rem.name, { matches: new Set(), score: 0, grades: {} });
+              }
+              const entry = remedyScoresMap.get(rem.name)!;
+              if (!entry.matches.has(s.id)) {
+                entry.matches.add(s.id);
+                entry.score += rem.grade * s.weight;
+              }
+              entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, rem.grade);
+            });
+          }
+        });
+      }
+      
+      const directMatch = (p.effects && p.effects.some((e: string) => e.toLowerCase().includes(cleanSym))) ||
+                          (p.indications && p.indications.some((i: string) => i.toLowerCase().includes(cleanSym)));
+      if (directMatch && p.assigned_homeopathics) {
+        p.assigned_homeopathics.forEach((remName: string) => {
+          if (!remedyScoresMap.has(remName)) {
+            remedyScoresMap.set(remName, { matches: new Set(), score: 0, grades: {} });
+          }
+          const entry = remedyScoresMap.get(remName)!;
+          if (!entry.matches.has(s.id)) {
+            entry.matches.add(s.id);
+            entry.score += 3 * s.weight;
+          }
+          entry.grades[s.id] = Math.max(entry.grades[s.id] || 0, 3);
+        });
+      }
+    });
+  });
+  
+  const sortedRemedies: Array<{ name: string, matchesCount: number, score: number, grades: Record<string, number> }> = [];
+  remedyScoresMap.forEach((val, name) => {
+    sortedRemedies.push({
+      name,
+      matchesCount: val.matches.size,
+      score: val.score,
+      grades: val.grades
+    });
+  });
+  
+  sortedRemedies.sort((a, b) => {
+    if (b.matchesCount !== a.matchesCount) return b.matchesCount - a.matchesCount;
+    return b.score - a.score;
+  });
+  
+  // Show top 30 remedies
+  const remediesToDisplay = sortedRemedies.slice(0, 30);
+  
+  let html = `<table class="matrix-table">`;
+  
+  // Header
+  html += `<thead>`;
+  html += `<tr>`;
+  html += `<th class="remedy-col-header">Heilmittel</th>`;
+  
+  // Symptom columns
+  selectedSymptoms.forEach(s => {
+    html += `<th class="symptom-header" data-symptom-id="${s.id}"><span>${s.text} <small class="dimmed" style="font-weight: normal;">(x${s.weight})</small></span></th>`;
+  });
+  
+  // Totals headers
+  html += `<th class="total-header">Treffer</th>`;
+  html += `<th class="total-header">Score</th>`;
+  html += `</tr>`;
+  html += `</thead>`;
+  
+  // Body (one row per remedy)
+  html += `<tbody>`;
+  remediesToDisplay.forEach(rem => {
+    html += `<tr data-remedy="${rem.name}">`;
+    html += `<td class="remedy-cell">${rem.name}</td>`;
+    
+    // Symptom cells
+    selectedSymptoms.forEach(s => {
+      const grade = rem.grades[s.id] || 0;
+      let badgeHtml = "";
+      if (grade === 3) {
+        badgeHtml = `<span class="matrix-badge grade-3" title="${rem.name}: Grad 3 für '${s.text}'"></span>`;
+      } else if (grade === 1) {
+        badgeHtml = `<span class="matrix-badge grade-1" title="${rem.name}: Grad 1 für '${s.text}'"></span>`;
+      }
+      html += `<td class="matrix-cell" data-symptom-id="${s.id}"><div class="matrix-badge-wrapper">${badgeHtml}</div></td>`;
+    });
+    
+    // Totals cells
+    html += `<td class="total-cell">${rem.matchesCount}</td>`;
+    html += `<td class="total-cell font-bold">${rem.score}</td>`;
+    html += `</tr>`;
+  });
+  html += `</tbody>`;
+  html += `</table>`;
+  
+  container.innerHTML = html;
+  
+  // Add interactive column highlights
+  const table = container.querySelector(".matrix-table") as HTMLTableElement;
+  if (table) {
+    const cells = table.querySelectorAll("[data-symptom-id]");
+    cells.forEach(cell => {
+      const cellEl = cell as HTMLElement;
+      const symId = cellEl.dataset.symptomId;
+      if (symId) {
+        cellEl.addEventListener("mouseenter", () => {
+          table.querySelectorAll(`[data-symptom-id="${symId}"]`).forEach(el => {
+            el.classList.add("col-highlight");
+          });
+        });
+        cellEl.addEventListener("mouseleave", () => {
+          table.querySelectorAll(`[data-symptom-id="${symId}"]`).forEach(el => {
+            el.classList.remove("col-highlight");
+          });
+        });
+      }
+    });
+  }
+}
+
+function setActiveSidebarTab(tabName: 'navigation' | 'search' | 'repertorisation') {
+  activeSidebarTab = tabName;
+  
+  const tabNavBtn = document.getElementById("tab-nav-btn");
+  const tabSearchBtn = document.getElementById("tab-search-btn");
+  const tabRepBtn = document.getElementById("tab-rep-btn");
+  
+  const contentNav = document.getElementById("tab-content-navigation");
+  const contentSearch = document.getElementById("tab-content-search");
+  const contentRep = document.getElementById("tab-content-repertorisation");
+  
+  if (tabNavBtn) tabNavBtn.classList.toggle("active", tabName === 'navigation');
+  if (tabSearchBtn) tabSearchBtn.classList.toggle("active", tabName === 'search');
+  if (tabRepBtn) tabRepBtn.classList.toggle("active", tabName === 'repertorisation');
+  
+  if (contentNav) contentNav.classList.toggle("active", tabName === 'navigation');
+  if (contentSearch) contentSearch.classList.toggle("active", tabName === 'search');
+  if (contentRep) contentRep.classList.toggle("active", tabName === 'repertorisation');
+}
+
+// Start
+init();
