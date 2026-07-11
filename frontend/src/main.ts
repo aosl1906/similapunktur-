@@ -539,6 +539,18 @@ function getClientSynonyms(query: string): string[] {
 }
 
 // 6. Search Symptoms & Remedies
+function classifySymptomStatic(text: string): string {
+  const t = text.toLowerCase();
+  if (t.includes("kopf") || t.includes("gehirn") || t.includes("nerv") || t.includes("schwindel") || t.includes("migrän") || t.includes("krampf")) return "Kopf & Nervensystem";
+  if (t.includes("gemüt") || t.includes("geist") || t.includes("schlaf") || t.includes("traum") || t.includes("angst") || t.includes("traurig") || t.includes("unruh") || t.includes("hyster") || t.includes("reizbar")) return "Gemüt & Psyche";
+  if (t.includes("herz") || t.includes("puls") || t.includes("blut") || t.includes("ader") || t.includes("gefäß") || t.includes("angina")) return "Herz & Kreislauf";
+  if (t.includes("magen") || t.includes("darm") || t.includes("verdau") || t.includes("appetit") || t.includes("übel") || t.includes("erbr") || t.includes("leber") || t.includes("galle") || t.includes("abdomen") || t.includes("stuhl")) return "Magen & Verdauung";
+  if (t.includes("lung") || t.includes("atmung") || t.includes("hust") || t.includes("kehlkopf") || t.includes("nase") || t.includes("hals") || t.includes("heiser") || t.includes("atemnot") || t.includes("schnupf")) return "Atmung & Hals";
+  if (t.includes("urin") || t.includes("blas") || t.includes("nier") || t.includes("mens") || t.includes("uter") || t.includes("gebärmutter") || t.includes("schwanger")) return "Urogenitaltrakt";
+  if (t.includes("haut") || t.includes("juck") || t.includes("ausschlag") || t.includes("schwitz") || t.includes("schwell") || t.includes("geschwür") || t.includes("ekzem")) return "Haut & Äußeres";
+  return "Bewegungsapparat & Allgemeines";
+}
+
 async function handleSearch(query: string) {
   currentSearchQuery = query.trim();
   
@@ -550,60 +562,51 @@ async function handleSearch(query: string) {
   clearSearchBtnEl.style.display = "block";
   
   try {
-    let symMatches: any[] = [];
+    let grouped_matches: { [cat: string]: any[] } = {};
     let remMatches: any[] = [];
     
     if (isStaticMode && allPointsData.length > 0) {
       const qLower = currentSearchQuery.toLowerCase();
       const querySyns = getClientSynonyms(qLower);
+      const symptomMap = new Map<string, { text: string; is_ttb: boolean; points: any[] }>();
       
       allPointsData.forEach((p) => {
-        let matchedText = "";
-        let matchedSynonym = "";
-        
-        // Check exact match first
-        const effectMatch = p.effects.find((e: string) => e.toLowerCase().includes(qLower));
-        if (effectMatch) {
-          matchedText = effectMatch;
-        } else {
-          // Check synonyms
-          for (const syn of querySyns) {
-            const m = p.effects.find((e: string) => e.toLowerCase().includes(syn));
-            if (m) {
-              matchedText = m;
-              matchedSynonym = syn;
-              break;
+        // Check effects
+        p.effects.forEach((eff: string) => {
+          const match = eff.toLowerCase().includes(qLower) || querySyns.some(syn => eff.toLowerCase().includes(syn));
+          if (match) {
+            if (!symptomMap.has(eff)) {
+              symptomMap.set(eff, { text: eff, is_ttb: false, points: [] });
             }
+            symptomMap.get(eff)!.points.push({ id: p.point_id, name_de: p.name_german, meridian: p.meridian, type: "wirkung" });
           }
-        }
+        });
         
-        if (!matchedText) {
-          const indMatch = p.indications.find((i: string) => i.toLowerCase().includes(qLower));
-          if (indMatch) {
-            matchedText = indMatch;
-          } else {
-            // Check synonyms
-            for (const syn of querySyns) {
-              const m = p.indications.find((i: string) => i.toLowerCase().includes(syn));
-              if (m) {
-                matchedText = m;
-                matchedSynonym = syn;
-                break;
+        // Check indications
+        p.indications.forEach((ind: string) => {
+          const match = ind.toLowerCase().includes(qLower) || querySyns.some(syn => ind.toLowerCase().includes(syn));
+          if (match) {
+            if (!symptomMap.has(ind)) {
+              symptomMap.set(ind, { text: ind, is_ttb: false, points: [] });
+            }
+            symptomMap.get(ind)!.points.push({ id: p.point_id, name_de: p.name_german, meridian: p.meridian, type: "indikation" });
+          }
+        });
+        
+        // Check general analysis rubrics
+        if (p.general_analysis_rubrics) {
+          p.general_analysis_rubrics.forEach((rub: any) => {
+            const match = rub.rubric_name.toLowerCase().includes(qLower) || querySyns.some(syn => rub.rubric_name.toLowerCase().includes(syn));
+            if (match) {
+              if (!symptomMap.has(rub.rubric_name)) {
+                symptomMap.set(rub.rubric_name, { text: rub.rubric_name, is_ttb: false, points: [] });
               }
+              symptomMap.get(rub.rubric_name)!.points.push({ id: p.point_id, name_de: p.name_german, meridian: p.meridian, type: "rubrik" });
             }
-          }
-        }
-        
-        if (matchedText) {
-          symMatches.push({
-            id: p.point_id,
-            name_de: p.name_german,
-            meridian: p.meridian,
-            match_text: matchedText,
-            matched_synonym: matchedSynonym || null
           });
         }
         
+        // Remedy search
         const remedyMatch = p.assigned_homeopathics.find((h: string) => h.toLowerCase().replace('.', '').includes(qLower.replace('.', '')));
         if (remedyMatch) {
           remMatches.push({
@@ -614,11 +617,35 @@ async function handleSearch(query: string) {
           });
         }
       });
+      
+      // Check TTB rubrics
+      await ensureTtbDataLoaded();
+      if (staticTtbData) {
+        Object.keys(staticTtbData).forEach(rubricName => {
+          if (rubricName.toLowerCase().includes(qLower)) {
+            symptomMap.set(`[TTB] ${rubricName}`, { text: `[TTB] ${rubricName}`, is_ttb: true, points: [] });
+          }
+        });
+      }
+      
+      // Group by category
+      symptomMap.forEach((val, text) => {
+        const category = classifySymptomStatic(text);
+        if (!grouped_matches[category]) {
+          grouped_matches[category] = [];
+        }
+        grouped_matches[category].push({
+          text: val.text,
+          score: 1.0,
+          is_ttb: val.is_ttb,
+          points: val.points
+        });
+      });
     } else {
-      // 1. Fetch symptom matches
+      // 1. Fetch symptom matches (Semantic grouped matches)
       const symRes = await fetch(`/api/search-symptoms?q=${encodeURIComponent(currentSearchQuery)}`);
       const symData = await symRes.json();
-      symMatches = symData.matches || [];
+      grouped_matches = symData.grouped_matches || {};
       
       // 2. Fetch remedy matches
       const remRes = await fetch(`/api/points-by-remedy?name=${encodeURIComponent(currentSearchQuery)}`);
@@ -626,63 +653,167 @@ async function handleSearch(query: string) {
       remMatches = remData.points || [];
     }
     
-    // Merge results
-    const combinedPointsMap = new Map<string, any>();
+    // Clear lists
+    searchResultsListEl.innerHTML = "";
+    const allSearchPointIds = new Set<string>();
+    
+    // Grouped matches rendering
+    const categories = Object.keys(grouped_matches);
+    categories.sort();
+    
+    categories.forEach((category) => {
+      const items = grouped_matches[category];
+      if (!items || items.length === 0) return;
+      
+      // Accumulate point IDs
+      items.forEach((item: any) => {
+        if (item.points) {
+          item.points.forEach((pt: any) => allSearchPointIds.add(pt.id));
+        }
+      });
+      
+      const details = document.createElement("details");
+      details.className = "category-details";
+      details.open = true;
+      
+      const summary = document.createElement("summary");
+      summary.className = "category-summary";
+      summary.innerHTML = `
+        <span class="category-title">${category}</span>
+        <span class="category-badge">${items.length}</span>
+      `;
+      details.appendChild(summary);
+      
+      const ul = document.createElement("ul");
+      ul.className = "category-symptom-list";
+      
+      items.forEach((item: any) => {
+        const li = document.createElement("li");
+        li.className = "symptom-search-item";
+        
+        let pointBadgesHtml = "";
+        if (item.points && item.points.length > 0) {
+          pointBadgesHtml = `
+            <div class="symptom-points-row">
+              ${item.points.map((pt: any) => `<span class="symptom-point-badge clickable" data-id="${pt.id}">${pt.name_de}</span>`).join("")}
+            </div>
+          `;
+        }
+        
+        const isTtb = item.is_ttb;
+        const displayName = isTtb ? item.text.replace("[TTB] ", "") : item.text;
+        const scorePct = (item.score && item.score < 1.0) ? ` <span class="symptom-score">${Math.round(item.score * 100)}%</span>` : "";
+        
+        li.innerHTML = `
+          <div class="symptom-title-row">
+            <span class="symptom-text-label">
+              ${isTtb ? '<span class="ttb-badge" title="Bönninghausen TTB Rubrik">TTB</span> ' : ''}
+              ${displayName}${scorePct}
+            </span>
+            <button class="add-symptom-btn" title="Zum Fall hinzufügen">+</button>
+          </div>
+          ${pointBadgesHtml}
+        `;
+        
+        // Hover highlights symptom's points
+        li.addEventListener("mouseenter", () => {
+          matchedPointIds.clear();
+          if (item.points) {
+            item.points.forEach((pt: any) => matchedPointIds.add(pt.id));
+          }
+          drawHotspots();
+        });
+        
+        li.addEventListener("mouseleave", () => {
+          // Restore all matched points
+          matchedPointIds.clear();
+          allSearchPointIds.forEach(id => matchedPointIds.add(id));
+          drawHotspots();
+        });
+        
+        // Add button listener
+        const addBtn = li.querySelector(".add-symptom-btn");
+        if (addBtn) {
+          addBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            addSymptom(item.text);
+          });
+        }
+        
+        // Point badges listeners
+        li.querySelectorAll(".symptom-point-badge").forEach((badge: any) => {
+          badge.addEventListener("click", (e: Event) => {
+            e.stopPropagation();
+            const pid = badge.dataset.id;
+            if (pid) selectPoint(pid);
+          });
+        });
+        
+        ul.appendChild(li);
+      });
+      
+      details.appendChild(ul);
+      searchResultsListEl.appendChild(details);
+    });
+    
+    // Remedy matches rendering
+    if (remMatches && remMatches.length > 0) {
+      remMatches.forEach((pt: any) => allSearchPointIds.add(pt.id));
+      
+      const details = document.createElement("details");
+      details.className = "category-details";
+      details.open = true;
+      
+      const summary = document.createElement("summary");
+      summary.className = "category-summary remedy-summary";
+      summary.innerHTML = `
+        <span class="category-title">Zugeordnete Akupunkturpunkte</span>
+        <span class="category-badge remedy-badge">${remMatches.length}</span>
+      `;
+      details.appendChild(summary);
+      
+      const ul = document.createElement("ul");
+      ul.className = "category-symptom-list";
+      
+      remMatches.forEach((pt: any) => {
+        const li = document.createElement("li");
+        li.className = "remedy-search-item clickable";
+        li.dataset.id = pt.id;
+        if (pt.id === currentPointId) {
+          li.classList.add("active");
+        }
+        
+        const sourceStr = pt.sources ? pt.sources.join(", ") : "Heilmittel";
+        
+        li.innerHTML = `
+          <div class="point-title-row">
+            <span>${pt.name_de}</span>
+            <span class="point-id-badge">${getPointSynonym(pt.id)}</span>
+          </div>
+          <div class="point-sub">Zugeordnetes Heilmittel: ${sourceStr}</div>
+        `;
+        
+        li.addEventListener("click", () => selectPoint(pt.id));
+        ul.appendChild(li);
+      });
+      
+      details.appendChild(ul);
+      searchResultsListEl.appendChild(details);
+    }
+    
+    // Set global highlights
     matchedPointIds.clear();
-    
-    symMatches.forEach((m: any) => {
-      matchedPointIds.add(m.id);
-      let subtext = `Symptom: ${m.match_text}`;
-      if (m.matched_synonym) {
-        subtext += ` (Gefunden über: '${m.matched_synonym}')`;
-      }
-      combinedPointsMap.set(m.id, {
-        id: m.id,
-        name_de: m.name_de,
-        meridian: m.meridian,
-        subtext: subtext
-      });
-    });
-    
-    remMatches.forEach((m: any) => {
-      matchedPointIds.add(m.id);
-      const sourceStr = m.sources.join(", ");
-      combinedPointsMap.set(m.id, {
-        id: m.id,
-        name_de: m.name_de,
-        meridian: m.meridian,
-        subtext: `Heilmittel (${sourceStr})`
-      });
-    });
-    
-    // Update SVG overlay matching state
+    allSearchPointIds.forEach(id => matchedPointIds.add(id));
     drawHotspots();
     
-    // Populate search sidebar
+    // Update count display
+    resultsCountEl.textContent = allSearchPointIds.size.toString();
+    searchQueryDisplayEl.textContent = `"${currentSearchQuery}"`;
+    
+    // Open Search Tab in sidebar
     const tabSearchBtn = document.getElementById("tab-search-btn");
     if (tabSearchBtn) tabSearchBtn.style.display = "inline-flex";
     setActiveSidebarTab('search');
-    
-    resultsCountEl.textContent = matchedPointIds.size.toString();
-    searchQueryDisplayEl.textContent = `"${currentSearchQuery}"`;
-    
-    searchResultsListEl.innerHTML = "";
-    combinedPointsMap.forEach((pt) => {
-      const li = document.createElement("li");
-      li.dataset.id = pt.id;
-      if (pt.id === currentPointId) {
-        li.classList.add("active");
-      }
-      li.innerHTML = `
-        <div class="point-title-row">
-          <span>${pt.name_de}</span>
-          <span class="point-id-badge">${getPointSynonym(pt.id)}</span>
-        </div>
-        <div class="point-sub">${pt.subtext}</div>
-      `;
-      li.addEventListener("click", () => selectPoint(pt.id));
-      searchResultsListEl.appendChild(li);
-    });
     
   } catch (err) {
     console.error("Search failed:", err);
@@ -1437,6 +1568,15 @@ function updateSymptomWeight(id: string, weight: number) {
   }
 }
 
+const REFINEMENT_MAP: { [key: string]: string[] } = {
+  "kopfschmerzen": ["Stirnkopfschmerz", "Schläfenkopfschmerzen", "Hinterkopfschmerz", "Halbseitenkopfschmerz, Migräne"],
+  "kopfschmerz": ["Stirnkopfschmerz", "Schläfenkopfschmerzen", "Hinterkopfschmerz", "Halbseitenkopfschmerz, Migräne"],
+  "kopf": ["Kopfschmerzen", "Völle, Schwere im Kopf", "Kälte der Glieder, mit heißem Kopf", "Blutandrang zum Kopf mit heftigem Kopfschmerz"],
+  "herzbeschwerden": ["Schmerzen in der Herzgegend", "Angina pectoris", "Herzklopfen", "Brustschmerz"],
+  "schlafstörungen": ["Schlaflosigkeit", "Einschlafstörungen", "Unruhiger Schlaf", "Alpträume"],
+  "magenbeschwerden": ["Sodbrennen", "Magenschmerz", "Übelkeit, Erbrechen", "Völlegefühl im Magen"]
+};
+
 function updateSymptomBasketUI() {
   const placeholder = document.getElementById("symptom-basket-placeholder");
   const list = document.getElementById("selected-symptoms-list");
@@ -1467,6 +1607,10 @@ function updateSymptomBasketUI() {
     resultsPreview.style.display = "none";
     if (modalitiesSection) modalitiesSection.style.display = "none";
     
+    // Clear refinement container
+    const refinementContainer = document.getElementById("symptom-refinement-container");
+    if (refinementContainer) refinementContainer.innerHTML = "";
+    
     // Clear modalities on empty basket
     activeModalities.clear();
     document.querySelectorAll(".modality-chip").forEach(chip => chip.classList.remove("active"));
@@ -1485,10 +1629,29 @@ function updateSymptomBasketUI() {
     const li = document.createElement("li");
     li.className = "symptom-chip";
     
+    // Body for breadcrumb + text
+    const chipBody = document.createElement("div");
+    chipBody.className = "symptom-chip-body";
+    
+    // Get category
+    const category = classifySymptomStatic(s.text);
+    const breadcrumb = document.createElement("span");
+    breadcrumb.className = "symptom-breadcrumb";
+    breadcrumb.textContent = `${category} >`;
+    chipBody.appendChild(breadcrumb);
+    
     const textSpan = document.createElement("span");
     textSpan.className = "symptom-chip-text";
-    textSpan.textContent = s.text;
-    li.appendChild(textSpan);
+    
+    const isTtb = s.text.startsWith("[TTB] ");
+    const cleanText = isTtb ? s.text.replace("[TTB] ", "") : s.text;
+    textSpan.innerHTML = isTtb 
+      ? `<span class="basket-ttb-badge" title="Bönninghausen TTB Rubrik">TTB</span> ${cleanText}` 
+      : cleanText;
+    textSpan.title = cleanText;
+    chipBody.appendChild(textSpan);
+    
+    li.appendChild(chipBody);
     
     const controlsDiv = document.createElement("div");
     controlsDiv.className = "symptom-chip-controls";
@@ -1518,6 +1681,75 @@ function updateSymptomBasketUI() {
     li.appendChild(controlsDiv);
     list.appendChild(li);
   });
+
+  // Render refinement suggestions if any
+  let refinementContainer = document.getElementById("symptom-refinement-container");
+  if (!refinementContainer) {
+    refinementContainer = document.createElement("div");
+    refinementContainer.id = "symptom-refinement-container";
+    list.parentNode?.insertBefore(refinementContainer, list.nextSibling);
+  }
+  refinementContainer.innerHTML = "";
+  
+  // Find matching general symptoms
+  let matchedGeneralText = "";
+  let suggestionsToOffer: string[] = [];
+  
+  for (const s of selectedSymptoms) {
+    const cleanText = s.text.replace("[TTB] ", "").toLowerCase().trim();
+    if (REFINEMENT_MAP[cleanText]) {
+      const allSugs = REFINEMENT_MAP[cleanText];
+      // Filter out suggestions that are already in selectedSymptoms
+      const activeTextList = selectedSymptoms.map(x => x.text.replace("[TTB] ", "").toLowerCase().trim());
+      const filteredSugs = allSugs.filter(sug => !activeTextList.includes(sug.toLowerCase().trim()));
+      
+      if (filteredSugs.length > 0) {
+        matchedGeneralText = s.text;
+        suggestionsToOffer = filteredSugs;
+        break; // Only offer suggestions for the first matched general symptom
+      }
+    }
+  }
+  
+  if (suggestionsToOffer.length > 0) {
+    const refinementDiv = document.createElement("div");
+    refinementDiv.className = "refinement-box warning-box";
+    refinementDiv.style.marginTop = "12px";
+    refinementDiv.style.padding = "10px";
+    refinementDiv.style.borderRadius = "6px";
+    refinementDiv.style.backgroundColor = "#fff9db";
+    refinementDiv.style.border = "1px solid #ffe3e3";
+    refinementDiv.innerHTML = `
+      <div class="refinement-header" style="font-size: 11.5px; font-weight: 700; color: #b25e00; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+        <span>💡</span> <span>Symptom-Verfeinerung</span>
+      </div>
+      <div style="font-size: 11px; color: var(--color-text-dark); margin-bottom: 8px; line-height: 1.4;">
+        Sie haben "${matchedGeneralText}" ausgewählt. Möchten Sie dieses für eine präzisere Analyse verfeinern?
+      </div>
+      <div class="refinement-chips" style="display: flex; flex-wrap: wrap; gap: 6px;">
+        ${suggestionsToOffer.map(sug => `<button class="refinement-suggestion-btn small-btn" data-text="${sug}" style="padding: 3px 6px; font-size: 10.5px; border-radius: 4px; border: 1px solid var(--color-primary-teal); background-color: #ffffff; color: var(--color-primary-teal); cursor: pointer; transition: all 0.2s; font-weight: 600;">+ ${sug}</button>`).join('')}
+      </div>
+    `;
+    
+    // Add event listeners to refinement buttons
+    refinementDiv.querySelectorAll(".refinement-suggestion-btn").forEach((btn: any) => {
+      btn.addEventListener("click", () => {
+        const text = btn.dataset.text;
+        if (text) addSymptom(text);
+      });
+      // Add hover effect via JS since it's injected
+      btn.addEventListener("mouseenter", () => {
+        btn.style.backgroundColor = "var(--color-primary-teal)";
+        btn.style.color = "#ffffff";
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.backgroundColor = "#ffffff";
+        btn.style.color = "var(--color-primary-teal)";
+      });
+    });
+    
+    refinementContainer.appendChild(refinementDiv);
+  }
 }
 
 function doesPointMatchSymptom(p: any, symText: string): boolean {

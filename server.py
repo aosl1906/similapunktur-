@@ -7,11 +7,68 @@ import urllib.request
 import re
 import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+import numpy as np
+from sentence_transformers import SentenceTransformer
 
 DB_PATH = os.environ.get("SIMILAPUNKTUR_DB_PATH", "out/similapunktur.db")
 PORT = 8000
 SYNONYMS_PATH = "out/synonyms.json"
 synonyms_data = {}
+
+# Global semantic search variables
+embedding_model = None
+symptom_embeddings_cache = {} # symptom_text -> (category, np_array)
+
+def load_embeddings():
+    global embedding_model, symptom_embeddings_cache
+    sys.stderr.write("Loading symptom embeddings from database...\n")
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        
+        # Check if table exists
+        cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='symptom_embeddings';")
+        exists = cur.fetchone()
+        
+        if not exists:
+            sys.stderr.write("symptom_embeddings table not found. Running generate_embeddings.py...\n")
+            conn.close()
+            import generate_embeddings
+            generate_embeddings.generate_embeddings()
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            
+        cur.execute("SELECT symptom_text, category, embedding_json FROM symptom_embeddings;")
+        rows = cur.fetchall()
+        
+        if not rows:
+            sys.stderr.write("symptom_embeddings table is empty. Running generate_embeddings.py...\n")
+            conn.close()
+            import generate_embeddings
+            generate_embeddings.generate_embeddings()
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            cur.execute("SELECT symptom_text, category, embedding_json FROM symptom_embeddings;")
+            rows = cur.fetchall()
+            
+        for row in rows:
+            text = row[0]
+            cat = row[1]
+            emb = np.array(json.loads(row[2]), dtype=np.float32)
+            symptom_embeddings_cache[text] = (cat, emb)
+            
+        conn.close()
+        sys.stderr.write(f"Successfully loaded {len(symptom_embeddings_cache)} symptom embeddings.\n")
+    except Exception as e:
+        sys.stderr.write(f"Failed to load symptom embeddings: {e}\n")
+        
+    sys.stderr.write("Loading SentenceTransformer model...\n")
+    try:
+        embedding_model = SentenceTransformer("sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+        sys.stderr.write("SentenceTransformer model loaded successfully.\n")
+    except Exception as e:
+        sys.stderr.write(f"Failed to load SentenceTransformer model: {e}\n")
+
 
 def load_synonyms():
     global synonyms_data
@@ -173,8 +230,8 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_error_response(500, str(e))
             return
-            
-        # 2. API Endpoint: Search Symptoms
+
+        # 2. API Endpoint: Search Symptoms (Semantic Hierarchical Search)
         elif path == "/api/search-symptoms":
             query = query_params.get("q", [None])[0]
             if not query:
@@ -182,92 +239,95 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
                 return
                 
             try:
-                # Find synonyms using our pre-seeded cache and dynamic OpenThesaurus API fallback
-                synonyms = get_synonyms_for_query(query)
-                terms = [query] + list(synonyms)
-                # Deduplicate terms case-insensitively
-                seen_terms = set()
-                unique_terms = []
-                for t in terms:
-                    t_clean = t.strip().lower()
-                    if t_clean and t_clean not in seen_terms:
-                        seen_terms.add(t_clean)
-                        unique_terms.append(t.strip())
+                if not embedding_model or not symptom_embeddings_cache:
+                    self.send_error_response(500, "Embedding search engine is not initialized.")
+                    return
                 
+                # 1. Encode query
+                query_emb = embedding_model.encode(query)
+                norm_query = np.linalg.norm(query_emb)
+                
+                # 2. Calculate cosine similarity against all cached embeddings
+                matches = []
+                for text, (category, emb) in symptom_embeddings_cache.items():
+                    norm_emb = np.linalg.norm(emb)
+                    if norm_emb > 0 and norm_query > 0:
+                        sim = float(np.dot(query_emb, emb) / (norm_emb * norm_query))
+                    else:
+                        sim = 0.0
+                        
+                    if sim > 0.35:  # Similarity threshold
+                        matches.append((text, category, sim))
+                
+                # Sort by similarity score descending and limit to top 40 matches
+                matches.sort(key=lambda x: x[2], reverse=True)
+                top_matches = matches[:40]
+                
+                # 3. Resolve acupuncture points and group by category
+                grouped_matches = {}
                 conn = get_db_connection()
                 cur = conn.cursor()
                 
-                # Query in effects (wirkungen)
-                conditions_w = []
-                params_w = []
-                for t in unique_terms:
-                    conditions_w.append("w.beschreibung LIKE ?")
-                    params_w.append(f"%{t}%")
+                # Initialize categories in response to ensure they all exist
+                all_categories = [
+                    "Kopf & Nervensystem",
+                    "Gemüt & Psyche",
+                    "Herz & Kreislauf",
+                    "Magen & Verdauung",
+                    "Atmung & Hals",
+                    "Urogenitaltrakt",
+                    "Haut & Äußeres",
+                    "Bewegungsapparat & Allgemeines"
+                ]
+                for cat in all_categories:
+                    grouped_matches[cat] = []
                 
-                sql_w = f'''
-                    SELECT DISTINCT p.id, p.name_de, p.meridian, 'wirkung' as match_type, w.beschreibung as match_text
-                    FROM punkte p
-                    JOIN wirkungen w ON p.id = w.punkt_id
-                    WHERE {" OR ".join(conditions_w)}
-                '''
-                cur.execute(sql_w, params_w)
-                wirkungen_matches = [dict(r) for r in cur.fetchall()]
-                
-                # Label which term triggered the match for effects
-                for m in wirkungen_matches:
-                    match_text_lower = m['match_text'].lower()
-                    matched_synonym = None
-                    for t in unique_terms:
-                        if t.lower() in match_text_lower:
-                            if t.lower() != query.lower():
-                                matched_synonym = t
-                            break
-                    m['matched_synonym'] = matched_synonym
-                
-                # Query in indications (indikationen)
-                conditions_i = []
-                params_i = []
-                for t in unique_terms:
-                    conditions_i.append("i.beschreibung LIKE ?")
-                    params_i.append(f"%{t}%")
-                
-                sql_i = f'''
-                    SELECT DISTINCT p.id, p.name_de, p.meridian, 'indikation' as match_type, i.beschreibung as match_text
-                    FROM punkte p
-                    JOIN indikationen i ON p.id = i.punkt_id
-                    WHERE {" OR ".join(conditions_i)}
-                '''
-                cur.execute(sql_i, params_i)
-                indikationen_matches = [dict(r) for r in cur.fetchall()]
-                
-                # Label which term triggered the match for indications
-                for m in indikationen_matches:
-                    match_text_lower = m['match_text'].lower()
-                    matched_synonym = None
-                    for t in unique_terms:
-                        if t.lower() in match_text_lower:
-                            if t.lower() != query.lower():
-                                matched_synonym = t
-                            break
-                    m['matched_synonym'] = matched_synonym
+                for text, category, score in top_matches:
+                    is_ttb = text.startswith("[TTB] ")
+                    clean_text = text[6:] if is_ttb else text
+                    
+                    points = []
+                    if not is_ttb:
+                        # Find associated points in wirkungen
+                        cur.execute("SELECT p.id, p.name_de, p.meridian FROM punkte p JOIN wirkungen w ON p.id = w.punkt_id WHERE w.beschreibung = ?;", (clean_text,))
+                        for r in cur.fetchall():
+                            points.append({"id": r[0], "name_de": r[1], "meridian": r[2], "type": "wirkung"})
+                            
+                        # Find associated points in indikationen
+                        cur.execute("SELECT p.id, p.name_de, p.meridian FROM punkte p JOIN indikationen i ON p.id = i.punkt_id WHERE i.beschreibung = ?;", (clean_text,))
+                        for r in cur.fetchall():
+                            points.append({"id": r[0], "name_de": r[1], "meridian": r[2], "type": "indikation"})
+                            
+                        # Find associated points in general_analysis_rubriken
+                        cur.execute("SELECT p.id, p.name_de, p.meridian FROM punkte p JOIN general_analysis_rubriken g ON p.id = g.punkt_id WHERE g.rubrik_name = ?;", (clean_text,))
+                        for r in cur.fetchall():
+                            points.append({"id": r[0], "name_de": r[1], "meridian": r[2], "type": "rubrik"})
+                            
+                        # Deduplicate points by point ID
+                        seen_points = set()
+                        unique_points = []
+                        for pt in points:
+                            if pt["id"] not in seen_points:
+                                seen_points.add(pt["id"])
+                                unique_points.append(pt)
+                        points = unique_points
+                        
+                    grouped_matches[category].append({
+                        "text": text,
+                        "score": round(score, 4),
+                        "is_ttb": is_ttb,
+                        "points": points
+                    })
                 
                 conn.close()
                 
-                # Combine matches and filter duplicates
-                all_matches = wirkungen_matches + indikationen_matches
-                seen = set()
-                unique_matches = []
-                for m in all_matches:
-                    key = (m['id'], m['match_type'], m['match_text'])
-                    if key not in seen:
-                        seen.add(key)
-                        unique_matches.append(m)
-                        
+                # Remove empty categories from output to save bandwidth
+                final_grouped = {cat: items for cat, items in grouped_matches.items() if items}
+                
                 self.send_json_response({
                     "query": query,
-                    "synonyms_used": list(synonyms),
-                    "matches_found": len(unique_matches),
-                    "matches": unique_matches
+                    "grouped_matches": final_grouped,
+                    "total_matches": len(top_matches)
                 })
                 
             except Exception as e:
@@ -477,29 +537,21 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
         # 4.5. API Endpoint: Symptom suggestions for autocomplete
         elif path == "/api/symptom-suggestions":
             try:
-                conn = get_db_connection()
-                cur = conn.cursor()
-                
-                # Fetch unique descriptions from both tables
-                cur.execute("SELECT DISTINCT beschreibung FROM wirkungen")
-                w_desc = [r["beschreibung"] for r in cur.fetchall()]
-                
-                cur.execute("SELECT DISTINCT beschreibung FROM indikationen")
-                i_desc = [r["beschreibung"] for r in cur.fetchall()]
-                
-                # Fetch TTB rubrics
-                cur.execute("SELECT DISTINCT rubric_name FROM ttb_rubrics")
-                t_desc = [f"[TTB] {r['rubric_name']}" for r in cur.fetchall()]
-                
-                conn.close()
-                
-                # Merge and get unique list
-                all_desc = list(set(w_desc + i_desc + t_desc))
-                
-                # Filter out empty or extremely long text
-                suggestions = [s.strip() for s in all_desc if s and len(s) < 120]
-                suggestions.sort()
-                
+                if symptom_embeddings_cache:
+                    suggestions = sorted(list(symptom_embeddings_cache.keys()))
+                else:
+                    conn = get_db_connection()
+                    cur = conn.cursor()
+                    cur.execute("SELECT DISTINCT beschreibung FROM wirkungen")
+                    w_desc = [r["beschreibung"] for r in cur.fetchall()]
+                    cur.execute("SELECT DISTINCT beschreibung FROM indikationen")
+                    i_desc = [r["beschreibung"] for r in cur.fetchall()]
+                    cur.execute("SELECT DISTINCT rubric_name FROM ttb_rubrics")
+                    t_desc = [f"[TTB] {r['rubric_name']}" for r in cur.fetchall()]
+                    conn.close()
+                    suggestions = sorted(list(set(w_desc + i_desc + t_desc)))
+                    
+                suggestions = [s.strip() for s in suggestions if s and len(s) < 120]
                 self.send_json_response({
                     "suggestions": suggestions
                 })
@@ -674,4 +726,5 @@ def run_server():
 
 if __name__ == "__main__":
     load_synonyms()
+    load_embeddings()
     run_server()
