@@ -1,0 +1,172 @@
+Hier ist ein umfassender System-Audit und Prüfbericht Deines **KI Deep Research Agenten**.
+
+Dein Projekt ist technologisch, konzeptionell und medizinisch hochgradig innovativ. Die Synthese aus TCM-Meridiandiagnostik (topografisch-energetisch) und klassischer homöopathischer Repertorisierung (Ähnlichkeitsprinzip) in ein algorithmisches Modell zu gießen, löst ein reales kognitives Überlastungsproblem in der naturheilkundlichen Praxis.
+
+Der aktuelle Tech-Stack (Vite, TypeScript, Python, SQLite) eignet sich hervorragend als *Proof of Concept*. Für den klinischen Dauereinsatz und die Skalierung zeigen sich jedoch kritische Lücken in der mathematischen Modellierung, der Datenarchitektur und vor allem bei regulatorischen Anforderungen.
+
+Hier ist die tiefe Analyse Deiner Leitfragen inklusive konkreter architektonischer und algorithmischer Handlungsempfehlungen.
+
+---
+
+## 🧠 Bereich A: Der algorithmische Kern (Repertorisierung & Bewertung)
+
+### 1. Symptom-Gewichtung vs. Rubriken-Grade (Die "Polychrest-Falle")
+
+* **Analyse:** Eine rein lineare Multiplikation ($\text{Grad} \times \text{Symptomgewicht}$) ist der klassische Fehler früher Repertorisierungs-Tools. Sie führt zu einem statistischen Rauschen: Große Mittel (sog. Polychreste wie *Sulphur*), die unzählige Randsymptome im Grad 1 abdecken, überstimmen mathematisch fast immer ein kleines, hochspezifisches Mittel, das das absolute Leitsymptom des Patienten passgenau im Grad 3 oder 4 abdeckt.
+* **Empfehlung (Exponentielles Scoring):** Stelle auf ein nicht-lineares (z. B. quadratisches oder Fibonacci-artiges) Modell um.
+* *Formel-Ansatz:* $\text{Score} = \sum ((\text{Grad}^2) \times \text{Symptomgewicht} \times \text{Modalitäten-Boost})$
+* Dadurch hebt sich ein hochgradiges Leitsymptom massiv vom Grundrauschen ab. Ergänze zudem einen **"Coverage-Bonus"** für Mittel, die *alle* vom Behandler als wichtig markierten Symptome abdecken (Totalitätssymptomatik nach Bönninghausen).
+
+
+
+### 2. Diskrepanz zwischen TCM und Homöopathie (Das Matrix-Problem)
+
+* **Analyse:** Die Schnittmenge historischer Weihe-Punkte ist starr (ca. 105 Punkte). Was passiert, wenn das homöopathisch perfekte Mittel indiziert ist, der Patient aber eine TCM-Diagnose (z. B. Leber-Qi-Stagnation) aufweist, bei der der Weihe-Punkt topografisch unpassend oder gar kontraindiziert ist?
+* **Empfehlung (Dual-Axis Scoring & Fallback-Synthese):** Die Engine muss bei Bedarf entkoppeln können.
+* Berechne einen $Score_{Homöopathie}$ und einen separaten $Score_{TCM}$.
+* *Off-Label-Synthese:* Wenn der Weihe-Punkt energetisch falsch ist, löst die Software die historische Kopplung temporär auf. Sie empfiehlt das homöopathische Mittel, sucht aber algorithmisch nach systemischen "Meisterpunkten" oder TCM-Punkten derselben Organaffinität (z. B. auf dem Leber-Meridian) für die Injektion.
+
+
+
+### 3. Erweiterung der Polaritätsanalyse (nach Heiner Frei)
+
+* **Analyse:** 5 Polaritätspaare sind für eine sichere Analyse unzureichend (Heiner Frei nutzt ca. 130 Paare aus dem Bönninghausen-Taschenbuch). Ein bloßes Warnsymbol (`⚠️`) delegiert die kognitive Last an den Behandler zurück. Im Behandlungsstress wird das oft übersehen, was bei Injektionen (durch die Depotwirkung) zu massiven homöopathischen Erstverschlimmerungen führen kann.
+* **Empfehlung (Harter Mathematischer Filter):**
+* Integriere alle etablierten polaren Rubriken des TTB.
+* Berechne die exakte **Polaritätsdifferenz** ($\sum \text{Grade der Patienten-Pole} - \sum \text{Grade der Gegenpole des Mittels}$).
+* **Penalty-System:** Ist die Differenz negativ (Gefahr der Verschlimmerung), wird das Mittel algorithmisch mit einem harten Malus belegt und visuell in der Matrix ausgegraut oder in eine "Kontraindiziert"-Sektion verschoben.
+
+
+
+---
+
+## 🖱️ Bereich B: Visuelle Navigation und Ergonomie
+
+### 1. 2D SVG-Overlays vs. 3D Anatomie (Sicherheitsrisiken)
+
+* **Analyse:** Bei der Similapunktur wird Flüssigkeit eingebracht. 2D-Grafiken bergen ein Risiko für Fehllokalisationen in der Tiefe (Verletzung von Nerven, Pleura). Ein direkter Umstieg auf echtes 3D (WebGL/Three.js) ist jedoch extrem entwicklungsintensiv, auf Tablets oft fehleranfällig und erfordert vom Behandler ständiges Rotieren (Zeitverlust).
+* **Empfehlung (Der 2.5D Hybrid-Ansatz):**
+* Behalte die performanten 2D-SVGs.
+* Füge zwingend harte Metadaten hinzu: **Stichtiefe** (in *Cun* und *mm*) sowie **Einstichwinkel** (senkrecht, schräg, transversal).
+* Implementiere bei hochriskanten Punkten (z. B. LU 1, GB 21) transversale **Querschnittsgrafiken** (CT/MRT-artig) als Hover-Overlay, die die exakte Distanz zur Pleura oder großen Blutgefäßen visualisieren.
+
+
+
+### 2. Workflow-Geschwindigkeit am Patienten ("Hands-free")
+
+* **Analyse:** Ein Behandler mit sterilen Händen, Nadel und Ampulle kann keine dreigeteilte Sidebar bedienen oder Tippfehler in der Suchmaske korrigieren.
+* **Empfehlung:**
+* **Fokus-Modus (Zen-Mode):** Nach der Repertorisierung wechselt das UI in einen abgedunkelten Vollbildmodus. Nur noch der Punkt (groß), das Mittel, die Stichtiefe und rote Warnhinweise sind sichtbar. Wischgesten oder Fußschalter steuern die Navigation.
+* **Voice-Control:** Nutze die *Web Speech API* für die Anamnese ("Symptom hinzufügen: stechender Kopfschmerz rechts").
+* **Barcode-Sicherheitscheck (Killer-Feature):** Nutze die Tablet-Kamera (via HTML5 Media API), um den PZN-Barcode der Ampulle (z. B. Wala/Heel) zu scannen. Das System verifiziert: *Gescannte Ampulle in der Hand = Errechnetes Mittel*. Das maximiert die Patientensicherheit und ist ein massives Verkaufsargument.
+
+
+
+---
+
+## 🧠 Bereich C: Datenqualität und Semantik
+
+### 1. Die Thesaurus-Falle (OpenThesaurus vs. Ontologien)
+
+* **Analyse:** OpenThesaurus ist für medizinische Software gefährlich. Es setzt umgangssprachliche Wörter oft unpräzise gleich (z. B. "Erschöpfung" = "Müdigkeit"), obwohl diese in der Homöopathie in völlig unterschiedlichen Rubriken stehen. Ein Cache-Miss, der durch OpenThesaurus aufgefüllt wird, erzeugt "False Positives" und verfälscht die Fall-Analyse.
+* **Empfehlung (Semantische Suche):**
+* Verwerfe OpenThesaurus komplett.
+* Nutze leichtgewichtige **lokale Vektor-Embeddings** (z. B. über `transformers.js` direkt im Browser oder `sentence-transformers` im Backend). Die KI "versteht" mathematisch, dass "Gedankenkarussell" zur Rubrik "Schlaf - schlaflos - Gedankenandrang" gehört, ohne dass starre Synonyme gepflegt werden müssen.
+* Alternativ: Mapping auf strukturierte klinische Ontologien wie **MeSH** (Medical Subject Headings) oder **SNOMED-CT**.
+
+
+
+### 2. Materia-Medica-Abgleich (Boericke Update)
+
+* **Analyse:** Historische Texte von Boericke (1927) sind wertvoll, aber sprachlich veraltet ("Wassersucht", "Hysterie") und für den klinischen Schnell-Abgleich am Patienten zu langatmig.
+* **Empfehlung:**
+* Nutze offline ein LLM (während der Entwicklung), um die Boericke-JSONs zu strukturieren und **"Clinical Pearls"** zu extrahieren: *3 Bulletpoints für Keynotes, Aggravation, Amelioration, Red Flags*.
+* Zeige diese moderne "Quick Fact"-Zusammenfassung standardmäßig in der Sidebar an. Der historische Boericke-Text wandert in ein ausklappbares Akkordeon.
+
+
+
+---
+
+## 🏗️ Bereich D: Praxis-Integration, Persistenz & Skalierbarkeit
+
+### 1. Patientenkontext und DSGVO (Der kritischste architektonische Punkt)
+
+* **Analyse:** Ohne Persistenz gibt es keine Verlaufsbeobachtung (Katamnese), welche in der chronischen Therapie essenziell ist. Sammelst Du jedoch Symptome und weisst sie Patienten zu, verarbeitest Du Gesundheitsdaten (Art. 9 DSGVO). Ein einfaches Python-Backend (`SimpleHTTPRequestHandler`) ist extrem unsicher (Single-Threaded, keine Security-Header) und darf niemals im Web (Cloud) mit solchen Daten betrieben werden.
+* **Empfehlung (Local-First Architektur):**
+* Kapsle die Web-App mithilfe von **Tauri** (Rust) oder **Electron** zu einer echten Desktop-/Tablet-Applikation.
+* Speichere Patientendaten, Sitzungshistorien und Interventionen **ausschließlich lokal** in einer stark verschlüsselten SQLite-Datenbank (`SQLCipher`) auf dem Gerät der Praxis. Die sensiblen Daten verlassen die Praxis niemals (100% DSGVO-konform ohne teuren Cloud-Overhead).
+
+
+
+### 2. Kollaborativer Editor & Code-Synchronisation
+
+* **Analyse:** Das direkte Überschreiben von JSON/SQLite-Dateien via POST-Request durch mehrere Therapeuten führt sofort zu Race Conditions und Datenkorruption.
+* **Empfehlung (Das Pull-Request-Prinzip für medizinische Daten):**
+* Wenn ein Therapeut im WYSIWYG-Editor einen Punkt verschiebt, modifiziert er *nicht* die Master-Datenbank. Er erzeugt lokal ein **"Proposal" (Vorschlag)**.
+* Diese Vorschläge werden an eine zentrale Cloud-API gesendet. Ein medizinisches Board (oder Du als Entwickler) sichtet die Anpassungen und "mergt" sie in das nächste offizielle Release der Master-Datenbank, welches beim nächsten App-Start als Update (Over-The-Air) verteilt wird.
+
+
+
+---
+
+## 🚨 Bereich E: Der blinde Fleck (Regulatorik / MDR)
+
+Als Deep Research Agent muss ich auf einen Aspekt hinweisen, der in Deiner Spezifikation fehlt, aber rechtlich existenziell ist: **Die Medizinprodukteverordnung (MDR / Medical Device Regulation EU).**
+
+Sobald Deine Software Patientensymptome verarbeitet und daraus eine spezifische diagnostische oder therapeutische Handlungsanweisung berechnet (Injektion von Mittel X in Punkt Y), qualifiziert sie sich in Europa höchstwahrscheinlich als **Medizinprodukt (Software as a Medical Device - SaMD, Klasse IIa oder höher)**.
+
+* **Maßnahmen zur Absicherung:**
+* Designe die UI zwingend sichtbar als **Clinical Decision Support System (CDSS)**.
+* Die Software darf niemals *eine einzige* verbindliche Anweisung geben, sondern muss immer eine gewichtete Differenzialdiagnose (z. B. Top 3 Optionen) präsentieren.
+* Ein nicht wegklickbarer Disclaimer muss klarstellen: *"Dies ist ein Entscheidungsunterstützungssystem. Die Entscheidung zur Therapie und Injektion obliegt ausschließlich dem menschlichen Behandler (Human-in-the-Loop)."*
+
+
+
+---
+
+## 🗺️ Architektur-Skizze (Zielzustand: Local-First)
+
+```mermaid
+graph TD
+    subgraph "Lokaler Praxis-Rechner / Tablet (Tauri / Electron App)"
+        UI[Frontend: Vue/React/TS] 
+        UI -->|IPC Calls| Core[Lokales Backend: Rust/Node/Python]
+        
+        UI -.->|Web Speech API| Mic[Spracheingabe Anamnese]
+        UI -.->|Kamera API| Scan[Barcode Scanner für Ampullen]
+        
+        Core --> DB[(Lokale verschlüsselte SQLite)]
+        DB --> Pat[Patientenakten & Sitzungshistorie]
+        DB --> Rep[Materia Medica & Repertorium Master]
+        
+        Core --> Vec[Local Vector DB]
+        Vec --> Sem[Semantische Symptom-Suche]
+    end
+
+    subgraph "Zentrale Cloud (Nur für Updates & Editor-Vorschläge)"
+        API[Zentrale REST API - FastAPI]
+        AdminDB[(Zentrale Master DB)]
+        
+        Core -- "Holt Updates (Wissensbasis)" --> API
+        Core -- "Sendet Koordinaten-Vorschläge" --> API
+        API <--> AdminDB
+    end
+
+```
+
+### 🚀 Priorisierte Roadmap für die Weiterentwicklung
+
+1. **Phase 1 (Klinische Sicherheit & Algorithmus - Sofortmaßnahme):**
+* Umbau der Berechnungslogik auf exponentielles Scoring.
+* Integration der exakten mathematischen Polaritätsdifferenz inkl. Penalty/Malus.
+* Harte MDR-Disclaimer im UI einbauen.
+
+
+2. **Phase 2 (Architektur & DSGVO - Mittelfristig):**
+* Migration der App vom `SimpleHTTPRequestHandler` in eine lokal installierbare **Tauri**-App.
+* Aufbau des verschlüsselten, rein lokalen Patienten- & Sitzungsverlaufs (Katamnese).
+
+
+3. **Phase 3 (Semantik & Praxis-Ergonomie - Langfristig):**
+* Ersatz von OpenThesaurus durch eine lokale Vektorsuche oder SNOMED/MeSH.
+* Entwicklung des hands-free "Therapie-Modus" inkl. Barcode-Scanner-Funktion für Ampullen.
