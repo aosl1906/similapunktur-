@@ -2045,4 +2045,39 @@ body {
   border-left: 3px solid var(--color-primary-teal);
 }
 
+/* Developer Dashboard Rubrics & Remedies details styles */
+.dev-rubrics-details {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.dev-rubrics-details[open] {
+  border-color: var(--color-border);
+  background-color: var(--color-bg-white);
+  padding: 6px;
+  box-shadow: 0 2px 6px var(--color-shadow);
+}
+
+.dev-rubrics-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.dev-rubrics-details summary {
+  list-style: none;
+}
+
+.dev-rubrics-details summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 4px;
+  color: var(--color-primary-teal);
+  transition: transform 0.2s ease;
+}
+
+.dev-rubrics-details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+
 

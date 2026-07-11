@@ -2395,6 +2395,26 @@ function renderDevReviewTables() {
       const rubricsCount = p.general_analysis_rubrics ? p.general_analysis_rubrics.length : 0;
       const remediesCount = p.assigned_homeopathics ? p.assigned_homeopathics.length : 0;
       
+      // Build clean HTML lists for nested rubrics and remedies to display the real hierarchy
+      let rubricsHtml = "";
+      if (p.general_analysis_rubrics && p.general_analysis_rubrics.length > 0) {
+        rubricsHtml = p.general_analysis_rubrics.map((rub: any) => {
+          const remStr = rub.remedies ? rub.remedies.map((r: any) => `${r.name} (Grad ${r.grade})`).join(", ") : "Keine Heilmittel";
+          return `
+            <div style="margin-bottom: 6px; padding-left: 8px; border-left: 2px solid rgba(39, 133, 117, 0.3);">
+              <span style="color: var(--color-secondary-teal); font-weight: 700;">${rub.rubric_name}:</span>
+              <span style="color: var(--color-text-dark);">${remStr}</span>
+            </div>
+          `;
+        }).join("");
+      } else {
+        rubricsHtml = `<div style="font-style: italic; color: var(--color-text-muted);">Keine Allgemein-Analyse-Rubriken</div>`;
+      }
+
+      const directRemediesStr = p.assigned_homeopathics && p.assigned_homeopathics.length > 0
+        ? p.assigned_homeopathics.join(", ")
+        : "<i>Keine direkten Heilmittel zugeordnet</i>";
+
       tr.innerHTML = `
         <td style="padding: 10px 14px; font-weight: 700; color: var(--color-primary-teal);">${getPointSynonym(p.point_id)}</td>
         <td style="padding: 10px 14px;">${p.meridian}</td>
@@ -2402,7 +2422,23 @@ function renderDevReviewTables() {
         <td style="padding: 10px 14px; font-style: italic;">${p.name_chinese}</td>
         <td style="padding: 10px 14px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cleanEffects}">${cleanEffects}</td>
         <td style="padding: 10px 14px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cleanIndications}">${cleanIndications}</td>
-        <td style="padding: 10px 14px;">${rubricsCount} Rubriken / ${remediesCount} Heilmittel</td>
+        <td style="padding: 10px 14px;">
+          <details class="dev-rubrics-details" style="outline: none;">
+            <summary style="cursor: pointer; color: var(--color-primary-teal); font-weight: 700; font-size: 13px; user-select: none; display: flex; align-items: center; gap: 4px;">
+              <span>📊 ${rubricsCount} Rubriken / ${remediesCount} Direkt-Mittel</span>
+            </summary>
+            <div class="dev-rubrics-content" style="margin-top: 8px; font-size: 12px; line-height: 1.5; padding: 10px; background-color: var(--color-bg-light-gray); border-radius: 6px; border-left: 3px solid var(--color-primary-teal); max-width: 450px; white-space: normal;">
+              <div style="margin-bottom: 8px;">
+                <strong style="color: var(--color-deep-navy); display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px;">Direkte Zuordnung (Phase 1):</strong>
+                <span style="color: var(--color-text-dark);">${directRemediesStr}</span>
+              </div>
+              <div>
+                <strong style="color: var(--color-deep-navy); display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Rubriken-Hierarchie (Phase 4):</strong>
+                ${rubricsHtml}
+              </div>
+            </div>
+          </details>
+        </td>
       `;
       pointsBody.appendChild(tr);
     });
