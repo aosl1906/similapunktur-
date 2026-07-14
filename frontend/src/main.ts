@@ -263,10 +263,64 @@ async function selectMeridian(name: string, element: HTMLLIElement) {
   }
 }
 
-// 3. Draw Hotspots
+// 3. Draw Hotspots & Meridian Connections
+function sortPointsBySequence(points: any[]): any[] {
+  return [...points].sort((a, b) => {
+    const reg = /^([A-Z]+)_(\d+)(.*)$/;
+    const matchA = a.id.match(reg);
+    const matchB = b.id.match(reg);
+    
+    if (matchA && matchB) {
+      if (matchA[1] !== matchB[1]) {
+        return matchA[1].localeCompare(matchB[1]);
+      }
+      const numA = parseInt(matchA[2], 10);
+      const numB = parseInt(matchB[2], 10);
+      if (numA !== numB) {
+        return numA - numB;
+      }
+      return matchA[3].localeCompare(matchB[3]);
+    }
+    return a.id.localeCompare(b.id);
+  });
+}
+
 function drawHotspots() {
   if (!svgOverlayEl) return;
   svgOverlayEl.innerHTML = "";
+  
+  // Render Layer 2: SVG Connections (between positioned points)
+  const svgEl = document.getElementById("meridian-connections-svg") as unknown as SVGSVGElement | null;
+  if (svgEl) {
+    svgEl.innerHTML = "";
+    if (activePoints.length >= 2) {
+      const sortedPoints = sortPointsBySequence(activePoints);
+      
+      // Filter out unpositioned points (exactly 50.0, 50.0)
+      const positionedPoints = sortedPoints.filter(pt => {
+        const coords = pt.visuals.relative_coordinates;
+        return !(coords.x_percent === 50 && coords.y_percent === 50);
+      });
+      
+      for (let i = 0; i < positionedPoints.length - 1; i++) {
+        const ptA = positionedPoints[i];
+        const ptB = positionedPoints[i + 1];
+        
+        const x1 = ptA.visuals.relative_coordinates.x_percent;
+        const y1 = ptA.visuals.relative_coordinates.y_percent;
+        const x2 = ptB.visuals.relative_coordinates.x_percent;
+        const y2 = ptB.visuals.relative_coordinates.y_percent;
+        
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", `${x1}`);
+        line.setAttribute("y1", `${y1}`);
+        line.setAttribute("x2", `${x2}`);
+        line.setAttribute("y2", `${y2}`);
+        line.setAttribute("class", "meridian-line");
+        svgEl.appendChild(line);
+      }
+    }
+  }
   
   const isSearchActive = matchedPointIds.size > 0;
   
@@ -322,10 +376,25 @@ function drawHotspots() {
   });
 }
 
-// 4. Select Point & Load Details
 async function selectPoint(pointId: string) {
   currentPointId = pointId;
   lastViewedPointId = pointId;
+  
+  // Switch meridian if the selected point is on a different meridian
+  if (allPointsData && allPointsData.length > 0) {
+    const ptData = allPointsData.find(p => p.point_id === pointId);
+    if (ptData && ptData.meridian) {
+      const activeMeridianLi = meridianListEl.querySelector("li.active") as HTMLLIElement;
+      const currentMeridianName = activeMeridianLi ? activeMeridianLi.dataset.name : "";
+      
+      if (ptData.meridian !== currentMeridianName) {
+        const targetLi = meridianListEl.querySelector(`li[data-name="${ptData.meridian}"]`) as HTMLLIElement;
+        if (targetLi) {
+          await selectMeridian(ptData.meridian, targetLi);
+        }
+      }
+    }
+  }
   
   // Highlight in SVG
   svgOverlayEl.querySelectorAll(".hotspot-group").forEach((g) => {
