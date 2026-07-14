@@ -18,10 +18,12 @@ interface SelectedSymptom {
 }
 let selectedSymptoms: SelectedSymptom[] = [];
 let recommendedPointsSet = new Set<string>();
-let activeSidebarTab: 'navigation' | 'search' | 'repertorisation' = 'navigation';
+let activeSidebarTab: 'navigation' | 'remedies-list' | 'search' | 'repertorisation' = 'navigation';
 let lastViewedPointId: string | null = null;
 let activeModalities = new Set<string>();
 const rubricsRemediesMap = new Map<string, Map<string, number>>();
+let allRemediesList: string[] = [];
+let activeRemedyName: string | null = null;
 
 interface PolarMatch {
   key1: string;
@@ -141,6 +143,67 @@ async function loadSynonyms() {
   }
 }
 
+function buildRemediesList() {
+  const remSet = new Set<string>();
+  allPointsData.forEach(p => {
+    if (p.assigned_homeopathics) {
+      p.assigned_homeopathics.forEach((rem: string) => remSet.add(rem));
+    }
+    if (p.general_analysis_rubrics) {
+      p.general_analysis_rubrics.forEach((rub: any) => {
+        if (rub.remedies) {
+          rub.remedies.forEach((rem: any) => remSet.add(rem.name));
+        }
+      });
+    }
+  });
+  allRemediesList = Array.from(remSet).sort((a, b) => a.localeCompare(b, 'de', { sensitivity: 'base' }));
+  renderRemediesSidebarList();
+}
+
+function renderRemediesSidebarList(filterQuery = "") {
+  const listEl = document.getElementById("remedy-sidebar-list") as HTMLUListElement;
+  if (!listEl) return;
+  listEl.innerHTML = "";
+  
+  const query = filterQuery.toLowerCase().trim().replace(/\.$/, "");
+  
+  allRemediesList.forEach(remName => {
+    const cleanRemName = remName.toLowerCase().replace(/\.$/, "");
+    if (query && !cleanRemName.includes(query)) {
+      return;
+    }
+    
+    const details = getRemedyDetailsClientSide(remName);
+    const totalPointsCount = details.direct_points.length + details.rubrics.length;
+    
+    const li = document.createElement("li");
+    li.className = "remedy-li-item";
+    if (activeRemedyName === remName) {
+      li.classList.add("active");
+    }
+    
+    li.innerHTML = `
+      <span class="remedy-li-name">${remName}</span>
+      <span class="remedy-li-count">${totalPointsCount} P.</span>
+    `;
+    
+    li.addEventListener("click", () => {
+      activeRemedyName = remName;
+      listEl.querySelectorAll(".remedy-li-item").forEach(item => item.classList.remove("active"));
+      li.classList.add("active");
+      
+      showRemedyDetails(remName);
+    });
+    
+    listEl.appendChild(li);
+  });
+  
+  if (listEl.children.length === 0) {
+    listEl.innerHTML = `<li class="dimmed" style="padding: 10px 14px; text-align: center;">Keine passenden Heilmittel gefunden.</li>`;
+  }
+}
+
 async function init() {
   renderMeridianList();
   await loadSynonyms();
@@ -180,6 +243,7 @@ async function init() {
           editorToggleBtn.style.display = "none";
         }
       }
+      buildRemediesList();
     }
   } catch (err) {
     console.warn("Failed to load static similapunktur.json, falling back to API.", err);
@@ -447,9 +511,9 @@ function renderPointDetails(data: any) {
   detailPanelEl.style.display = "flex";
   
   // Reset remedy view toggle
-  const locSection = detailPanelEl.querySelector(".detail-section") as HTMLElement;
+  const locSections = detailPanelEl.querySelectorAll(".detail-section");
   const tabsSection = detailPanelEl.querySelector(".detail-tabs") as HTMLElement;
-  if (locSection) locSection.style.display = "block";
+  locSections.forEach(sec => (sec as HTMLElement).style.display = "block");
   if (tabsSection) tabsSection.style.display = "block";
   const remedyView = document.getElementById("remedy-details-view");
   if (remedyView) remedyView.style.display = "none";
@@ -511,7 +575,7 @@ function renderPointDetails(data: any) {
   }
   
   // Tab 3: Remedies
-  remediesBadgesEl.innerHTML = "";
+  remediesBadgesEl.innerHTML = "<p style='font-size: 12.5px; margin-bottom: 10px; color: var(--color-text-muted); font-style: italic;'>Heilmittel zur Massage an diesem Punkt:</p>";
   if (data.assigned_homeopathics && data.assigned_homeopathics.length > 0) {
     data.assigned_homeopathics.forEach((rem: string) => {
       const span = document.createElement("span");
@@ -1048,17 +1112,30 @@ function setupEventListeners() {
 
   // Sidebar Tab Clicks
   const tabNavBtn = document.getElementById("tab-nav-btn");
+  const tabRemediesBtn = document.getElementById("tab-remedies-btn");
   const tabSearchBtn = document.getElementById("tab-search-btn");
   const tabRepBtn = document.getElementById("tab-rep-btn");
   
   if (tabNavBtn) {
     tabNavBtn.addEventListener("click", () => setActiveSidebarTab('navigation'));
   }
+  if (tabRemediesBtn) {
+    tabRemediesBtn.addEventListener("click", () => setActiveSidebarTab('remedies-list'));
+  }
   if (tabSearchBtn) {
     tabSearchBtn.addEventListener("click", () => setActiveSidebarTab('search'));
   }
   if (tabRepBtn) {
     tabRepBtn.addEventListener("click", () => setActiveSidebarTab('repertorisation'));
+  }
+
+  // Remedy Tab filter input
+  const remedyTabSearchInput = document.getElementById("remedy-tab-search-input") as HTMLInputElement | null;
+  if (remedyTabSearchInput) {
+    remedyTabSearchInput.addEventListener("input", (e) => {
+      const val = (e.target as HTMLInputElement).value;
+      renderRemediesSidebarList(val);
+    });
   }
 
   // Version History Modal Listeners
@@ -1858,66 +1935,7 @@ function runRepertorisation() {
     return;
   }
   
-  // Calculate point matches
-  const pointScores: Array<{ p: any, matchedCount: number, score: number }> = [];
-  
-  allPointsData.forEach(p => {
-    let matchedCount = 0;
-    let score = 0;
-    
-    selectedSymptoms.forEach(s => {
-      if (doesPointMatchSymptom(p, s.text)) {
-        matchedCount++;
-        score += s.weight;
-      }
-    });
-    
-    if (matchedCount > 0) {
-      pointScores.push({ p, matchedCount, score });
-    }
-  });
-  
-  // Sort points: matches desc, score desc
-  pointScores.sort((a, b) => {
-    if (b.matchedCount !== a.matchedCount) return b.matchedCount - a.matchedCount;
-    return b.score - a.score;
-  });
-  
-  recommendedPointsSet = new Set(pointScores.map(item => item.p.point_id));
-  drawHotspots(); // Re-draw hotspots to trigger recommended pulsing
-  
-  // Render recommended points list
-  const pointsList = document.getElementById("rec-points-list");
-  if (pointsList) {
-    pointsList.innerHTML = "";
-    const topPoints = pointScores.slice(0, 5);
-    topPoints.forEach(item => {
-      const li = document.createElement("li");
-      li.className = "recommendation-item";
-      li.dataset.id = item.p.point_id;
-      
-      const titleSpan = document.createElement("span");
-      titleSpan.className = "recommendation-title";
-      titleSpan.textContent = `${getPointSynonym(item.p.point_id)} - ${item.p.name_german}`;
-      titleSpan.style.cursor = "pointer";
-      titleSpan.addEventListener("click", () => {
-        selectPoint(item.p.point_id);
-      });
-      li.appendChild(titleSpan);
-      
-      const badge = document.createElement("span");
-      badge.className = "match-badge";
-      badge.textContent = `${item.matchedCount}/${selectedSymptoms.length}`;
-      li.appendChild(badge);
-      
-      pointsList.appendChild(li);
-    });
-    if (pointScores.length === 0) {
-      pointsList.innerHTML = "<li class='dimmed' style='padding: 8px;'>Keine passenden Punkte gefunden.</li>";
-    }
-  }
-  
-  // Calculate remedy matches
+  // 1. Calculate remedy matches
   const remedyScoresMap = new Map<string, { matches: Set<string>, score: number }>();
   
   selectedSymptoms.forEach(s => {
@@ -2042,6 +2060,65 @@ function runRepertorisation() {
     });
     if (remedyScores.length === 0) {
       remediesList.innerHTML = "<li class='dimmed' style='padding: 8px 0;'>Keine passenden Heilmittel gefunden.</li>";
+    }
+  }
+
+  // 2. Calculate point matches
+  const pointScores: Array<{ p: any, matchedCount: number, score: number }> = [];
+  
+  allPointsData.forEach(p => {
+    let matchedCount = 0;
+    let score = 0;
+    
+    selectedSymptoms.forEach(s => {
+      if (doesPointMatchSymptom(p, s.text)) {
+        matchedCount++;
+        score += s.weight;
+      }
+    });
+    
+    if (matchedCount > 0) {
+      pointScores.push({ p, matchedCount, score });
+    }
+  });
+  
+  // Sort points: matches desc, score desc
+  pointScores.sort((a, b) => {
+    if (b.matchedCount !== a.matchedCount) return b.matchedCount - a.matchedCount;
+    return b.score - a.score;
+  });
+  
+  recommendedPointsSet = new Set(pointScores.map(item => item.p.point_id));
+  drawHotspots(); // Re-draw hotspots to trigger recommended pulsing
+  
+  // Render recommended points list (now "Zugehörige Massagepunkte")
+  const pointsList = document.getElementById("rec-points-list");
+  if (pointsList) {
+    pointsList.innerHTML = "";
+    const topPoints = pointScores.slice(0, 5);
+    topPoints.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "recommendation-item";
+      li.dataset.id = item.p.point_id;
+      
+      const titleSpan = document.createElement("span");
+      titleSpan.className = "recommendation-title";
+      titleSpan.textContent = `${getPointSynonym(item.p.point_id)} - ${item.p.name_german}`;
+      titleSpan.style.cursor = "pointer";
+      titleSpan.addEventListener("click", () => {
+        selectPoint(item.p.point_id);
+      });
+      li.appendChild(titleSpan);
+      
+      const badge = document.createElement("span");
+      badge.className = "match-badge";
+      badge.textContent = `${item.matchedCount}/${selectedSymptoms.length}`;
+      li.appendChild(badge);
+      
+      pointsList.appendChild(li);
+    });
+    if (pointScores.length === 0) {
+      pointsList.innerHTML = "<li class='dimmed' style='padding: 8px;'>Keine passenden Punkte gefunden.</li>";
     }
   }
 }
@@ -2278,22 +2355,26 @@ function renderMatrixTable() {
   }
 }
 
-function setActiveSidebarTab(tabName: 'navigation' | 'search' | 'repertorisation') {
+function setActiveSidebarTab(tabName: 'navigation' | 'remedies-list' | 'search' | 'repertorisation') {
   activeSidebarTab = tabName;
   
   const tabNavBtn = document.getElementById("tab-nav-btn");
+  const tabRemediesBtn = document.getElementById("tab-remedies-btn");
   const tabSearchBtn = document.getElementById("tab-search-btn");
   const tabRepBtn = document.getElementById("tab-rep-btn");
   
   const contentNav = document.getElementById("tab-content-navigation");
+  const contentRemedies = document.getElementById("tab-content-remedies-list");
   const contentSearch = document.getElementById("tab-content-search");
   const contentRep = document.getElementById("tab-content-repertorisation");
   
   if (tabNavBtn) tabNavBtn.classList.toggle("active", tabName === 'navigation');
+  if (tabRemediesBtn) tabRemediesBtn.classList.toggle("active", tabName === 'remedies-list');
   if (tabSearchBtn) tabSearchBtn.classList.toggle("active", tabName === 'search');
   if (tabRepBtn) tabRepBtn.classList.toggle("active", tabName === 'repertorisation');
   
   if (contentNav) contentNav.classList.toggle("active", tabName === 'navigation');
+  if (contentRemedies) contentRemedies.classList.toggle("active", tabName === 'remedies-list');
   if (contentSearch) contentSearch.classList.toggle("active", tabName === 'search');
   if (contentRep) contentRep.classList.toggle("active", tabName === 'repertorisation');
 }
@@ -2622,12 +2703,12 @@ async function showRemedyDetails(remedyName: string) {
   pointIdTitleEl.textContent = remedyName;
   pointMeridianBadgeEl.textContent = "Homöopathikum";
   pointNameDeEl.textContent = "Heilmittel-Profil";
-  pointTranslationEl.textContent = "Similapunktur Resonanzanalyse";
+  pointTranslationEl.textContent = "Resonanz-Massagepunkte";
   
   // Hide point-specific sections
-  const locSection = detailPanelEl.querySelector(".detail-section") as HTMLElement;
+  const locSections = detailPanelEl.querySelectorAll(".detail-section");
   const tabsSection = detailPanelEl.querySelector(".detail-tabs") as HTMLElement;
-  if (locSection) locSection.style.display = "none";
+  locSections.forEach(sec => (sec as HTMLElement).style.display = "none");
   if (tabsSection) tabsSection.style.display = "none";
   
   // Create or retrieve remedy details view container
@@ -2697,6 +2778,13 @@ async function showRemedyDetails(remedyName: string) {
       `;
     }
     
+    // Add Remedy Massage Application Tip
+    html += `
+      <div style="background-color: #f0f7f6; border-left: 4px solid var(--color-primary-teal); padding: 12px; border-radius: 4px; margin: 16px 0; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); font-family: 'Lato', sans-serif;">
+        <strong>Massage-Anleitung:</strong> Tragen Sie dieses Heilmittel tropfenweise auf die unten aufgeführten Akupunkturpunkte auf und massieren Sie es mit sanftem, kreisendem Druck ein (ca. 1-2 Minuten pro Punkt).
+      </div>
+    `;
+    
     // Render anatomical sections inside accordion
     const sectionKeys = Object.keys(desc.sections);
     if (sectionKeys.length > 0) {
@@ -2723,8 +2811,8 @@ async function showRemedyDetails(remedyName: string) {
   }
   
   html += `<div class="detail-section" style="margin-top: 0;">`;
-  html += `<h3>Indizierte Akupunkturpunkte (${data.rubrics.length})</h3>`;
-  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, deren Symptom-Rubriken dieses Mittel abdecken:</p>`;
+  html += `<h3>Zugehörige Massagepunkte (Symptomatisch) (${data.rubrics.length})</h3>`;
+  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, auf die dieses Mittel bei entsprechender Symptom-Abdeckung einmassiert wird:</p>`;
   
   if (data.rubrics.length > 0) {
     data.rubrics.forEach((r: any) => {
@@ -2746,8 +2834,8 @@ async function showRemedyDetails(remedyName: string) {
   html += `</div>`;
   
   html += `<div class="detail-section" style="margin-top: 20px;">`;
-  html += `<h3>Direkt zugeordnete Punkte (${data.direct_points.length})</h3>`;
-  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, bei denen dieses Mittel als Haupt-Homöopathikum eingetragen ist:</p>`;
+  html += `<h3>Direkte Massagepunkte (Weihe-Druckpunkte) (${data.direct_points.length})</h3>`;
+  html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Topografisch übereinstimmende Druckpunkte zur direkten Massage dieses Mittels:</p>`;
   
   if (data.direct_points.length > 0) {
     data.direct_points.forEach((dp: any) => {
@@ -2775,7 +2863,7 @@ async function showRemedyDetails(remedyName: string) {
     backBtn.addEventListener("click", () => {
       // Restore point details view
       remedyView!.style.display = "none";
-      if (locSection) locSection.style.display = "block";
+      locSections.forEach(sec => (sec as HTMLElement).style.display = "block");
       if (tabsSection) tabsSection.style.display = "block";
       
       if (lastViewedPointId) {
@@ -2806,7 +2894,7 @@ async function showRemedyDetails(remedyName: string) {
         
         // Restore point view
         remedyView!.style.display = "none";
-        if (locSection) locSection.style.display = "block";
+        locSections.forEach(sec => (sec as HTMLElement).style.display = "block");
         if (tabsSection) tabsSection.style.display = "block";
         
         selectPoint(ptId);
