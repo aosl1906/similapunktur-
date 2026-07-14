@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-DlaqAHdE.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C7B2wp_w.css">
+  <script type="module" crossorigin src="./assets/index-DAu2CMp5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D6D4aLz1.css">
 </head>
 <body>
   
@@ -17,9 +17,9 @@
     <div class="header-logo-section" style="display: flex; align-items: center; gap: 12px;">
       <div class="logo-text-wrapper">
         <span class="brand-title">Andreas Maier</span>
-        <span class="brand-subtitle">Similapunktur Leitfaden</span>
+        <span class="brand-subtitle">Mittelwahl & Massage-Leitfaden</span>
       </div>
-      <span id="version-badge" class="version-badge" title="Versionsverlauf anzeigen" style="cursor: pointer; background-color: var(--color-bg-light-gray); color: var(--color-text-dark); font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid var(--color-border);">v1.4.0</span>
+      <span id="version-badge" class="version-badge" title="Versionsverlauf anzeigen" style="cursor: pointer; background-color: var(--color-bg-light-gray); color: var(--color-text-dark); font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid var(--color-border);">v1.5.0</span>
     </div>
     
     <div class="header-search-section">
@@ -71,6 +71,7 @@
     <aside class="sidebar-left">
       <div class="sidebar-tabs">
         <button class="sidebar-tab-btn active" id="tab-nav-btn" data-tab="navigation">🧭 Leitbahnen</button>
+        <button class="sidebar-tab-btn" id="tab-remedies-btn" data-tab="remedies-list">🌿 Heilmittel</button>
         <button class="sidebar-tab-btn" id="tab-search-btn" data-tab="search" style="display: none;">🔍 Suche</button>
         <button class="sidebar-tab-btn" id="tab-rep-btn" data-tab="repertorisation">
           📋 Fall-Analyse
@@ -91,6 +92,19 @@
         <div id="meridian-points-section" class="sidebar-section" style="display: none;">
           <h2 class="section-title">Punkte der Leitbahn</h2>
           <ul id="meridian-points-list" class="selector-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tab Content: Remedies List -->
+      <div id="tab-content-remedies-list" class="sidebar-tab-content">
+        <div id="remedies-list-section" class="sidebar-section">
+          <h2 class="section-title">Heilmittel-Materia Medica</h2>
+          <div class="remedies-search-container" style="margin-bottom: 12px;">
+            <input type="text" id="remedy-tab-search-input" placeholder="Heilmittel filtern... (z.B. Acon.)" autocomplete="off" style="width: 100%; height: 36px; border: 1px solid var(--color-border); border-radius: 6px; padding: 0 12px; outline: none; font-family: inherit; font-size: 13.5px; box-sizing: border-box;">
+          </div>
+          <ul id="remedy-sidebar-list" class="selector-list" style="max-height: calc(100vh - 200px); overflow-y: auto;">
             <!-- Dynamically populated -->
           </ul>
         </div>
@@ -141,17 +155,17 @@
           <!-- Ergebnisse der Live-Repertorisierung -->
           <div id="repertorisation-results" class="repertorisation-results-preview" style="display: none;">
             <div class="results-preview-header">
-              <h3>Empfohlene Punkte</h3>
-            </div>
-            <ul id="rec-points-list" class="selector-list recommendations-list">
-              <!-- Top recommended points -->
-            </ul>
-            
-            <div class="results-preview-header">
               <h3>Empfohlene Heilmittel</h3>
             </div>
             <ul id="rec-remedies-list" class="remedies-preview-list">
               <!-- Top recommended remedies -->
+            </ul>
+            
+            <div class="results-preview-header">
+              <h3>Zugehörige Massagepunkte</h3>
+            </div>
+            <ul id="rec-points-list" class="selector-list recommendations-list">
+              <!-- Top recommended points -->
             </ul>
 
             <button id="open-matrix-btn" class="primary-btn matrix-btn">
@@ -180,7 +194,8 @@
         
         <!-- Active image and SVG hotspot overlay -->
         <div id="visualizer-active" class="visualizer-active" style="display: none;">
-          <img id="meridian-image" src="" alt="Anatomical Meridian Diagram">
+          <img id="meridian-image" class="blueprint-filter" src="" alt="Anatomical Meridian Diagram">
+          <svg id="meridian-connections-svg" class="meridian-connections-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
           <div id="svg-overlay" class="hotspot-overlay"></div>
         </div>
       </div>
@@ -227,6 +242,13 @@
         <div class="detail-section font-style-italic">
           <h3>Lokalisation</h3>
           <p id="point-localisation">Am Ende der Beugefalte...</p>
+        </div>
+        
+        <div class="detail-section" style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--color-border);">
+          <h3>Anwendung &amp; Massage</h3>
+          <p style="font-size: 13px; color: var(--color-text-dark); line-height: 1.5; margin: 4px 0 0 0; font-style: normal;">
+            Tragen Sie das für den Fall ermittelte Heilmittel auf diesen Punkt auf und massieren Sie es mit sanftem, kreisendem Druck ein, um die Resonanzwirkung zu stimulieren.
+          </p>
         </div>
         
         <!-- Tabbed view -->
@@ -298,6 +320,20 @@
       </header>
       <div class="modal-body" style="overflow-y: auto; max-height: 70vh; padding: 24px;">
         <div class="changelog-list">
+          <div class="changelog-item" style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
+              v1.5.0 (14. Juli 2026)
+              <span class="badge" style="background-color: #e6f4f2; color: var(--color-primary-teal); border-color: var(--color-primary-teal); font-size: 10px;">Fokus-Refactoring</span>
+            </h3>
+            <p style="font-size: 13.5px; font-weight: 700; color: var(--color-text-dark); margin-bottom: 6px;">Mittelwahl- & Massage-Fokus</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">
+              <li>Neuer Tab für direkte Heilmittelauswahl & Materia Medica.</li>
+              <li>Reihenfolge der Repertorisierungs-Ergebnisse angepasst (Heilmittel-Empfehlungen zuerst).</li>
+              <li>Umstellung der Terminologie von Nadelung/Injektion auf Massage („sanft einmassieren“).</li>
+              <li>Einbindung eines dauerhaften CDSS-Haftungsausschlusses im Footer.</li>
+              <li>Breite des rechten Details-Panels auf 600px angepasst für symmetrische Gewichtung.</li>
+            </ul>
+          </div>
           <div class="changelog-item" style="margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
             <h3 style="font-size: 15px; font-weight: 900; color: var(--color-deep-navy); margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between;">
               v1.4.0 (11. Juli 2026)
@@ -474,6 +510,10 @@
       </div>
     </div>
   </div>
-  
+  
+  <footer class="app-footer" style="padding: 12px 20px; text-align: center; border-top: 1px solid var(--color-border); background-color: var(--color-bg-white); font-size: 11.5px; color: var(--color-text-muted); line-height: 1.5; font-family: 'Lato', sans-serif;">
+    Haftungsausschluss: Diese Software dient als interaktive Entscheidungshilfe zur Auswahl homöopathischer Mittel und deren Anwendung mittels Massage auf klassischen Akupunkturpunkten (Clinical Decision Support System). Keine invasiven Anwendungen. Die therapeutische Verantwortung liegt ausschließlich beim Behandler.
+  </footer>
+
 </body>
 </html>
