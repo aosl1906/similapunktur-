@@ -5,6 +5,84 @@ import sqlite3
 import cv2
 import numpy as np
 
+def load_valid_remedies():
+    whitelist = {}
+    # Check both potential paths
+    paths = ['boericke_materia_medica.json', 'out/boericke_materia_medica.json']
+    for path in paths:
+        if os.path.exists(path):
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    boericke = json.load(f)
+                    for k in boericke.keys():
+                        standard_name = k if k.endswith('.') else k + '.'
+                        whitelist[standard_name.lower().rstrip('.')] = standard_name
+                break
+            except Exception as e:
+                import sys
+                print(f"Warning: Failed to load {path}: {e}", file=sys.stderr)
+
+    # Additional verified remedy abbreviations from Maier-Similapunkte.txt
+    additional = {
+        'absin': 'Absin.',
+        'aml-n': 'Aml-n.',
+        'ant-ars': 'Ant-ars.',
+        'ant-i': 'Ant-i.',
+        'ant-s-aur': 'Ant-s-aur.',
+        'apom': 'Apom.',
+        'arg': 'Arg.',
+        'arist-cl': 'Arist-cl.', 
+        'arund': 'Arund.',
+        'atrop': 'Atrop.',
+        'aven': 'Aven.',
+        'cholest': 'Cholest.',
+        'crag': 'Crag.',
+        'crot-c': 'Crot-c.',
+        'cupr-ac': 'Cupr-ac.',
+        'cyt-l': 'Cyt-l.', 
+        'dol': 'Dol.',
+        'echi': 'Echi.',
+        'eupi': 'Eupi.',
+        'ferr-ar': 'Ferr-ar.',
+        'ferr-met': 'Ferr-met.',
+        'form-ac': 'Form-ac.',
+        'guai': 'Guai.',
+        'harp': 'Harp.', 
+        'jug-r': 'Jug-r.',
+        'juni-c': 'Juni-c.',
+        'lith-c': 'Lith-c.',
+        'lol': 'Lol.',
+        'luffa': 'Luffa.',
+        'lycps': 'Lycps.',
+        'magn-gr': 'Magn-gr.',
+        'melil': 'Melil.',
+        'merc-cy': 'Merc-cy.',
+        'merc-bi': 'Merc-bi.',
+        'mom-b': 'Mom-b.',
+        'okoub': 'Okoub.',
+        'passif': 'Passif.',
+        'pix': 'Pix.',
+        'plb-act': 'Plb-act.',
+        'plb-i': 'Plb-i.', 
+        'prun-s': 'Prun-s.',
+        'quas': 'Quas.',
+        'quass': 'Quass.',
+        'selen': 'Selen.',
+        'spirae': 'Spirae.',
+        'stront-c': 'Stront-c.',
+        'stroph': 'Stroph.',
+        'sul-i': 'Sul-i.', 
+        'sulf': 'Sulf.',
+        'thlaspi': 'Thlaspi.',
+        'tril': 'Tril.',
+        'zinc-i': 'Zinc-i.'
+    }
+    for k, v in additional.items():
+        whitelist[k] = v
+    return whitelist
+
+VALID_REMEDIES_WHITELIST = load_valid_remedies()
+
 def normalize_remedy(tok):
     tok = tok.strip('(),; ')
     if not tok:
@@ -18,7 +96,14 @@ def normalize_remedy(tok):
     # Standardize remedy name characters (allow letters, hyphens, and slashes if present)
     if not re.match(r'^[A-Za-z\-/]+$', tok_clean):
         return None
-    return tok_clean + '.'
+        
+    tok_lower = tok_clean.lower()
+    
+    # Check against whitelist
+    if tok_lower not in VALID_REMEDIES_WHITELIST:
+        return None
+        
+    return VALID_REMEDIES_WHITELIST[tok_lower]
 
 def to_camel_case(name: str) -> str:
     name_clean = name.strip('.')
@@ -266,17 +351,13 @@ def parse_point_block(block_lines):
             tok_clean = tok_stripped.strip('.')
             if not tok_clean:
                 continue
-            if tok_clean.lower() in ['r', 'l', 'usw', 'etc', 'und', 'oder', 'nach', 'v', 'agg', 'amel']:
-                continue
-            if not re.match(r'^[A-Za-z\-/]+$', tok_clean):
-                continue
-                
-            grade = get_remedy_grade(tok_clean)
-            remedy_name = to_camel_case(tok_clean)
-            current_remedies.append({
-                "name": remedy_name,
-                "grade": grade
-            })
+            norm = normalize_remedy(tok)
+            if norm:
+                grade = get_remedy_grade(tok_clean)
+                current_remedies.append({
+                    "name": norm,
+                    "grade": grade
+                })
                 
     if current_rubric_name:
         rubrics.append({
