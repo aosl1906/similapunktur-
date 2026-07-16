@@ -320,15 +320,11 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NERVEN, nervöse Patienten, usw.",
+        "rubric_name": "Verat-v. NERVEN, nervöse Patienten, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -441,43 +437,11 @@
           {
             "name": "Pic-ac.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Valer.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NEURASTHENIE, Nervenschwäche",
+        "rubric_name": "PULS. Sep. SIL. Tarent. Ther. Valer. Vib. Zinc. NEURASTHENIE, Nervenschwäche",
         "remedies": [
           {
             "name": "Agar.",
@@ -526,15 +490,11 @@
           {
             "name": "Sep.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "TRAURIGKEIT, Niedergeschlagenheit",
+        "rubric_name": "SULPH. TRAURIGKEIT, Niedergeschlagenheit",
         "remedies": [
           {
             "name": "Acon.",
@@ -751,31 +711,11 @@
           {
             "name": "Sec.",
             "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEMÜTSBEWEGUNGEN, Erregung, usw.",
+        "rubric_name": "Sep. Spong. Stram. Sulph. Verat. GEMÜTSBEWEGUNGEN, Erregung, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -888,15 +828,11 @@
           {
             "name": "Valer.",
             "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SPRACHE angegriffen",
+        "rubric_name": "Verat. SPRACHE angegriffen",
         "remedies": [
           {
             "name": "Bell.",
@@ -1144,7 +1080,7 @@
         ]
       },
       {
-        "rubric_name": "Schmerz, ist unerträglich, Berührung, Kleinigkeiten",
+        "rubric_name": "EMPFINDLICH, auch gegen Geräusche, Licht, Gerüche, Schmerz, ist unerträglich, Berührung, Kleinigkeiten",
         "remedies": [
           {
             "name": "Acon.",
@@ -1217,43 +1153,11 @@
           {
             "name": "Merc.",
             "grade": 1
-          },
-          {
-            "name": "Nat-m.",
-            "grade": 1
-          },
-          {
-            "name": "Nit-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Nux-v.",
-            "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEMÜTSBEWEGUNGEN, Erregung, usw.",
+        "rubric_name": "Nat-m. Nit-ac. NUX-V. Phos. Sep. Sil. Ther. Zinc. GEMÜTSBEWEGUNGEN, Erregung, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -1366,15 +1270,11 @@
           {
             "name": "Valer.",
             "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HERZ, BLUTLAUF und PULS",
+        "rubric_name": "Verat. HERZ, BLUTLAUF und PULS",
         "remedies": [
           {
             "name": "Acon.",
@@ -1495,7 +1395,7 @@
         ]
       },
       {
-        "rubric_name": "Zuckungen, usw",
+        "rubric_name": "KRAMPFARTIGE oder konvulsivische Effekte, Zuckungen, usw",
         "remedies": [
           {
             "name": "Agar.",
@@ -1588,27 +1488,11 @@
           {
             "name": "Stram.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "NERVEN, nervöse Patienten, usw.",
+        "rubric_name": "Sulph. Thuj. Verat-v. ZINC. NERVEN, nervöse Patienten, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -1721,43 +1605,11 @@
           {
             "name": "Pic-ac.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Valer.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SCHLAFLOSIGKEIT",
+        "rubric_name": "PULS. Sep. SIL. Tarent. Ther. Valer. Vib. Zinc. SCHLAFLOSIGKEIT",
         "remedies": [
           {
             "name": "Acon.",
@@ -1814,31 +1666,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "TRAURIGKEIT, Niedergeschlagenheit",
+        "rubric_name": "PULS. Rhus-t. Sep. Sil. Sulph. TRAURIGKEIT, Niedergeschlagenheit",
         "remedies": [
           {
             "name": "Acon.",
@@ -2142,7 +1974,7 @@
       "Nux-v.",
       "Plb.",
       "Pyrog.",
-      "Sulf.",
+      "Sulph.",
       "Zinc."
     ],
     "general_analysis_rubrics": [
@@ -2220,23 +2052,11 @@
           {
             "name": "Sep.",
             "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KRAMPF, Kolik, usw.",
+        "rubric_name": "SIL. Sulph. Zinc. KRAMPF, Kolik, usw.",
         "remedies": [
           {
             "name": "Bell.",
@@ -2333,7 +2153,7 @@
         ]
       },
       {
-        "rubric_name": "Zuckungen, usw. (vgl. Anfälle)",
+        "rubric_name": "KRAMPFARTIGE oder konvulsivische Effekte, Zuckungen, usw. (vgl. Anfälle)",
         "remedies": [
           {
             "name": "Agar.",
@@ -2828,19 +2648,11 @@
           {
             "name": "Sil.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Tell.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "TINNITUS, Ohrgeräusche, usw.",
+        "rubric_name": "SULPH. Tell. TINNITUS, Ohrgeräusche, usw.",
         "remedies": [
           {
             "name": "Ars.",
@@ -3003,43 +2815,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KOPF",
+        "rubric_name": "Phos. PULS. Rhus-t. Ruta Sep. SULPH. Verat. Zinc. KOPF",
         "remedies": [
           {
             "name": "Acon.",
@@ -3112,15 +2892,11 @@
           {
             "name": "Spig.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NASE und NEBENHÖHLEN",
+        "rubric_name": "Sulph. NASE und NEBENHÖHLEN",
         "remedies": [
           {
             "name": "Acon.",
@@ -3209,23 +2985,11 @@
           {
             "name": "Sep.",
             "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Spig.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NASENRACHENRAUM, hintere Nasenöffnungen",
+        "rubric_name": "SIL. Spig. Sulph. NASENRACHENRAUM, hintere Nasenöffnungen",
         "remedies": [
           {
             "name": "Cist.",
@@ -3278,7 +3042,7 @@
         ]
       },
       {
-        "rubric_name": "Absonderungen aus",
+        "rubric_name": "NASENRACHENRAUM, hintere Nasenöffnungen, Absonderungen aus",
         "remedies": [
           {
             "name": "Calc.",
@@ -3384,7 +3148,7 @@
     "assigned_homeopathics": [
       "Cinnb.",
       "Kali-bi.",
-      "Prun-s."
+      "Prun."
     ],
     "general_analysis_rubrics": [
       {
@@ -3465,19 +3229,11 @@
           {
             "name": "Sil.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NERVEN, nervöse Patienten, usw.",
+        "rubric_name": "Sulph. Zinc. NERVEN, nervöse Patienten, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -3590,43 +3346,11 @@
           {
             "name": "Pic-ac.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Valer.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SCHLAFLOSIGKEIT",
+        "rubric_name": "PULS. Sep. SIL. Tarent. Ther. Valer. Vib. Zinc. SCHLAFLOSIGKEIT",
         "remedies": [
           {
             "name": "Acon.",
@@ -3817,7 +3541,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 1
           },
           {
@@ -3871,23 +3595,11 @@
           {
             "name": "Sil.",
             "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Urt-u.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KNOCHEN",
+        "rubric_name": "Staph. Sulph. Urt-u. KNOCHEN",
         "remedies": [
           {
             "name": "Arg.",
@@ -4299,19 +4011,11 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WIRBELSÄULE und RÜCKENMARK",
+        "rubric_name": "Tarent. Vib. WIRBELSÄULE und RÜCKENMARK",
         "remedies": [
           {
             "name": "Agar.",
@@ -4551,19 +4255,11 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WIRBELSÄULE und RÜCKENMARK",
+        "rubric_name": "Tarent. Vib. WIRBELSÄULE und RÜCKENMARK",
         "remedies": [
           {
             "name": "Agar.",
@@ -4714,7 +4410,7 @@
     ],
     "assigned_homeopathics": [
       "Adon.",
-      "Crag.",
+      "Crat.",
       "Gels.",
       "Kali-c.",
       "Kali-p.",
@@ -4967,7 +4663,7 @@
             "grade": 1
           },
           {
-            "name": "Melil.",
+            "name": "Meli.",
             "grade": 1
           },
           {
@@ -5001,47 +4697,11 @@
           {
             "name": "Sabin.",
             "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Sul-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Ter.",
-            "grade": 1
-          },
-          {
-            "name": "Thlaspi.",
-            "grade": 1
-          },
-          {
-            "name": "Tril.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
-          },
-          {
-            "name": "Vip.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "EPIGASTRIUM, Oberbauch",
+        "rubric_name": "Sec. Sep. Sulph. Sul-ac. Ter. Thlaspi. Tril. Vib. vip. EPIGASTRIUM, Oberbauch",
         "remedies": [
           {
             "name": "Ars.",
@@ -5224,43 +4884,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "LEBER und GALLENBLASE",
+        "rubric_name": "Phos. PULS. Rhus-t. Ruta Sep. SULPH. Verat. Zinc. LEBER und GALLENBLASE",
         "remedies": [
           {
             "name": "Bell.",
@@ -5313,27 +4941,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Podo.",
-            "grade": 1
-          },
-          {
-            "name": "Sang.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "ZORN, Reizbarkeit, Verdrießlichkeit, Übellaunigkeit usw.",
+        "rubric_name": "Phos. Podo. Sang. Sep. ZORN, Reizbarkeit, Verdrießlichkeit, Übellaunigkeit usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -5674,15 +5286,11 @@
           {
             "name": "Staph.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "Sulph. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -6010,19 +5618,11 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Tarent. Vib. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -6095,27 +5695,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -6132,47 +5716,11 @@
           {
             "name": "Ars.",
             "grade": 1
-          },
-          {
-            "name": "Bry.",
-            "grade": 1
-          },
-          {
-            "name": "Calc.",
-            "grade": 1
-          },
-          {
-            "name": "Chin.",
-            "grade": 3
-          },
-          {
-            "name": "Ferr.",
-            "grade": 1
-          },
-          {
-            "name": "Merc.",
-            "grade": 1
-          },
-          {
-            "name": "Nux-v.",
-            "grade": 3
-          },
-          {
-            "name": "Olnd.",
-            "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Bry. Calc. CHIN. Ferr. Merc. NUX-V. Olnd. Phos. PULS. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -6332,7 +5880,7 @@
       "Card-m.",
       "Chel.",
       "Kali-m.",
-      "Plb-i.",
+      "Plb.",
       "Ter."
     ],
     "general_analysis_rubrics": [
@@ -6426,23 +5974,11 @@
           {
             "name": "Sep.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Ter.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Sulph. Ter. Thuj. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -6623,35 +6159,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "REKTUM1",
+        "rubric_name": "PHOS. PULS. Sep. Sil. Sulph. Verat. REKTUM1",
         "remedies": [
           {
             "name": "Aesc.",
@@ -6957,23 +6469,11 @@
           {
             "name": "Sep.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Ter.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "INKONTINENZ (Stuhl, Harn, Geschlechtsorgane, usw.)",
+        "rubric_name": "Sulph. Ter. Thuj. INKONTINENZ (Stuhl, Harn, Geschlechtsorgane, usw.)",
         "remedies": [
           {
             "name": "Aloe.",
@@ -7109,7 +6609,7 @@
             "grade": 1
           },
           {
-            "name": "Aml-n.",
+            "name": "Aml-ns.",
             "grade": 1
           },
           {
@@ -7147,19 +6647,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Sul-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Xan.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Sul-ac. xan. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -7232,27 +6724,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -7402,7 +6878,7 @@
     ],
     "assigned_homeopathics": [
       "Ars.",
-      "Cupr-ac.",
+      "Cupr-act.",
       "Ferr-ar.",
       "Ferr-met."
     ],
@@ -7453,27 +6929,11 @@
           {
             "name": "Psor.",
             "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Tub.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HARNWEGE",
+        "rubric_name": "Rhus-t. SIL. Sulph. Tub. HARNWEGE",
         "remedies": [
           {
             "name": "Apis.",
@@ -7562,23 +7022,11 @@
           {
             "name": "Sep.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Ter.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SCHULTERN und SCHULTERBLÄTTERN, zwischen den",
+        "rubric_name": "Sulph. Ter. Thuj. SCHULTERN und SCHULTERBLÄTTERN, zwischen den",
         "remedies": [
           {
             "name": "Acon.",
@@ -7609,7 +7057,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 1
           },
           {
@@ -7724,43 +7172,11 @@
           {
             "name": "Mag-c.",
             "grade": 1
-          },
-          {
-            "name": "Merc.",
-            "grade": 1
-          },
-          {
-            "name": "Nat-c.",
-            "grade": 1
-          },
-          {
-            "name": "Nat-m.",
-            "grade": 1
-          },
-          {
-            "name": "Nit-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Ran-b.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HAUT",
+        "rubric_name": "Merc. Nat-c. Nat-m. Nit-ac. Ran-b. RHUS-T. Sep. Sulph. HAUT",
         "remedies": [
           {
             "name": "Apis.",
@@ -7825,23 +7241,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "HAUTAUSSCHLÄGE",
+        "rubric_name": "Sep. Sil. SULPH. HAUTAUSSCHLÄGE",
         "remedies": [
           {
             "name": "Acon.",
@@ -7894,35 +7298,11 @@
           {
             "name": "Nat-m.",
             "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "HAUTAUSSCHLÄGE, Flechten, Herpes",
+        "rubric_name": "ac. Phos. Puls. RHUS-T. Sep. Sil. SULPH. HAUTAUSSCHLÄGE, Flechten, Herpes",
         "remedies": [
           {
             "name": "Ars.",
@@ -8094,7 +7474,7 @@
         ]
       },
       {
-        "rubric_name": "Überhitzung, usw. Agg.",
+        "rubric_name": "HITZE, von Feuer, Ofenwärme, Sonnenhitze, Überhitzung, usw. Agg.",
         "remedies": [
           {
             "name": "Acon.",
@@ -8428,35 +7808,11 @@
           {
             "name": "Puls.",
             "grade": 3
-          },
-          {
-            "name": "Ran-s.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NERVENSCHMERZEN",
+        "rubric_name": "Ran-s. Rhus-t. Ruta Sep. SIL. Staph. NERVENSCHMERZEN",
         "remedies": [
           {
             "name": "Acon.",
@@ -8541,39 +7897,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Psor.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Sang.",
-            "grade": 1
-          },
-          {
-            "name": "Spig.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verb.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "REISSENDE SCHMERZEN",
+        "rubric_name": "Psor. Puls. RHUS-T. Sang. Spig. Sulph. Verb. REISSENDE SCHMERZEN",
         "remedies": [
           {
             "name": "Acon.",
@@ -8650,7 +7978,7 @@
         ]
       },
       {
-        "rubric_name": "Schmerzen",
+        "rubric_name": "SCHIESSENDE, blitzartige, durchzuckende, schnelle Schmerzen",
         "remedies": [
           {
             "name": "Acon.",
@@ -8849,27 +8177,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Onos.",
-            "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SCHLAFLOSIGKEIT",
+        "rubric_name": "onos. Phos. Rhus-t. Sulph. SCHLAFLOSIGKEIT",
         "remedies": [
           {
             "name": "Acon.",
@@ -8950,7 +8262,7 @@
         ]
       },
       {
-        "rubric_name": "Fehlen von Schmerzen usw.",
+        "rubric_name": "TAUBHEITSGEFÜHL, Gefühllosigkeit, Unempfindlichkeit, Fehlen von Schmerzen usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -9247,15 +8559,11 @@
           {
             "name": "Ter.",
             "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Thuj. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -9328,27 +8636,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -9582,27 +8874,11 @@
           {
             "name": "Phos.",
             "grade": 3
-          },
-          {
-            "name": "Sel.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "HARNWEGE",
+        "rubric_name": "Sel. Sep. Staph. SULPH. HARNWEGE",
         "remedies": [
           {
             "name": "Apis.",
@@ -9695,22 +8971,18 @@
           {
             "name": "Ter.",
             "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KLIMAKTERIUM, Wechseljahre, Agg.",
+        "rubric_name": "Thuj. KLIMAKTERIUM, Wechseljahre, Agg.",
         "remedies": [
           {
             "name": "Acon.",
             "grade": 1
           },
           {
-            "name": "Aml-n.",
+            "name": "Aml-ns.",
             "grade": 1
           },
           {
@@ -9752,15 +9024,11 @@
           {
             "name": "Sul-ac.",
             "grade": 1
-          },
-          {
-            "name": "Xan.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "xan. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -9833,27 +9101,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "UNTÄTIG, inaktiv, apathisch, legt sich hin",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. UNTÄTIG, inaktiv, apathisch, legt sich hin",
         "remedies": [
           {
             "name": "Ail.",
@@ -9902,47 +9154,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Olnd.",
-            "grade": 1
-          },
-          {
-            "name": "Op.",
-            "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Ph-ac.",
-            "grade": 3
-          },
-          {
-            "name": "Psor.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 3
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "olnd. OP. PHOS. PH-AC. Psor. SEP. Stram. Sulph. Zinc. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -10276,15 +9492,11 @@
           {
             "name": "Staph.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MENSES, nach den, Agg.",
+        "rubric_name": "Sulph. MENSES, nach den, Agg.",
         "remedies": [
           {
             "name": "Alum.",
@@ -10341,19 +9553,11 @@
           {
             "name": "Puls.",
             "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MENSES, vor den, Agg.",
+        "rubric_name": "Sep. Stram. MENSES, vor den, Agg.",
         "remedies": [
           {
             "name": "Calc.",
@@ -10406,15 +9610,11 @@
           {
             "name": "Sep.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "MENSES, vor und nach den, Agg.",
+        "rubric_name": "SULPH. MENSES, vor und nach den, Agg.",
         "remedies": [
           {
             "name": "Bor.",
@@ -10431,31 +9631,11 @@
           {
             "name": "Kreos.",
             "grade": 1
-          },
-          {
-            "name": "Lac-c.",
-            "grade": 1
-          },
-          {
-            "name": "Lach.",
-            "grade": 1
-          },
-          {
-            "name": "Lil-t.",
-            "grade": 1
-          },
-          {
-            "name": "Nat-m.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MENSES, während den, Agg.",
+        "rubric_name": "lac-c. Lach. Lil-t. Nat-m. Thuj. MENSES, während den, Agg.",
         "remedies": [
           {
             "name": "Am-c.",
@@ -10504,31 +9684,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MENSTRUATIONSBESCHWERDEN",
+        "rubric_name": "Phos. PULS. Sec. Sep. Sulph. MENSTRUATIONSBESCHWERDEN",
         "remedies": [
           {
             "name": "Bell.",
@@ -10577,43 +9737,11 @@
           {
             "name": "Nat-m.",
             "grade": 1
-          },
-          {
-            "name": "Nux-v.",
-            "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Plat.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sabin.",
-            "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NEURASTHENIE, Nervenschwäche",
+        "rubric_name": "Nux-v. Phos. Plat. PULS. Sabin. Sec. Sep. Sulph. NEURASTHENIE, Nervenschwäche",
         "remedies": [
           {
             "name": "Agar.",
@@ -10666,7 +9794,12 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "PROSTATA (Vorsteherdrüse) und PERINEUM (Mittelfleisch)2 (Ni 6)",
+        "remedies": [
           {
             "name": "Bar-c.",
             "grade": 1
@@ -10726,15 +9859,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "SCHLAFLOSIGKEIT",
+        "rubric_name": "THUJ. SCHLAFLOSIGKEIT",
         "remedies": [
           {
             "name": "Acon.",
@@ -10911,29 +10040,95 @@
     "assigned_homeopathics": [
       "Kali-c.",
       "Ptel.",
-      "Sec.",
-      "Bell.",
-      "Calc.",
-      "Cham.",
-      "Cocc.",
-      "Ferr.",
-      "Graph.",
-      "Ip.",
-      "Kali-c.",
-      "Kreos.",
-      "Lach.",
-      "Mag-c.",
-      "Nat-m.",
-      "Nux-v.",
-      "Phos.",
-      "Plat.",
-      "Puls.",
-      "Sabin.",
-      "Sec.",
-      "Sep.",
-      "Sulph."
+      "Sec."
     ],
-    "general_analysis_rubrics": [],
+    "general_analysis_rubrics": [
+      {
+        "rubric_name": "MENSTRUATIONSBESCHWERDEN",
+        "remedies": [
+          {
+            "name": "Bell.",
+            "grade": 3
+          },
+          {
+            "name": "Calc.",
+            "grade": 1
+          },
+          {
+            "name": "Cham.",
+            "grade": 1
+          },
+          {
+            "name": "Cocc.",
+            "grade": 1
+          },
+          {
+            "name": "Ferr.",
+            "grade": 1
+          },
+          {
+            "name": "Graph.",
+            "grade": 1
+          },
+          {
+            "name": "Ip.",
+            "grade": 1
+          },
+          {
+            "name": "Kali-c.",
+            "grade": 1
+          },
+          {
+            "name": "Kreos.",
+            "grade": 1
+          },
+          {
+            "name": "Lach.",
+            "grade": 1
+          },
+          {
+            "name": "Mag-c.",
+            "grade": 1
+          },
+          {
+            "name": "Nat-m.",
+            "grade": 1
+          },
+          {
+            "name": "Nux-v.",
+            "grade": 1
+          },
+          {
+            "name": "Phos.",
+            "grade": 1
+          },
+          {
+            "name": "Plat.",
+            "grade": 1
+          },
+          {
+            "name": "Puls.",
+            "grade": 3
+          },
+          {
+            "name": "Sabin.",
+            "grade": 1
+          },
+          {
+            "name": "Sec.",
+            "grade": 1
+          },
+          {
+            "name": "Sep.",
+            "grade": 1
+          },
+          {
+            "name": "Sulph.",
+            "grade": 1
+          }
+        ]
+      }
+    ],
     "precautions_or_contraindications": null,
     "visuals": {
       "image_filename": "meridian_niere.png",
@@ -11044,27 +10239,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -11399,7 +10578,49 @@
       "Apom.",
       "Crat."
     ],
-    "general_analysis_rubrics": [],
+    "general_analysis_rubrics": [
+      {
+        "rubric_name": "SCHAUKELN, Schwanken usw. Agg.; Reise- oder Seekrankheit, usw.",
+        "remedies": [
+          {
+            "name": "Ars.",
+            "grade": 1
+          },
+          {
+            "name": "Cocc.",
+            "grade": 3
+          },
+          {
+            "name": "Colch.",
+            "grade": 1
+          },
+          {
+            "name": "Glon.",
+            "grade": 1
+          },
+          {
+            "name": "Petr.",
+            "grade": 3
+          },
+          {
+            "name": "Sel.",
+            "grade": 1
+          },
+          {
+            "name": "Sep.",
+            "grade": 1
+          },
+          {
+            "name": "Tab.",
+            "grade": 1
+          },
+          {
+            "name": "Ther.",
+            "grade": 1
+          }
+        ]
+      }
+    ],
     "precautions_or_contraindications": null,
     "visuals": {
       "image_filename": "meridian_niere.png",
@@ -11551,7 +10772,7 @@
         ]
       },
       {
-        "rubric_name": "Teils, wie Kopf, Hände, usw. in kaltem Wasser, usw. Agg.",
+        "rubric_name": "KALTWERDEN, wenn erhitzt, von Eis, Entblößen eines Teils, wie Kopf, Hände, usw. in kaltem Wasser, usw. Agg.",
         "remedies": [
           {
             "name": "Acon.",
@@ -11648,7 +10869,7 @@
         ]
       },
       {
-        "rubric_name": "Wasser feuchte Räume, usw. Agg.",
+        "rubric_name": "NÄSSE, Nasswerden, nasses Wetter, Baden, Arbeiten im Wasser feuchte Räume, usw. Agg.",
         "remedies": [
           {
             "name": "Alum.",
@@ -12234,35 +11455,11 @@
           {
             "name": "Puls.",
             "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "DRÜSEN",
+        "rubric_name": "t. Sec. Sep. Spong. Stram. Sulph. Verat. DRÜSEN",
         "remedies": [
           {
             "name": "Apis.",
@@ -12355,23 +11552,11 @@
           {
             "name": "Sil.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEMÜTSBEWEGUNGEN, Erregung, usw.",
+        "rubric_name": "Spong. Staph. Sulph. GEMÜTSBEWEGUNGEN, Erregung, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -12652,35 +11837,11 @@
           {
             "name": "Puls.",
             "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HERZ, BLUTLAUF und PULS",
+        "rubric_name": "t. sec. Sep. Spong. Stram. sulph. Verat. HERZ, BLUTLAUF und PULS",
         "remedies": [
           {
             "name": "Acon.",
@@ -12793,15 +11954,11 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "RUHELOSIGKEIT",
+        "rubric_name": "Verat-v. RUHELOSIGKEIT",
         "remedies": [
           {
             "name": "Acon.",
@@ -12992,7 +12149,12 @@
           {
             "name": "Verat.",
             "grade": 3
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "Jahreszeitenwechsel, herannahende Unwetter, usw. Agg.",
+        "remedies": [
           {
             "name": "Calc-f.",
             "grade": 1
@@ -13133,7 +12295,7 @@
       "Bell.",
       "Cact.",
       "Camph.",
-      "Form-ac.",
+      "Form.",
       "Glon.",
       "Kali-i.",
       "Merc.",
@@ -13391,19 +12553,11 @@
           {
             "name": "Puls.",
             "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "OHREN",
+        "rubric_name": "Rhus-t. Sulph. OHREN",
         "remedies": [
           {
             "name": "Aur.",
@@ -13715,7 +12869,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 1
           },
           {
@@ -13941,19 +13095,11 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Tarent. Vib. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -14026,27 +13172,11 @@
           {
             "name": "Rhus-t.",
             "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "Spong. Staph. Sulph. Thuj. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -14063,47 +13193,11 @@
           {
             "name": "Ars.",
             "grade": 1
-          },
-          {
-            "name": "Bry.",
-            "grade": 1
-          },
-          {
-            "name": "Calc.",
-            "grade": 1
-          },
-          {
-            "name": "Chin.",
-            "grade": 3
-          },
-          {
-            "name": "Ferr.",
-            "grade": 1
-          },
-          {
-            "name": "Merc.",
-            "grade": 1
-          },
-          {
-            "name": "Nux-v.",
-            "grade": 3
-          },
-          {
-            "name": "Olnd.",
-            "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Bry. Calc. CHIN. Ferr. Merc. NUX-V. Olnd. Phos. PULS. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -14544,15 +13638,11 @@
           {
             "name": "Sulph.",
             "grade": 3
-          },
-          {
-            "name": "Tell.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "TINNITUS, Ohrgeräusche, usw.",
+        "rubric_name": "Tell. TINNITUS, Ohrgeräusche, usw.",
         "remedies": [
           {
             "name": "Ars.",
@@ -14729,15 +13819,11 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SEHEN, Sehvermögen",
+        "rubric_name": "Zinc. SEHEN, Sehvermögen",
         "remedies": [
           {
             "name": "Arg-n.",
@@ -15031,27 +14117,11 @@
           {
             "name": "Sang.",
             "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "LEBER und GALLENBLASE",
+        "rubric_name": "(r.), Sep. SIL. Sulph. Zinc. LEBER und GALLENBLASE",
         "remedies": [
           {
             "name": "Bell.",
@@ -15295,7 +14365,76 @@
     ],
     "general_analysis_rubrics": [
       {
-        "rubric_name": "KOPF",
+        "rubric_name": "ABWECHSELNDE EFFEKTE, Seiten, Zustände, usw. (vgl. Periodizität, Wandernde Schmerzen, Wellen)",
+        "remedies": [
+          {
+            "name": "Agar.",
+            "grade": 1
+          },
+          {
+            "name": "Aloe.",
+            "grade": 1
+          },
+          {
+            "name": "Ambr.",
+            "grade": 1
+          },
+          {
+            "name": "Ant-c.",
+            "grade": 1
+          },
+          {
+            "name": "Ars.",
+            "grade": 1
+          },
+          {
+            "name": "Bell.",
+            "grade": 1
+          },
+          {
+            "name": "Berb.",
+            "grade": 1
+          },
+          {
+            "name": "Cann-i.",
+            "grade": 1
+          },
+          {
+            "name": "Cimic.",
+            "grade": 1
+          },
+          {
+            "name": "Cocc.",
+            "grade": 1
+          },
+          {
+            "name": "Croc.",
+            "grade": 1
+          },
+          {
+            "name": "Ferr-p.",
+            "grade": 1
+          },
+          {
+            "name": "Glon.",
+            "grade": 1
+          },
+          {
+            "name": "Ign.",
+            "grade": 1
+          },
+          {
+            "name": "Iris.",
+            "grade": 1
+          },
+          {
+            "name": "Lac-c.",
+            "grade": 3
+          }
+        ]
+      },
+      {
+        "rubric_name": "Lach. Lyc. Phos. Puls. Sep. Sulph. Xan. Zinc. KOPF",
         "remedies": [
           {
             "name": "Acon.",
@@ -15376,7 +14515,7 @@
         ]
       },
       {
-        "rubric_name": "Schmerzen",
+        "rubric_name": "SCHIESSENDE, blitzartige, durchzuckende, schnelle Schmerzen",
         "remedies": [
           {
             "name": "Acon.",
@@ -15469,7 +14608,7 @@
         ]
       },
       {
-        "rubric_name": "Schmerzen",
+        "rubric_name": "WANDERNDE, wechselnde, umherziehende Schmerzen",
         "remedies": [
           {
             "name": "Arn.",
@@ -15522,26 +14661,14 @@
           {
             "name": "Mag-p.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WELLEN, Wallungen, Hitzeüberlaufen, usw.",
+        "rubric_name": "v. PULS. Rhod. Sil. WELLEN, Wallungen, Hitzeüberlaufen, usw.",
         "remedies": [
           {
-            "name": "Aml-n.",
+            "name": "Aml-ns.",
             "grade": 1
           },
           {
@@ -15573,7 +14700,7 @@
             "grade": 3
           },
           {
-            "name": "Melil.",
+            "name": "Meli.",
             "grade": 1
           },
           {
@@ -15712,15 +14839,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SCHWANGERSCHAFT",
+        "rubric_name": "Zinc. SCHWANGERSCHAFT",
         "remedies": [
           {
             "name": "Acon.",
@@ -16687,15 +15810,11 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SEHEN, Sehvermögen",
+        "rubric_name": "Zinc. SEHEN, Sehvermögen",
         "remedies": [
           {
             "name": "Arg-n.",
@@ -17082,7 +16201,68 @@
     ],
     "general_analysis_rubrics": [
       {
-        "rubric_name": "GELENKE, arthritische Beschwerden usw.",
+        "rubric_name": "ABSONDERUNGEN, Erscheinen von Hautausschlägen usw. Amel.",
+        "remedies": [
+          {
+            "name": "Ant-t.",
+            "grade": 1
+          },
+          {
+            "name": "Ars.",
+            "grade": 1
+          },
+          {
+            "name": "Bry.",
+            "grade": 3
+          },
+          {
+            "name": "Calc.",
+            "grade": 1
+          },
+          {
+            "name": "Camph.",
+            "grade": 1
+          },
+          {
+            "name": "Cham.",
+            "grade": 1
+          },
+          {
+            "name": "Ip.",
+            "grade": 1
+          },
+          {
+            "name": "Lach.",
+            "grade": 3
+          },
+          {
+            "name": "Lyc.",
+            "grade": 1
+          },
+          {
+            "name": "Nux-v.",
+            "grade": 3
+          },
+          {
+            "name": "Ph-ac.",
+            "grade": 1
+          },
+          {
+            "name": "Psor.",
+            "grade": 1
+          },
+          {
+            "name": "Puls.",
+            "grade": 3
+          },
+          {
+            "name": "Rhus-t.",
+            "grade": 1
+          }
+        ]
+      },
+      {
+        "rubric_name": "senec. Sep. Sil. SULPH. Thuj. Verat. Zinc. GELENKE, arthritische Beschwerden usw.",
         "remedies": [
           {
             "name": "Arn.",
@@ -17133,7 +16313,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 1
           },
           {
@@ -17308,43 +16488,11 @@
           {
             "name": "Nux-v.",
             "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KRAMPF, Kolik, usw.",
+        "rubric_name": "Phos. PULS. Rhus-t. Ruta Sep. SULPH. Verat. Zinc. KRAMPF, Kolik, usw.",
         "remedies": [
           {
             "name": "Bell.",
@@ -17441,7 +16589,7 @@
         ]
       },
       {
-        "rubric_name": "Zuckungen, usw. (vgl. Anfälle)",
+        "rubric_name": "KRAMPFARTIGE oder konvulsivische Effekte, Zuckungen, usw. (vgl. Anfälle)",
         "remedies": [
           {
             "name": "Agar.",
@@ -17660,7 +16808,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 3
           },
           {
@@ -17678,31 +16826,11 @@
           {
             "name": "Rhod.",
             "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
-          },
-          {
-            "name": "Sabin.",
-            "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEISTIGE ANSTRENGUNG, Agg.",
+        "rubric_name": "RHUS-T. Ruta Sabin. Sec. Sil. GEISTIGE ANSTRENGUNG, Agg.",
         "remedies": [
           {
             "name": "Anac.",
@@ -17747,31 +16875,11 @@
           {
             "name": "Ph-ac.",
             "grade": 1
-          },
-          {
-            "name": "Pic-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "KRAMPF, Kolik, usw.",
+        "rubric_name": "Pic-ac. Rhod. Sep. Sil. Sulph. KRAMPF, Kolik, usw.",
         "remedies": [
           {
             "name": "Bell.",
@@ -17868,7 +16976,7 @@
         ]
       },
       {
-        "rubric_name": "Zuckungen, usw. (vgl. Anfälle)",
+        "rubric_name": "KRAMPFARTIGE oder konvulsivische Effekte, Zuckungen, usw. (vgl. Anfälle)",
         "remedies": [
           {
             "name": "Agar.",
@@ -18326,7 +17434,49 @@
       "Nux-v.",
       "Quas."
     ],
-    "general_analysis_rubrics": [],
+    "general_analysis_rubrics": [
+      {
+        "rubric_name": "SCHAUKELN, Schwanken usw. Agg.; Reise- oder Seekrankheit, usw.",
+        "remedies": [
+          {
+            "name": "Ars.",
+            "grade": 1
+          },
+          {
+            "name": "Cocc.",
+            "grade": 3
+          },
+          {
+            "name": "Colch.",
+            "grade": 1
+          },
+          {
+            "name": "Glon.",
+            "grade": 1
+          },
+          {
+            "name": "Petr.",
+            "grade": 3
+          },
+          {
+            "name": "Sel.",
+            "grade": 1
+          },
+          {
+            "name": "Sep.",
+            "grade": 1
+          },
+          {
+            "name": "Tab.",
+            "grade": 1
+          },
+          {
+            "name": "Ther.",
+            "grade": 1
+          }
+        ]
+      }
+    ],
     "precautions_or_contraindications": null,
     "visuals": {
       "image_filename": "meridian_leber.png",
@@ -18488,43 +17638,11 @@
           {
             "name": "Op.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Samb.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 3
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "TRAURIGKEIT, Niedergeschlagenheit",
+        "rubric_name": "PHOS. PULS. Samb. SPONG. Stann. SULPH. Tarent. Vib. TRAURIGKEIT, Niedergeschlagenheit",
         "remedies": [
           {
             "name": "Acon.",
@@ -18864,43 +17982,11 @@
           {
             "name": "Op.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Samb.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 3
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "BRUST, innere",
+        "rubric_name": "PHOS. PULS. Samb. SPONG. Stann. SULPH. Tarent. Vib. BRUST, innere",
         "remedies": [
           {
             "name": "Acon.",
@@ -19021,23 +18107,12 @@
           {
             "name": "Squil.",
             "grade": 1
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "Stann. SULPH. Ther. (l.) Verat-v. NACHTS, Agg.",
+        "remedies": [
           {
             "name": "Acon.",
             "grade": 1
@@ -19262,43 +18337,11 @@
           {
             "name": "Op.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Samb.",
-            "grade": 1
-          },
-          {
-            "name": "Spong.",
-            "grade": 3
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "AUFGEDUNSENHEIT",
+        "rubric_name": "PHOS. PULS. Samb. SPONG. Stann. SULPH. Tarent. Vib. AUFGEDUNSENHEIT",
         "remedies": [
           {
             "name": "Apis.",
@@ -19359,15 +18402,11 @@
           {
             "name": "Rumx.",
             "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "BRUST, erstreckt sich nach hinten",
+        "rubric_name": "Ruta BRUST, erstreckt sich nach hinten",
         "remedies": [
           {
             "name": "Ars.",
@@ -19424,19 +18463,11 @@
           {
             "name": "Spig.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "BRUST, innere",
+        "rubric_name": "Sulph. Ther. BRUST, innere",
         "remedies": [
           {
             "name": "Acon.",
@@ -19557,27 +18588,11 @@
           {
             "name": "Squil.",
             "grade": 1
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HINTERKOPF, äußerer Hals und Nacken",
+        "rubric_name": "Stann. SULPH. Ther. (l.) Verat-v. HINTERKOPF, äußerer Hals und Nacken",
         "remedies": [
           {
             "name": "Agar.",
@@ -19654,15 +18669,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "LÄHMUNG, lähmiger Schmerz usw.",
+        "rubric_name": "Zinc. LÄHMUNG, lähmiger Schmerz usw.",
         "remedies": [
           {
             "name": "Ant-t.",
@@ -19808,7 +18819,7 @@
             "grade": 1
           },
           {
-            "name": "Aml-n.",
+            "name": "Aml-ns.",
             "grade": 1
           },
           {
@@ -20069,7 +19080,7 @@
       "Bell.",
       "Hep.",
       "Jug-r.",
-      "Merc-bi."
+      "Merc-i-r."
     ],
     "general_analysis_rubrics": [
       {
@@ -20428,7 +19439,7 @@
         ]
       },
       {
-        "rubric_name": "zusammengezogen, eingequetscht usw.",
+        "rubric_name": "ZUSCHNÜREN, wie von einem Band, zusammengezogen, eingequetscht usw.",
         "remedies": [
           {
             "name": "Anac.",
@@ -20682,27 +19693,11 @@
           {
             "name": "Rhus-t.",
             "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Sul-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "ERKÄLTUNG, Erkältungsneigung",
+        "rubric_name": "Sec. Sulph. Sul-ac. Zinc. ERKÄLTUNG, Erkältungsneigung",
         "remedies": [
           {
             "name": "Acon.",
@@ -20800,7 +19795,7 @@
     ],
     "general_analysis_rubrics": [
       {
-        "rubric_name": "zusammengezogen, eingequetscht usw.",
+        "rubric_name": "ZUSCHNÜREN, wie von einem Band, zusammengezogen, eingequetscht usw.",
         "remedies": [
           {
             "name": "Anac.",
@@ -21039,27 +20034,11 @@
           {
             "name": "Rhus-t.",
             "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "ERKÄLTUNG, Erkältungsneigung",
+        "rubric_name": "SIL. Spong. Staph. Sulph. ERKÄLTUNG, Erkältungsneigung",
         "remedies": [
           {
             "name": "Acon.",
@@ -21100,31 +20079,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Psor.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Tub.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEMÜTSBEWEGUNGEN, Erregung, usw.",
+        "rubric_name": "Psor. Rhus-t. SIL. Sulph. Tub. GEMÜTSBEWEGUNGEN, Erregung, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -21225,23 +20184,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Sumb.",
-            "grade": 1
-          },
-          {
-            "name": "Valer.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "JUCKEN",
+        "rubric_name": "Sumb. Valer. Verat. JUCKEN",
         "remedies": [
           {
             "name": "Agar.",
@@ -21270,35 +20217,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "HITZE, einzelner Teile, lokal, usw.",
+        "rubric_name": "Puls. Rhus-t. Sep. Sil. Staph. SULPH. HITZE, einzelner Teile, lokal, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -21383,7 +20306,7 @@
         ]
       },
       {
-        "rubric_name": "Überhitzung, usw. Agg.",
+        "rubric_name": "HITZE, von Feuer, Ofenwärme, Sonnenhitze, Überhitzung, usw. Agg.",
         "remedies": [
           {
             "name": "Acon.",
@@ -21428,43 +20351,11 @@
           {
             "name": "Merc.",
             "grade": 1
-          },
-          {
-            "name": "Op.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 1
-          },
-          {
-            "name": "Sel.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Sul-ac.",
-            "grade": 1
-          },
-          {
-            "name": "Ther.",
-            "grade": 1
-          },
-          {
-            "name": "Verat-v.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HITZE, Brennen, usw.",
+        "rubric_name": "c. Op. Puls. Sel. Sulph. Sul-ac. Ther. Verat-v. Zinc. HITZE, Brennen, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -21679,27 +20570,11 @@
           {
             "name": "Sang.",
             "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Zinc.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "OBERGLIEDER, Arme",
+        "rubric_name": "(r.), Sep. SIL. Sulph. Zinc. OBERGLIEDER, Arme",
         "remedies": [
           {
             "name": "Am-m.",
@@ -22188,35 +21063,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "SÄURE",
+        "rubric_name": "PHOS. PULS. Sep. Sil. Sulph. Verat. SÄURE",
         "remedies": [
           {
             "name": "Calc.",
@@ -22413,35 +21264,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "PHOS. PULS. Sep. Sil. Sulph. Verat. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -22770,31 +21597,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Psor.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Tub.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MAGEN UND EINGEWEIDE",
+        "rubric_name": "Psor. Rhus-t. SIL. Sulph. Tub. MAGEN UND EINGEWEIDE",
         "remedies": [
           {
             "name": "Aeth.",
@@ -23105,7 +21912,12 @@
           {
             "name": "Thuj.",
             "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "TRÄUME, von Tagesgeschäften, Schwierigkeiten, usw.",
+        "remedies": [
           {
             "name": "Acon.",
             "grade": 1
@@ -23471,7 +22283,7 @@
             "grade": 1
           },
           {
-            "name": "Guai.",
+            "name": "Guaj.",
             "grade": 3
           },
           {
@@ -23682,15 +22494,11 @@
           {
             "name": "Sulph.",
             "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "GEMÜTSBEWEGUNGEN, Erregung, usw.",
+        "rubric_name": "Verat. GEMÜTSBEWEGUNGEN, Erregung, usw.",
         "remedies": [
           {
             "name": "Acon.",
@@ -23783,31 +22591,11 @@
           {
             "name": "Staph.",
             "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Sumb.",
-            "grade": 1
-          },
-          {
-            "name": "Valer.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MAGEN UND EINGEWEIDE",
+        "rubric_name": "Stram. Sulph. Sumb. Valer. Verat. MAGEN UND EINGEWEIDE",
         "remedies": [
           {
             "name": "Aeth.",
@@ -23852,39 +22640,11 @@
           {
             "name": "Lyc.",
             "grade": 3
-          },
-          {
-            "name": "Nux-v.",
-            "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "NUX-V. PHOS. PULS. Sep. Sil. Sulph. Verat. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -23949,35 +22709,11 @@
           {
             "name": "Puls.",
             "grade": 3
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "Rhod. RHUS-T. Spong. Staph. Sulph. Thuj. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -24018,23 +22754,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Olnd.",
-            "grade": 1
-          },
-          {
-            "name": "Phos.",
-            "grade": 1
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "olnd. Phos. PULS. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -24538,27 +23262,11 @@
           {
             "name": "Sars.",
             "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Ter.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "SEP. Sulph. Ter. Thuj. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -24623,35 +23331,11 @@
           {
             "name": "Puls.",
             "grade": 3
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MENSTRUATIONSBESCHWERDEN",
+        "rubric_name": "Rhod. RHUS-T. Spong. Staph. Sulph. Thuj. MENSTRUATIONSBESCHWERDEN",
         "remedies": [
           {
             "name": "Bell.",
@@ -24720,23 +23404,11 @@
           {
             "name": "Sabin.",
             "grade": 1
-          },
-          {
-            "name": "Sec.",
-            "grade": 1
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Sec. Sep. Sulph. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -24939,35 +23611,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MÄNNLICHE GESCHLECHTSTEILE",
+        "rubric_name": "PHOS. PULS. Sep. Sil. Sulph. Verat. MÄNNLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Agn.",
@@ -25032,35 +23680,11 @@
           {
             "name": "Puls.",
             "grade": 3
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Rhod. RHUS-T. Spong. Staph. Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -25258,19 +23882,11 @@
           {
             "name": "Sil.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Sul-ac.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "VERDAUUNG angegriffen, gestört",
+        "rubric_name": "SULPH. Sul-ac. VERDAUUNG angegriffen, gestört",
         "remedies": [
           {
             "name": "Aeth.",
@@ -25559,35 +24175,11 @@
           {
             "name": "Puls.",
             "grade": 3
-          },
-          {
-            "name": "Rhod.",
-            "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Spong.",
-            "grade": 1
-          },
-          {
-            "name": "Staph.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Rhod. RHUS-T. Spong. Staph. Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -25774,23 +24366,11 @@
           {
             "name": "Phos.",
             "grade": 1
-          },
-          {
-            "name": "Rhus-t.",
-            "grade": 3
-          },
-          {
-            "name": "Rumx.",
-            "grade": 1
-          },
-          {
-            "name": "Ruta.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "EITERUNGEN",
+        "rubric_name": "RHUS-T. Rumx. Ruta EITERUNGEN",
         "remedies": [
           {
             "name": "Arn.",
@@ -26420,23 +25000,11 @@
           {
             "name": "Sep.",
             "grade": 1
-          },
-          {
-            "name": "Stram.",
-            "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "MAGEN UND EINGEWEIDE",
+        "rubric_name": "STRAM. Sulph. Verat. MAGEN UND EINGEWEIDE",
         "remedies": [
           {
             "name": "Aeth.",
@@ -26485,35 +25053,11 @@
           {
             "name": "Nux-v.",
             "grade": 3
-          },
-          {
-            "name": "Phos.",
-            "grade": 3
-          },
-          {
-            "name": "Puls.",
-            "grade": 3
-          },
-          {
-            "name": "Sep.",
-            "grade": 1
-          },
-          {
-            "name": "Sil.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Verat.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "NEURASTHENIE, Nervenschwäche",
+        "rubric_name": "PHOS. PULS. Sep. Sil. Sulph. Verat. NEURASTHENIE, Nervenschwäche",
         "remedies": [
           {
             "name": "Agar.",
@@ -26704,27 +25248,11 @@
           {
             "name": "Spong.",
             "grade": 3
-          },
-          {
-            "name": "Stann.",
-            "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 3
-          },
-          {
-            "name": "Tarent.",
-            "grade": 1
-          },
-          {
-            "name": "Vib.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HERZ, BLUTLAUF und PULS",
+        "rubric_name": "Stann. SULPH. Tarent. Vib. HERZ, BLUTLAUF und PULS",
         "remedies": [
           {
             "name": "Acon.",
@@ -27057,19 +25585,11 @@
           {
             "name": "Staph.",
             "grade": 1
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Thuj.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "WEIBLICHE GESCHLECHTSTEILE",
+        "rubric_name": "Sulph. Thuj. WEIBLICHE GESCHLECHTSTEILE",
         "remedies": [
           {
             "name": "Ambr.",
@@ -27836,19 +26356,11 @@
           {
             "name": "Sil.",
             "grade": 3
-          },
-          {
-            "name": "Sulph.",
-            "grade": 1
-          },
-          {
-            "name": "Tub.",
-            "grade": 1
           }
         ]
       },
       {
-        "rubric_name": "HINTERKOPF, äußerer Hals und Nacken",
+        "rubric_name": "Sulph. Tub. HINTERKOPF, äußerer Hals und Nacken",
         "remedies": [
           {
             "name": "Agar.",
@@ -27929,7 +26441,12 @@
           {
             "name": "Zinc.",
             "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "HITZE, von Feuer, Ofenwärme, Sonnenhitze, Überhitzung, usw. Agg.",
+        "remedies": [
           {
             "name": "Acon.",
             "grade": 1
@@ -28355,7 +26872,12 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "NEURASTHENIE, Nervenschwäche (H3, H 5, Dü 9, KG 15, LG 19)",
+        "remedies": [
           {
             "name": "Agar.",
             "grade": 1
@@ -28563,7 +27085,12 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "NEURASTHENIE, Nervenschwäche (H3, H 5, Dü 9, KG 15, LG 19)",
+        "remedies": [
           {
             "name": "Agar.",
             "grade": 1
@@ -28771,7 +27298,12 @@
           {
             "name": "Verat.",
             "grade": 1
-          },
+          }
+        ]
+      },
+      {
+        "rubric_name": "NEURASTHENIE, Nervenschwäche (H3, H 5, Dü 9, KG 15, LG 19)",
+        "remedies": [
           {
             "name": "Agar.",
             "grade": 1
