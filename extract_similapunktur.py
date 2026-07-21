@@ -83,6 +83,19 @@ def load_valid_remedies():
 
 VALID_REMEDIES_WHITELIST = load_valid_remedies()
 
+CUSTOM_MAPPINGS = {}
+if os.path.exists('remedy_mappings.json'):
+    try:
+        with open('remedy_mappings.json', 'r', encoding='utf-8') as f:
+            mapping_data = json.load(f)
+            mappings = mapping_data.get('mappings', {})
+            # Store lowercase key mapping to the target value
+            for k, v in mappings.items():
+                CUSTOM_MAPPINGS[k.lower()] = v
+        print(f"Loaded {len(CUSTOM_MAPPINGS)} custom remedy mappings.")
+    except Exception as e:
+        print(f"Warning: Failed to load remedy_mappings.json: {e}")
+
 def normalize_remedy(tok):
     tok = tok.strip('(),; ')
     if not tok:
@@ -96,6 +109,18 @@ def normalize_remedy(tok):
     # Standardize remedy name characters (allow letters, hyphens, and slashes if present)
     if not re.match(r'^[A-Za-z\-/]+$', tok_clean):
         return None
+        
+    # Check custom mappings first (case-insensitive)
+    tok_standard_key = (tok_clean + '.').lower()
+    if tok_standard_key in CUSTOM_MAPPINGS:
+        mapped_val = CUSTOM_MAPPINGS[tok_standard_key]
+        if mapped_val is not None:
+            return mapped_val
+        # If mapped to null, check whitelist first
+        tok_lower = tok_clean.lower()
+        if tok_lower in VALID_REMEDIES_WHITELIST:
+            return VALID_REMEDIES_WHITELIST[tok_lower]
+        return to_camel_case(tok_clean)
         
     tok_lower = tok_clean.lower()
     
@@ -254,15 +279,33 @@ def parse_point_block(block_lines):
     ]
     
     tag_positions = []
+    has_homoeopathika = False
+    has_rubriken = False
+    
     for line_idx, line in enumerate(block_lines):
         # Filter Word comments
         if 'Kommentiert [' in line:
             continue
+            
+        found_tag = False
         for tag_str, tag_key in tags:
             if line.startswith(tag_str):
                 tag_positions.append((line_idx, tag_str, tag_key))
+                if tag_key == 'homoeopathika':
+                    has_homoeopathika = True
+                if tag_key == 'rubriken':
+                    has_rubriken = True
+                found_tag = True
                 break
                 
+        # Virtual tag detection for missing General Analysis header
+        if not found_tag and has_homoeopathika and not has_rubriken:
+            if ':' in line:
+                potential_name = line.split(':', 1)[0].strip()
+                if is_rubric_name(potential_name):
+                    tag_positions.append((line_idx, "", 'rubriken'))
+                    has_rubriken = True
+                    
     tag_positions.sort()
     
     sections = {}
@@ -306,10 +349,12 @@ def parse_point_block(block_lines):
     raw_hom_text = ' '.join(sections.get('homoeopathika', []))
     hom_tokens = raw_hom_text.split()
     assigned_homeopathics = []
+    seen_hom = set()
     for tok in hom_tokens:
         norm = normalize_remedy(tok)
-        if norm:
+        if norm and norm not in seen_hom:
             assigned_homeopathics.append(norm)
+            seen_hom.add(norm)
             
     warning = None
     for line in block_lines:
@@ -320,10 +365,43 @@ def parse_point_block(block_lines):
     # Rubrics
     rubrics = []
     rubric_lines = sections.get('rubriken', [])
+    
+    # Pre-process rubric_lines to merge wrapped lines (where colon appears on next line, or parentheses are unbalanced)
+    merged_rubric_lines = []
+    i = 0
+    while i < len(rubric_lines):
+        line = rubric_lines[i].strip()
+        if not line:
+            i += 1
+            continue
+            
+        while (i + 1 < len(rubric_lines) and 
+               ':' not in line and 
+               ':' in rubric_lines[i+1]):
+            next_line = rubric_lines[i+1].strip()
+            next_parts = next_line.split(':', 1)
+            potential_combined = line + " " + next_parts[0]
+            if is_rubric_name(potential_combined) or line.count('(') > line.count(')'):
+                line = line + " " + next_line
+                i += 1
+            else:
+                break
+        merged_rubric_lines.append(line)
+        i += 1
+        
+    def deduplicate_rubric_remedies(rems):
+        deduped = {}
+        for r in rems:
+            name = r['name']
+            grade = r['grade']
+            if name not in deduped or grade > deduped[name]:
+                deduped[name] = grade
+        return [{"name": name, "grade": grade} for name, grade in deduped.items()]
+
     current_rubric_name = None
     current_remedies = []
     
-    for line in rubric_lines:
+    for line in merged_rubric_lines:
         if 'Kommentiert [' in line:
             continue
         if ':' in line:
@@ -335,7 +413,7 @@ def parse_point_block(block_lines):
                 if current_rubric_name:
                     rubrics.append({
                         "rubric_name": current_rubric_name,
-                        "remedies": current_remedies
+                        "remedies": deduplicate_rubric_remedies(current_remedies)
                     })
                 current_rubric_name = potential_name
                 current_remedies = []
@@ -362,7 +440,7 @@ def parse_point_block(block_lines):
     if current_rubric_name:
         rubrics.append({
             "rubric_name": current_rubric_name,
-            "remedies": current_remedies
+            "remedies": deduplicate_rubric_remedies(current_remedies)
         })
         
     return {

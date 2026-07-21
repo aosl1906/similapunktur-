@@ -460,7 +460,7 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
                     except:
                         sections = {}
                     description = {
-                        "full_name": desc_row["remedy_name"],
+                        "name": desc_row["remedy_name"],
                         "overview": desc_row["overview"],
                         "sections": sections
                     }

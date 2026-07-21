@@ -2135,14 +2135,14 @@ body {
   background-color: var(--color-bg-light-gray);
 }
 
-.remedy-li-item.active {
-  background-color: #e6f4f2;
-  border-left: 3.5px solid var(--color-primary-teal);
-}
-
 .remedy-li-item.active .remedy-li-name {
   font-weight: 700;
+  color: #ffffff;
+}
+
+.remedy-li-item.active .remedy-li-count {
   color: var(--color-primary-teal);
+  background-color: #ffffff;
 }
 
 .remedy-li-name {

@@ -2728,6 +2728,9 @@ async function showRemedyDetails(remedyName: string) {
       data = getRemedyDetailsClientSide(remedyName);
     } else {
       const res = await fetch(`/api/remedy-details?name=${encodeURIComponent(remedyName)}`);
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status}`);
+      }
       data = await res.json();
     }
   } catch (err) {
@@ -2810,21 +2813,51 @@ async function showRemedyDetails(remedyName: string) {
     }
   }
   
+  // Group rubrics by point_id
+  const groupedRubrics: { [pointId: string]: { point_name: string; rubric_entries: { rubric_name: string; grade: number }[] } } = {};
+  data.rubrics.forEach((r: any) => {
+    if (!groupedRubrics[r.point_id]) {
+      groupedRubrics[r.point_id] = {
+        point_name: r.point_name,
+        rubric_entries: []
+      };
+    }
+    groupedRubrics[r.point_id].rubric_entries.push({
+      rubric_name: r.rubric_name,
+      grade: r.grade
+    });
+  });
+  
+  const uniquePointsCount = Object.keys(groupedRubrics).length;
+  
   html += `<div class="detail-section" style="margin-top: 0;">`;
-  html += `<h3>Zugehörige Massagepunkte (Symptomatisch) (${data.rubrics.length})</h3>`;
+  html += `<h3>Zugehörige Massagepunkte (Symptomatisch) (${uniquePointsCount})</h3>`;
   html += `<p class="dimmed" style="font-size: 12px; margin-bottom: 12px; font-style: italic;">Punkte, auf die dieses Mittel bei entsprechender Symptom-Abdeckung einmassiert wird:</p>`;
   
-  if (data.rubrics.length > 0) {
-    data.rubrics.forEach((r: any) => {
-      const syn = getPointSynonym(r.point_id);
-      html += `
-        <div class="remedy-point-item clickable" data-point-id="${r.point_id}" title="Klicken, um zu Punkt ${syn} zu springen">
-          <div class="point-badge">${syn}</div>
-          <div class="point-info">
-            <div class="point-name">${r.point_name}</div>
-            <div class="rubric-name">${r.rubric_name}</div>
+  if (uniquePointsCount > 0) {
+    Object.keys(groupedRubrics).forEach((pointId) => {
+      const g = groupedRubrics[pointId];
+      const syn = getPointSynonym(pointId);
+      
+      let rubricsHtml = "";
+      g.rubric_entries.forEach((entry) => {
+        rubricsHtml += `
+          <div class="remedy-point-rubric" style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-top: 4px; padding: 2px 0; border-top: 1px dashed var(--color-border); color: var(--color-text-dark);">
+            <span class="rubric-name" style="color: var(--color-text-dark);">${entry.rubric_name}</span>
+            <span class="grade-badge grade-${entry.grade}" style="margin-left: 8px; flex-shrink: 0;">Grad ${entry.grade}</span>
           </div>
-          <span class="grade-badge grade-${r.grade}">Grad ${r.grade}</span>
+        `;
+      });
+      
+      html += `
+        <div class="remedy-point-item clickable" data-point-id="${pointId}" title="Klicken, um zu Punkt ${syn} zu springen" style="display: block; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; margin-bottom: 6px;">
+            <div class="point-badge" style="margin-right: 12px;">${syn}</div>
+            <div class="point-name" style="font-weight: bold; color: var(--color-text-dark);">${g.point_name}</div>
+          </div>
+          <div class="point-rubrics-container" style="padding-left: 8px;">
+            ${rubricsHtml}
+          </div>
         </div>
       `;
     });
