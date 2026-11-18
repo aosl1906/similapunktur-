@@ -1,0 +1,3815 @@
+{
+  "version": "1.0.0",
+  "model": "models/human_body.glb",
+  "coordinate_system": "Three.js Right-Handed (+X anatomical left / viewer right, +Y up, +Z anterior / front)",
+  "pilot_meridians": [
+    "Herz-Leitbahn",
+    "Lungen-Leitbahn"
+  ],
+  "points": [
+    {
+      "id": "LU_1",
+      "aliases": [
+        "L_1",
+        "LU 1",
+        "L 1"
+      ],
+      "name_de": "Lunge 1",
+      "name_chinese": "",
+      "translation": "Versammlungshalle der Mitte",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.1125,
+        0.5285,
+        0.0793
+      ],
+      "normal": [
+        0.404,
+        0.5084,
+        0.7605
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Auf der vorderen Axillarlinie, am lateralen Ende des Schlüsselbeins auf Höhe des 2. Intercostalraumes."
+    },
+    {
+      "id": "LU_2",
+      "aliases": [
+        "L_2",
+        "LU 2",
+        "L 2"
+      ],
+      "name_de": "Lunge 2",
+      "name_chinese": "",
+      "translation": "Tor der Wolken",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.1375,
+        0.5397,
+        0.0571
+      ],
+      "normal": [
+        0.4611,
+        0.4766,
+        0.7485
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "In der Mitte des Schlüsselbeins, in einer Vertiefung am caudalen Rand."
+    },
+    {
+      "id": "LU_3",
+      "aliases": [
+        "L_3",
+        "LU 3",
+        "L 3"
+      ],
+      "name_de": "Lunge 3",
+      "name_chinese": "Tianfu",
+      "translation": "Himmlischer Palast",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2286,
+        0.4024,
+        0.0123
+      ],
+      "normal": [
+        0.5869,
+        0.0364,
+        0.8088
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Auf der anterolateralen Seite des Oberarms, 3 Cun unterhalb des vorderen Endes der Achselfalte, am radialen Rand des M. biceps brachii.",
+      "supplementary_details": {
+        "name_german": "Lunge 3",
+        "name_chinese": "Tianfu",
+        "name_translation": "Himmlischer Palast",
+        "meridian": "Lungen-Leitbahn",
+        "image_filename": "meridian_lunge.png",
+        "localisation_text": "Auf der anterolateralen Seite des Oberarms, 3 Cun unterhalb des vorderen Endes der Achselfalte, am radialen Rand des M. biceps brachii.",
+        "effects": [
+          "Kühlt Lungen-Hitze",
+          "Senkt rebellierendes Lungen-Qi ab",
+          "Stoppt Blutungen"
+        ],
+        "indications": [
+          "Asthma",
+          "Nasenbluten",
+          "Husten",
+          "Schmerzen an der Innenseite des Oberarms"
+        ],
+        "assigned_homeopathics": [
+          "Phos.",
+          "Ipec."
+        ]
+      }
+    },
+    {
+      "id": "LU_4",
+      "aliases": [
+        "L_4",
+        "LU 4",
+        "L 4"
+      ],
+      "name_de": "Lunge 4",
+      "name_chinese": "Xiabai",
+      "translation": "Edles Weiß",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2296,
+        0.3756,
+        0.0122
+      ],
+      "normal": [
+        0.5054,
+        0.0194,
+        0.8627
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Auf der anterolateralen Seite des Oberarms, 4 Cun unterhalb des vorderen Endes der Achselfalte (1 Cun distal von LU 3), am radialen Rand des M. biceps brachii.",
+      "supplementary_details": {
+        "name_german": "Lunge 4",
+        "name_chinese": "Xiabai",
+        "name_translation": "Edles Weiß",
+        "meridian": "Lungen-Leitbahn",
+        "image_filename": "meridian_lunge.png",
+        "localisation_text": "Auf der anterolateralen Seite des Oberarms, 4 Cun unterhalb des vorderen Endes der Achselfalte (1 Cun distal von LU 3), am radialen Rand des M. biceps brachii.",
+        "effects": [
+          "Reguliert Qi und Blut im Brustkorb",
+          "Lindert Husten und Atemnot"
+        ],
+        "indications": [
+          "Husten",
+          "Atemnot",
+          "Völlegefühl im Brustkorb",
+          "Schmerzen am medialen Oberarm"
+        ],
+        "assigned_homeopathics": [
+          "Bry.",
+          "Ant-t."
+        ]
+      }
+    },
+    {
+      "id": "LU_5",
+      "aliases": [
+        "L_5",
+        "LU 5",
+        "L 5"
+      ],
+      "name_de": "Lunge 5",
+      "name_chinese": "",
+      "translation": "Teich am Ellbogen",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2353,
+        0.2646,
+        0.0084
+      ],
+      "normal": [
+        -0.0316,
+        0.1045,
+        0.994
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Am lateralen Rand der Bizepssehne, in der Mitte der Ellbogenbeugefalte."
+    },
+    {
+      "id": "LU_5_MANN",
+      "aliases": [
+        "L_5",
+        "LU 5",
+        "L 5"
+      ],
+      "name_de": "Lunge 5",
+      "name_chinese": "",
+      "translation": "nach Felix Mann",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.244,
+        0.228,
+        0.0152
+      ],
+      "normal": [
+        0.042,
+        0.171,
+        0.9844
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Felix Mann definiert Lu 5 als Zone ober- und unterhalb des eigentlichen Akupunkturpunktes, lateral der Bizepssehne bzw. distal der Ellenbeuge. Man sucht den empfindlichsten Punkt in diesem Bereich."
+    },
+    {
+      "id": "LU_6",
+      "aliases": [
+        "L_6",
+        "LU 6",
+        "L 6"
+      ],
+      "name_de": "Lunge 6",
+      "name_chinese": "Kongzui",
+      "translation": "Tiefstes Loch (Xi-Spaltpunkt)",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2584,
+        0.1606,
+        0.0231
+      ],
+      "normal": [
+        0.2268,
+        0.1361,
+        0.9644
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Auf der radialen Palmarseite des Unterarms, auf der Verbindungslinie zwischen LU 5 und LU 9, 7 Cun proximal der Handgelenksbeugefalte.",
+      "supplementary_details": {
+        "name_german": "Lunge 6",
+        "name_chinese": "Kongzui",
+        "name_translation": "Tiefstes Loch (Xi-Spaltpunkt)",
+        "meridian": "Lungen-Leitbahn",
+        "image_filename": "meridian_lunge.png",
+        "localisation_text": "Auf der radialen Palmarseite des Unterarms, auf der Verbindungslinie zwischen LU 5 und LU 9, 7 Cun proximal der Handgelenksbeugefalte.",
+        "effects": [
+          "Kühlt Lungen-Hitze",
+          "Befeuchtet die Lunge",
+          "Stoppt Blutungen",
+          "Akutpunkt der Lungen-Leitbahn"
+        ],
+        "indications": [
+          "Akuter Husten",
+          "Asthma",
+          "Heiserkeit",
+          "Halsschmerzen",
+          "Schmerzen im Ellbogen und Unterarm"
+        ],
+        "assigned_homeopathics": [
+          "Drosera",
+          "Spongia",
+          "Acon."
+        ]
+      }
+    },
+    {
+      "id": "LU_7",
+      "aliases": [
+        "L_7",
+        "LU 7",
+        "L 7"
+      ],
+      "name_de": "Lunge 7",
+      "name_chinese": "",
+      "translation": "Engpass",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2864,
+        0.0603,
+        0.0288
+      ],
+      "normal": [
+        0.6154,
+        0.2059,
+        0.7609
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Bei ineinander gekreuzten Händen befindet sich der Punkt an der Spitze des Zeigefingers, zwischen der Sehne des M. extensor pollicis und der Radialisrinne."
+    },
+    {
+      "id": "LU_8",
+      "aliases": [
+        "L_8",
+        "LU 8",
+        "L 8"
+      ],
+      "name_de": "Lunge 8",
+      "name_chinese": "Jingqu",
+      "translation": "Abflussrinne der Leitbahn",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2841,
+        0.0448,
+        0.0354
+      ],
+      "normal": [
+        0.4626,
+        0.3208,
+        0.8265
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Auf der radialen Palmarseite des Unterarms, 1 Cun proximal der Handgelenksbeugefalte (LU 9) in der Pulsrinne der A. radialis.",
+      "supplementary_details": {
+        "name_german": "Lunge 8",
+        "name_chinese": "Jingqu",
+        "name_translation": "Abflussrinne der Leitbahn",
+        "meridian": "Lungen-Leitbahn",
+        "image_filename": "meridian_lunge.png",
+        "localisation_text": "Auf der radialen Palmarseite des Unterarms, 1 Cun proximal der Handgelenksbeugefalte (LU 9) in der Pulsrinne der A. radialis.",
+        "effects": [
+          "Senkt Lungen-Qi ab",
+          "Lindert Husten und Keuchen"
+        ],
+        "indications": [
+          "Husten",
+          "Atemnot",
+          "Halsschmerzen",
+          "Schmerzen im Handgelenk"
+        ],
+        "assigned_homeopathics": [
+          "Samb.",
+          "Hep."
+        ]
+      }
+    },
+    {
+      "id": "LU_9",
+      "aliases": [
+        "L_9",
+        "LU 9",
+        "L 9"
+      ],
+      "name_de": "Lunge 9",
+      "name_chinese": "",
+      "translation": "Großer Wasserschlund",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.2807,
+        0.0348,
+        0.0423
+      ],
+      "normal": [
+        0.1621,
+        0.4249,
+        0.8906
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "In der Radialisrinne, am radialen Ende der Handgelenksfurche."
+    },
+    {
+      "id": "LU_10",
+      "aliases": [
+        "L_10",
+        "LU 10",
+        "L 10"
+      ],
+      "name_de": "Lunge 10",
+      "name_chinese": "",
+      "translation": "Daumenballengrenze",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.3131,
+        -0.0026,
+        0.0657
+      ],
+      "normal": [
+        0.0483,
+        0.2766,
+        0.9598
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Über der Mitte des Os metacarpale, an der Grenze von weißem und rotem Fleisch."
+    },
+    {
+      "id": "LU_11",
+      "aliases": [
+        "L_11",
+        "LU 11",
+        "L 11"
+      ],
+      "name_de": "Lunge 11",
+      "name_chinese": "",
+      "translation": "Geringer Handel",
+      "meridian": "Lungen-Leitbahn",
+      "meridian_id": "lunge",
+      "position": [
+        0.3469,
+        -0.0512,
+        0.0737
+      ],
+      "normal": [
+        0.9495,
+        0.3138,
+        0.0028
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lunge.png",
+      "localisation_text": "Am äußeren Daumenwinkel."
+    },
+    {
+      "id": "HE_1",
+      "aliases": [
+        "HT_1",
+        "H_1",
+        "HT 1",
+        "H 1",
+        "HE 1"
+      ],
+      "name_de": "Herz 1",
+      "name_chinese": "",
+      "translation": "Höchste Quelle",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.1812,
+        0.4747,
+        0.0285
+      ],
+      "normal": [
+        0.0581,
+        -0.4578,
+        0.8872
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "In der Mitte der Achselhöhle, an der Pulsationsstelle der A. axillaris."
+    },
+    {
+      "id": "HE_2",
+      "aliases": [
+        "HT_2",
+        "H_2",
+        "HT 2",
+        "H 2",
+        "HE 2"
+      ],
+      "name_de": "Herz 2",
+      "name_chinese": "Qingling",
+      "translation": "Grüner Geist / Jugendliches Grün",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.1876,
+        0.3406,
+        0.0024
+      ],
+      "normal": [
+        -0.7043,
+        -0.191,
+        0.6838
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Auf der medialen Seite des Oberarms, 3 Cun oberhalb der Ellbogenbeugefalte (HE 3) in der Furche medial des M. biceps brachii.",
+      "supplementary_details": {
+        "name_german": "Herz 2",
+        "name_chinese": "Qingling",
+        "name_translation": "Grüner Geist / Jugendliches Grün",
+        "meridian": "Herz-Leitbahn",
+        "image_filename": "meridian_herz.png",
+        "localisation_text": "Auf der medialen Seite des Oberarms, 3 Cun oberhalb der Ellbogenbeugefalte (HE 3) in der Furche medial des M. biceps brachii.",
+        "effects": [
+          "Entspannt die Leitbahn",
+          "Lindert lokale Schmerzen im Oberarm und in der Schulter"
+        ],
+        "indications": [
+          "Schmerzen im Rippenbogen",
+          "Schulter- und Armschmerzen",
+          "Kopfschmerzen mit Frösteln"
+        ],
+        "assigned_homeopathics": [
+          "Cact.",
+          "Spig."
+        ]
+      }
+    },
+    {
+      "id": "HE_3",
+      "aliases": [
+        "HT_3",
+        "H_3",
+        "HT 3",
+        "H 3",
+        "HE 3"
+      ],
+      "name_de": "Herz 3",
+      "name_chinese": "",
+      "translation": "Niedriges Meer",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.1996,
+        0.2569,
+        0.0039
+      ],
+      "normal": [
+        -0.4569,
+        0.0835,
+        0.8856
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Am Ende der Beugefalte auf der Ulnarseite des Ellbogens."
+    },
+    {
+      "id": "HE_4",
+      "aliases": [
+        "HT_4",
+        "H_4",
+        "HT 4",
+        "H 4",
+        "HE 4"
+      ],
+      "name_de": "Herz 4",
+      "name_chinese": "Lingdao",
+      "translation": "Weg des Geistes",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2345,
+        0.0599,
+        0.0255
+      ],
+      "normal": [
+        -0.738,
+        0.0076,
+        0.6748
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Auf der Palmarseite des Unterarms, 1,5 Cun proximal der Handgelenksbeugefalte (HE 7), radial der Sehne des M. flexor carpi ulnaris.",
+      "supplementary_details": {
+        "name_german": "Herz 4",
+        "name_chinese": "Lingdao",
+        "name_translation": "Weg des Geistes",
+        "meridian": "Herz-Leitbahn",
+        "image_filename": "meridian_herz.png",
+        "localisation_text": "Auf der Palmarseite des Unterarms, 1,5 Cun proximal der Handgelenksbeugefalte (HE 7), radial der Sehne des M. flexor carpi ulnaris.",
+        "effects": [
+          "Beruhigt den Geist (Shen)",
+          "Entspannt Sehnen und Leitbahn"
+        ],
+        "indications": [
+          "Herzschmerzen",
+          "Plötzlicher Stimmverlust",
+          "Krämpfe im Ellbogen und Arm",
+          "Unruhe"
+        ],
+        "assigned_homeopathics": [
+          "Ign.",
+          "Gelsemium"
+        ]
+      }
+    },
+    {
+      "id": "HE_5",
+      "aliases": [
+        "HT_5",
+        "H_5",
+        "HT 5",
+        "H 5",
+        "HE 5"
+      ],
+      "name_de": "Herz 5",
+      "name_chinese": "",
+      "translation": "Verbindung mit dem Inneren",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2349,
+        0.0517,
+        0.026
+      ],
+      "normal": [
+        -0.7806,
+        0.0449,
+        0.6234
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Auf der Palmarseite des Unterarms, eine Daumenbreite über der Handgelenksfalte, an der radialen Seite der Sehne des M. flexor carpi ulnaris."
+    },
+    {
+      "id": "HE_6",
+      "aliases": [
+        "HT_6",
+        "H_6",
+        "HT 6",
+        "H 6",
+        "HE 6"
+      ],
+      "name_de": "Herz 6",
+      "name_chinese": "Yinxi",
+      "translation": "Spalt des Yin",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2378,
+        0.0395,
+        0.031
+      ],
+      "normal": [
+        -0.7393,
+        0.0963,
+        0.6665
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Auf der Palmarseite des Unterarms, 0,5 Cun proximal der Handgelenksbeugefalte (HE 7), radial der Sehne des M. flexor carpi ulnaris.",
+      "supplementary_details": {
+        "name_german": "Herz 6",
+        "name_chinese": "Yinxi",
+        "name_translation": "Spalt des Yin",
+        "meridian": "Herz-Leitbahn",
+        "image_filename": "meridian_herz.png",
+        "localisation_text": "Auf der Palmarseite des Unterarms, 0,5 Cun proximal der Handgelenksbeugefalte (HE 7), radial der Sehne des M. flexor carpi ulnaris.",
+        "effects": [
+          "Nährt das Herz-Yin",
+          "Kühlt Leere-Hitze",
+          "Stoppt Nachtschweiß",
+          "Beruhigt den Geist"
+        ],
+        "indications": [
+          "Nachtschweiß",
+          "Herzklopfen",
+          "Schreckhaftigkeit",
+          "Engegefühl in der Brust"
+        ],
+        "assigned_homeopathics": [
+          "Acon.",
+          "Phos-ac."
+        ]
+      }
+    },
+    {
+      "id": "HE_7",
+      "aliases": [
+        "HT_7",
+        "H_7",
+        "HT 7",
+        "H 7",
+        "HE 7"
+      ],
+      "name_de": "Herz 7",
+      "name_chinese": "",
+      "translation": "Tor des Geistes",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2349,
+        0.0256,
+        0.0294
+      ],
+      "normal": [
+        -0.8763,
+        0.128,
+        0.4644
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "An der Beugefalte des Handgelenks, auf der radialen Seite der Sehne des M. flexor carpi ulnaris."
+    },
+    {
+      "id": "HE_8",
+      "aliases": [
+        "HT_8",
+        "H_8",
+        "HT 8",
+        "H 8",
+        "HE 8"
+      ],
+      "name_de": "Herz 8",
+      "name_chinese": "Shaofu",
+      "translation": "Kleiner Palast",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2547,
+        -0.0318,
+        0.0576
+      ],
+      "normal": [
+        0.2361,
+        0.102,
+        0.9664
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": false,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Auf der Handfläche zwischen dem 4. und 5. Mittelhandknochen, dort wo die Spitze des kleinen Fingers beim Faustschluss die Handfläche berührt.",
+      "supplementary_details": {
+        "name_german": "Herz 8",
+        "name_chinese": "Shaofu",
+        "name_translation": "Kleiner Palast",
+        "meridian": "Herz-Leitbahn",
+        "image_filename": "meridian_herz.png",
+        "localisation_text": "Auf der Handfläche zwischen dem 4. und 5. Mittelhandknochen, dort wo die Spitze des kleinen Fingers beim Faustschluss die Handfläche berührt.",
+        "effects": [
+          "Klärung von Herz-Feuer",
+          "Beruhigt den Geist",
+          "Reguliert das Herz-Qi"
+        ],
+        "indications": [
+          "Herzklopfen",
+          "Hitzegefühl in den Handflächen",
+          "Juckreiz im Urogenitalbereich",
+          "Engegefühl in der Brust"
+        ],
+        "assigned_homeopathics": [
+          "Aur.",
+          "Cact."
+        ]
+      }
+    },
+    {
+      "id": "HE_9",
+      "aliases": [
+        "HT_9",
+        "H_9",
+        "HT 9",
+        "H 9",
+        "HE 9"
+      ],
+      "name_de": "Herz 9",
+      "name_chinese": "",
+      "translation": "Geringer Angriffspunkt",
+      "meridian": "Herz-Leitbahn",
+      "meridian_id": "herz",
+      "position": [
+        0.2393,
+        -0.1074,
+        0.0899
+      ],
+      "normal": [
+        0.9676,
+        -0.0169,
+        0.2517
+      ],
+      "is_pilot": true,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_herz.png",
+      "localisation_text": "Neben dem radialen Nagelwinkel des kleinen Fingers."
+    },
+    {
+      "id": "SI_3",
+      "aliases": [],
+      "name_de": "Dünndarm 3",
+      "name_chinese": "",
+      "translation": "Hintere Schlucht",
+      "meridian": "Dünndarm-Leitbahn",
+      "meridian_id": "duenndarm",
+      "position": [
+        0.2294,
+        -0.038,
+        0.0363
+      ],
+      "normal": [
+        -0.9104,
+        -0.1319,
+        -0.3922
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_duenndarm.png",
+      "localisation_text": "An der ulnaren Seite des Handrückens, eine Daumenbreite proximal des Kleinfingergrundgelenks in einer Vertiefung."
+    },
+    {
+      "id": "SI_8",
+      "aliases": [],
+      "name_de": "Dünndarm 8",
+      "name_chinese": "",
+      "translation": "Kleines Meer",
+      "meridian": "Dünndarm-Leitbahn",
+      "meridian_id": "duenndarm",
+      "position": [
+        0.1846,
+        0.2598,
+        -0.062
+      ],
+      "normal": [
+        -0.8822,
+        -0.1658,
+        -0.4406
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_duenndarm.png",
+      "localisation_text": "Bei gebeugtem Ellbogen in der Vertiefung zwischen Olecranon und der Spitze des Epicondylus medialis humeri (Knochenvorwölbung am inneren Ellbogen), am Übergang von roter zu weißer Haut."
+    },
+    {
+      "id": "SI_9",
+      "aliases": [],
+      "name_de": "Dünndarm 9",
+      "name_chinese": "",
+      "translation": "Reinheit der Schulter",
+      "meridian": "Dünndarm-Leitbahn",
+      "meridian_id": "duenndarm",
+      "position": [
+        0.1854,
+        0.4823,
+        -0.1128
+      ],
+      "normal": [
+        0.2332,
+        -0.3511,
+        -0.9069
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_duenndarm.png",
+      "localisation_text": "Eine Daumenbreite über der hinteren Axillarfalte (bei angelegtem Arm), am Hinterrand des Deltamuskels."
+    },
+    {
+      "id": "SI_18",
+      "aliases": [],
+      "name_de": "Dünndarm 18",
+      "name_chinese": "",
+      "translation": "Kellerloch der Wange",
+      "meridian": "Dünndarm-Leitbahn",
+      "meridian_id": "duenndarm",
+      "position": [
+        0.0398,
+        0.7757,
+        0.0641
+      ],
+      "normal": [
+        0.893,
+        0.4349,
+        -0.1155
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_duenndarm.png",
+      "localisation_text": "Am unteren Rand des Jochbeins, vor dem M. masseter, unterhalb des äußeren Orbitarandes."
+    },
+    {
+      "id": "SI_19",
+      "aliases": [],
+      "name_de": "Dünndarm 19",
+      "name_chinese": "",
+      "translation": "Palast des Gehörs",
+      "meridian": "Dünndarm-Leitbahn",
+      "meridian_id": "duenndarm",
+      "position": [
+        0.0845,
+        0.7872,
+        -0.0182
+      ],
+      "normal": [
+        0.8758,
+        -0.4277,
+        0.2236
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_duenndarm.png",
+      "localisation_text": "Bei leicht geöffnetem Mund in einer Vertiefung zwischen Tragus und Kiefergelenk."
+    },
+    {
+      "id": "BL_2",
+      "aliases": [],
+      "name_de": "Blase 2",
+      "name_chinese": "",
+      "translation": "Zusammengelegter Bambus",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0236,
+        0.8104,
+        0.0874
+      ],
+      "normal": [
+        0.1687,
+        0.0901,
+        0.9815
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Am medialen Rand der Augenbraue, über dem inneren Augenwinkel."
+    },
+    {
+      "id": "BL_10",
+      "aliases": [],
+      "name_de": "Blase 10",
+      "name_chinese": "",
+      "translation": "Säule des Himmels",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0293,
+        0.7298,
+        -0.0918
+      ],
+      "normal": [
+        0.4561,
+        -0.4613,
+        -0.761
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Am unteren Rand des Os occipitale, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_C_MANN",
+      "aliases": [],
+      "name_de": "Zervikalzone nach Felix Mann",
+      "name_chinese": "",
+      "translation": null,
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0178,
+        0.6491,
+        -0.0963
+      ],
+      "normal": [
+        0.0384,
+        0.4577,
+        -0.8883
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Die Zone liegt paravertebral, ungefähr zwischen Bl 10 und 11, vor dem Rand des M. trapezius und hinter dem Rand des M. sternocleidomastoideus, zwischen den beiden Muskeln (meist auf Höhe von C4-5, kann aber auch auf einer anderen Höhe lokalisiert sein). Man sucht den empfindlichsten Punkt in diesem Bereich."
+    },
+    {
+      "id": "BL_11",
+      "aliases": [],
+      "name_de": "Blase 11",
+      "name_chinese": "",
+      "translation": "Großes Weberschiffchen",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0371,
+        0.5704,
+        -0.1357
+      ],
+      "normal": [
+        -0.2816,
+        0.1706,
+        -0.9442
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von TH 1 und 2, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_12",
+      "aliases": [],
+      "name_de": "Blase 12",
+      "name_chinese": "",
+      "translation": "Tor des Windes",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0383,
+        0.5528,
+        -0.1386
+      ],
+      "normal": [
+        -0.3444,
+        0.1405,
+        -0.9282
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von TH 2 und 3, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_13",
+      "aliases": [],
+      "name_de": "Blase 13",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt der Lunge",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0356,
+        0.5162,
+        -0.1418
+      ],
+      "normal": [
+        -0.4393,
+        0.0996,
+        -0.8928
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th3 und 4, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_14",
+      "aliases": [],
+      "name_de": "Blase 14",
+      "name_chinese": "",
+      "translation": "Leerer Yin-Punkt",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0328,
+        0.4789,
+        -0.1437
+      ],
+      "normal": [
+        -0.4209,
+        -0.0132,
+        -0.907
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th4 und 5, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_15",
+      "aliases": [],
+      "name_de": "Blase 15",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt des Herzens",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0296,
+        0.4526,
+        -0.1391
+      ],
+      "normal": [
+        -0.3207,
+        -0.1403,
+        -0.9367
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 5 und 6, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_17",
+      "aliases": [],
+      "name_de": "Blase 17",
+      "name_chinese": "",
+      "translation": "Zwerchfell-Punkt",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0269,
+        0.4073,
+        -0.1318
+      ],
+      "normal": [
+        -0.3631,
+        -0.1146,
+        -0.9247
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 7 und 8, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_18",
+      "aliases": [],
+      "name_de": "Blase 18",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt der Leber",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0357,
+        0.3498,
+        -0.1265
+      ],
+      "normal": [
+        -0.3743,
+        -0.1929,
+        -0.907
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 9 und 10, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_19",
+      "aliases": [],
+      "name_de": "Blase 19",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt der Gallenblase",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0312,
+        0.3277,
+        -0.1192
+      ],
+      "normal": [
+        -0.3524,
+        -0.2041,
+        -0.9133
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 10 und 11, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_20",
+      "aliases": [],
+      "name_de": "Blase 20",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt von Milz-Pankreas",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0388,
+        0.3015,
+        -0.1167
+      ],
+      "normal": [
+        -0.1459,
+        -0.1105,
+        -0.9831
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 11 und 12, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_21",
+      "aliases": [],
+      "name_de": "Blase 21",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt des Magens",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0254,
+        0.274,
+        -0.1123
+      ],
+      "normal": [
+        -0.1543,
+        -0.1066,
+        -0.9822
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von Th 12 und L 1, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_22",
+      "aliases": [],
+      "name_de": "Blase 22",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt des Dreifacherwärmers",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0299,
+        0.2454,
+        -0.1089
+      ],
+      "normal": [
+        -0.055,
+        -0.1235,
+        -0.9908
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von L 1 und 2, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_23",
+      "aliases": [],
+      "name_de": "Blase 23",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt der Nieren",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0355,
+        0.2076,
+        -0.1035
+      ],
+      "normal": [
+        0.0447,
+        -0.0489,
+        -0.9978
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von L 2 und 3, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_25",
+      "aliases": [],
+      "name_de": "Blase 25",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt des Dickdarms",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0325,
+        0.1343,
+        -0.118
+      ],
+      "normal": [
+        -0.0243,
+        0.4272,
+        -0.9038
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwischen den Querfortsätzen von L 4 und 5, eineinhalb Daumenbreiten lateral der Mittellinie."
+    },
+    {
+      "id": "BL_27",
+      "aliases": [],
+      "name_de": "Blase 27",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt des Dünndarms",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0308,
+        0.0607,
+        -0.1472
+      ],
+      "normal": [
+        -0.2298,
+        0.1416,
+        -0.9629
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwei Daumenbreiten lateral des 1. Sakrallochs."
+    },
+    {
+      "id": "BL_28",
+      "aliases": [],
+      "name_de": "Blase 28",
+      "name_chinese": "",
+      "translation": "Zustimmungs- bzw. Einflusspunkt der Blase",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0331,
+        0.0267,
+        -0.1478
+      ],
+      "normal": [
+        -0.2338,
+        -0.1472,
+        -0.9611
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwei Daumenbreiten lateral des 2. Sakrallochs."
+    },
+    {
+      "id": "BL_31",
+      "aliases": [],
+      "name_de": "Blase 31",
+      "name_chinese": "",
+      "translation": "Oberer Knochenspalt",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.02,
+        0.0715,
+        -0.1418
+      ],
+      "normal": [
+        -0.3939,
+        0.232,
+        -0.8894
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Auf dem ersten Sakralloch."
+    },
+    {
+      "id": "BL_39",
+      "aliases": [],
+      "name_de": "Blase 39",
+      "name_chinese": "",
+      "translation": "Sitz der Energie",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0871,
+        -0.416,
+        -0.0953
+      ],
+      "normal": [
+        0.1386,
+        0.3506,
+        -0.9262
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Am unteren Rand der 4. Rippe, am Innenrand des Schulterblattes (der Patient soll dazu im Sitzen die Ellbogen auf die Knie aufstützen, sodass das Schulterblatt nach außen dreht, dann ist der Punkt zugänglich)."
+    },
+    {
+      "id": "BL_47",
+      "aliases": [],
+      "name_de": "Blase 47",
+      "name_chinese": "",
+      "translation": "Sitz des Willens",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0611,
+        0.3433,
+        -0.1271
+      ],
+      "normal": [
+        0.1318,
+        -0.2221,
+        -0.9661
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Auf Höhe von L2, vier Daumenbreiten lateral der Mittellinie, zwei Daumenbreiten oberhalb der Spina iliaca."
+    },
+    {
+      "id": "BL_54",
+      "aliases": [],
+      "name_de": "Blase 54",
+      "name_chinese": "",
+      "translation": "Mitten in der Biegung",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0614,
+        -0.0025,
+        -0.1402
+      ],
+      "normal": [
+        0.0424,
+        -0.4197,
+        -0.9067
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "In der Mitte der Beugefalte des Kniegelenks, zwischen den Sehnen des M. biceps femoralis und M. semitendinosus."
+    },
+    {
+      "id": "BL_57_58",
+      "aliases": [],
+      "name_de": "Blase 57-58",
+      "name_chinese": "",
+      "translation": "nach VanMann",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.071,
+        -0.6092,
+        -0.1066
+      ],
+      "normal": [
+        -0.2312,
+        -0.2295,
+        -0.9454
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Wird definiert als Zone auf der dorsolateralen Wade, in der Spitze zwischen den beiden Köpfen des M. gastrocnemius. Für die Behandlung sucht man den druckempfindlichsten Punkt in diesem Bereich."
+    },
+    {
+      "id": "BL_58",
+      "aliases": [],
+      "name_de": "Blase 58",
+      "name_chinese": "",
+      "translation": "Aufschwung",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.0876,
+        -0.6483,
+        -0.0975
+      ],
+      "normal": [
+        0.2074,
+        -0.26,
+        -0.9431
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Auf der Wade, in der Mitte der Verbindungslinie zwischen äußerem Knöchel und Kniegelenkspalt."
+    },
+    {
+      "id": "BL_60",
+      "aliases": [],
+      "name_de": "Blase 60",
+      "name_chinese": "",
+      "translation": "Olympus",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.1095,
+        -0.8351,
+        -0.0634
+      ],
+      "normal": [
+        0.5448,
+        -0.1722,
+        -0.8207
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "An der Außenseite des Fußes, oberhalb des Fersenbeines, in der Vertiefung zwischen äußerem Knöchel und Achillessehne."
+    },
+    {
+      "id": "BL_62",
+      "aliases": [],
+      "name_de": "Blase 62",
+      "name_chinese": "",
+      "translation": "Gefäß-Streckung",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.1302,
+        -0.8574,
+        -0.0143
+      ],
+      "normal": [
+        0.8269,
+        0.4307,
+        -0.3616
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Zwei Daumenbreiten unter der Spitze des äußeren Knöchels."
+    },
+    {
+      "id": "BL_65",
+      "aliases": [],
+      "name_de": "Blase 65",
+      "name_chinese": "",
+      "translation": "Gebundener Knochen",
+      "meridian": "Blasen-Leitbahn",
+      "meridian_id": "blase",
+      "position": [
+        0.1348,
+        -0.8563,
+        0.071
+      ],
+      "normal": [
+        0.5866,
+        0.7603,
+        0.2791
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_blase.png",
+      "localisation_text": "Am äußeren Rand des Fußes, gleich hinter dem Grundgelenk der 5. Zehe, am Übergang von weißer zu roter Haut."
+    },
+    {
+      "id": "KI_2",
+      "aliases": [],
+      "name_de": "Niere 2",
+      "name_chinese": "",
+      "translation": "Hitze des Tales",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0563,
+        -0.8691,
+        0.0307
+      ],
+      "normal": [
+        -0.9377,
+        -0.182,
+        0.2961
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "An der Innenseite des Fußes, in einer kleinen Vertiefung knapp unterhalb der Wölbung des Os naviculare."
+    },
+    {
+      "id": "KI_3",
+      "aliases": [],
+      "name_de": "Niere 3",
+      "name_chinese": "",
+      "translation": "Mächtiger Wasserlauf",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0456,
+        -0.8397,
+        -0.0005
+      ],
+      "normal": [
+        -0.9519,
+        0.0511,
+        0.3023
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Eine halbe Daumenbreite unter und hinter dem inneren Knöchel."
+    },
+    {
+      "id": "KI_4",
+      "aliases": [],
+      "name_de": "Niere 4",
+      "name_chinese": "",
+      "translation": "Groß-Becher",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0403,
+        -0.8466,
+        -0.0231
+      ],
+      "normal": [
+        -0.969,
+        -0.0917,
+        0.2293
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Eineinhalb Daumenbreiten hinter dem inneren Knöchel, am inneren Rand der Achillessehne."
+    },
+    {
+      "id": "KI_6",
+      "aliases": [],
+      "name_de": "Niere 6",
+      "name_chinese": "",
+      "translation": "Meer der Erhellung",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.047,
+        -0.8581,
+        0.0072
+      ],
+      "normal": [
+        -0.9613,
+        -0.0852,
+        0.262
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Eine Daumenbreite unterhalb des Innenknöchels."
+    },
+    {
+      "id": "KI_7",
+      "aliases": [],
+      "name_de": "Niere 7",
+      "name_chinese": "",
+      "translation": "Wiederkehr des Abflusses",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0502,
+        -0.7536,
+        -0.0201
+      ],
+      "normal": [
+        -0.8395,
+        0.0577,
+        0.5404
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Am Vorderrand der Achillessehne, zwei Daumenbreiten cranial der Vertiefung zwischen dem höchsten Punkt des Innenknöchels."
+    },
+    {
+      "id": "KI_8",
+      "aliases": [],
+      "name_de": "Niere 8",
+      "name_chinese": "",
+      "translation": "Die sich treffenden Boten",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0544,
+        -0.7569,
+        -0.0138
+      ],
+      "normal": [
+        -0.801,
+        0.0589,
+        0.5957
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Vier Daumenbreiten über dem Innenknöchel, am medialen Rand des Schienbeins."
+    },
+    {
+      "id": "KI_11",
+      "aliases": [],
+      "name_de": "Niere 11",
+      "name_chinese": "",
+      "translation": "Querknochen",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0188,
+        0.0167,
+        0.0757
+      ],
+      "normal": [
+        0.0325,
+        -0.3435,
+        0.9386
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Am oberen Rand des Schambeins, zwei Daumenbreiten lateral der Symphyse."
+    },
+    {
+      "id": "KI_10",
+      "aliases": [],
+      "name_de": "Niere 10",
+      "name_chinese": "",
+      "translation": "Tal des Yin",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.024,
+        -0.4269,
+        -0.0355
+      ],
+      "normal": [
+        -0.9754,
+        -0.1745,
+        -0.135
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Bei gebeugtem Knie in der Kniegelenksfalte, zwischen den Sehnen des M. semitendineus und des M. semimembranaceus."
+    },
+    {
+      "id": "KI_13",
+      "aliases": [],
+      "name_de": "Niere 13",
+      "name_chinese": "",
+      "translation": "Punkt des Qi",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0203,
+        0.0853,
+        0.0979
+      ],
+      "normal": [
+        0.2171,
+        -0.2082,
+        0.9537
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Vier Daumenbreiten über dem Schambeinrand, neben KG 4."
+    },
+    {
+      "id": "KI_15",
+      "aliases": [],
+      "name_de": "Niere 15",
+      "name_chinese": "",
+      "translation": "Mittlerer Zusammenfluss",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.02,
+        0.1374,
+        0.1087
+      ],
+      "normal": [
+        0.0741,
+        -0.1287,
+        0.9889
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Eine Daumenbreite unterhalb und lateral des Nabels."
+    },
+    {
+      "id": "KI_21",
+      "aliases": [],
+      "name_de": "Niere 21",
+      "name_chinese": "",
+      "translation": "Dunkles Tor",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0166,
+        0.3268,
+        0.1257
+      ],
+      "normal": [
+        -0.0553,
+        -0.0201,
+        0.9983
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Eine Daumenbreite lateral der Mittellinie, in Höhe des 6. Intercostalraumes."
+    },
+    {
+      "id": "KI_27",
+      "aliases": [],
+      "name_de": "Niere 27",
+      "name_chinese": "",
+      "translation": "Versammlungshalle der Einflussnahme",
+      "meridian": "Nieren-Leitbahn",
+      "meridian_id": "niere",
+      "position": [
+        0.0478,
+        0.5557,
+        0.077
+      ],
+      "normal": [
+        0.045,
+        0.6182,
+        0.7847
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_niere.png",
+      "localisation_text": "Am Rand des Brustbeins, am unteren Teil des Sternoclaviculargelenks."
+    },
+    {
+      "id": "PC_1",
+      "aliases": [],
+      "name_de": "Perikard 1",
+      "name_chinese": "",
+      "translation": "Teich des Himmels",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.1046,
+        0.4725,
+        0.1122
+      ],
+      "normal": [
+        0.3516,
+        0.3621,
+        0.8633
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "Eine Daumenbreite lateral der Brustwarze, im 4. Intercostalraum."
+    },
+    {
+      "id": "PC_3",
+      "aliases": [],
+      "name_de": "Perikard 3",
+      "name_chinese": "",
+      "translation": "Gewundener Teich",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.2154,
+        0.2587,
+        0.0075
+      ],
+      "normal": [
+        -0.0925,
+        0.1033,
+        0.9903
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "In der Mitte der Ellenbeuge, ulnar neben der Bizepssehne."
+    },
+    {
+      "id": "PC_6",
+      "aliases": [],
+      "name_de": "Perikard 6",
+      "name_chinese": "",
+      "translation": "Inneres Passtor",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.2514,
+        0.0683,
+        0.0347
+      ],
+      "normal": [
+        -0.1953,
+        0.1162,
+        0.9738
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "Drei Daumenbreiten über der Mitte der Handgelenksfalte, zwischen den Sehnen."
+    },
+    {
+      "id": "PC_7",
+      "aliases": [],
+      "name_de": "Perikard 7",
+      "name_chinese": "",
+      "translation": "Großer Hügel",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.2551,
+        0.0309,
+        0.0432
+      ],
+      "normal": [
+        -0.2172,
+        0.3142,
+        0.9242
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "In der Mitte der größten Handgelenksfalte, zwischen den Sehnen."
+    },
+    {
+      "id": "PC_8",
+      "aliases": [],
+      "name_de": "Perikard 8",
+      "name_chinese": "",
+      "translation": "Palast der Mühen",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.2818,
+        -0.0356,
+        0.0541
+      ],
+      "normal": [
+        -0.0778,
+        0.1581,
+        0.9844
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "An der Handinnenfläche, zwischen Metacarpale 2 und 3 (bei geschlossener Faust an der Spitze des Mittelfingers)."
+    },
+    {
+      "id": "PC_9",
+      "aliases": [],
+      "name_de": "Perikard 9",
+      "name_chinese": "",
+      "translation": "Mittlerer Angriffspunkt",
+      "meridian": "Perikard-Leitbahn",
+      "meridian_id": "perikard",
+      "position": [
+        0.2866,
+        -0.1372,
+        0.1113
+      ],
+      "normal": [
+        -0.6347,
+        -0.2004,
+        0.7463
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_perikard.png",
+      "localisation_text": "Am äußeren Nagelwinkel des Mittelfingers."
+    },
+    {
+      "id": "TE_3",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 3",
+      "name_chinese": "",
+      "translation": "Mittlere Insel",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.2542,
+        -0.0403,
+        0.019
+      ],
+      "normal": [
+        -0.2902,
+        -0.4095,
+        -0.8649
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "Am Handrücken, zwischen 4. und 5. Mittelhandknochen, in einer Vertiefung in Höhe des Übergangs vom Köpfchen zum Schaft der beiden Mittelhandknochen."
+    },
+    {
+      "id": "TE_4",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 4",
+      "name_chinese": "",
+      "translation": "Teich des Yang",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.2615,
+        0.0274,
+        -0.0125
+      ],
+      "normal": [
+        0.1061,
+        -0.4466,
+        -0.8884
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "Am Handrücken, auf der Sehne zwischen Elle und Mittelhandknochen."
+    },
+    {
+      "id": "TE_5",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 5",
+      "name_chinese": "",
+      "translation": "Äußeres Passtor",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.2548,
+        0.0653,
+        -0.0265
+      ],
+      "normal": [
+        0.0706,
+        -0.3487,
+        -0.9346
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "Am Unterarm, drei Daumenbreiten über der Handgelenkfalte, zwischen Elle und Speiche."
+    },
+    {
+      "id": "TE_10",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 10",
+      "name_chinese": "",
+      "translation": "Brunnen des Himmels",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.2061,
+        0.285,
+        -0.0879
+      ],
+      "normal": [
+        -0.3725,
+        -0.1747,
+        -0.9114
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "Am oberen Rand des Elllbogenhöckers, in der Fossa oleocrani."
+    },
+    {
+      "id": "TE_15",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 15",
+      "name_chinese": "",
+      "translation": "Himmelsgrube",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.1433,
+        0.5957,
+        -0.1051
+      ],
+      "normal": [
+        0.3286,
+        0.7023,
+        -0.6315
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "In der Schultermitte, am oberen Rand des Trapezmuskels."
+    },
+    {
+      "id": "TE_17",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 17",
+      "name_chinese": "",
+      "translation": "Windschirm",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.0755,
+        0.7678,
+        -0.0406
+      ],
+      "normal": [
+        0.953,
+        -0.3028,
+        0.0118
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "Hinter dem Ohrläppchen, am vorderen Rand des Mastois (das Ohrläppchen berührt beim Drücken darauf den Punkt)."
+    },
+    {
+      "id": "TE_21",
+      "aliases": [],
+      "name_de": "Dreifacherwärmer 21",
+      "name_chinese": "",
+      "translation": "Tor des Ohres",
+      "meridian": "Dreifacherwärmer-Leitbahn",
+      "meridian_id": "dreifacherwaermer",
+      "position": [
+        0.0774,
+        0.7903,
+        -0.0082
+      ],
+      "normal": [
+        0.9808,
+        -0.0946,
+        0.1706
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dreifacherwaermer.png",
+      "localisation_text": "In der Rinne zwischen Tragus und oberem Ansatz der Ohrmuschel."
+    },
+    {
+      "id": "GB_1",
+      "aliases": [],
+      "name_de": "Gallenblase 1",
+      "name_chinese": "",
+      "translation": "Pupillen-Grenze",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0655,
+        0.7983,
+        0.0439
+      ],
+      "normal": [
+        0.9556,
+        0.0079,
+        0.2946
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Lateral des äußeren Augenwinkels, in der Vertiefung zwischen Orbitalbogen und Jochbein."
+    },
+    {
+      "id": "GB_4",
+      "aliases": [],
+      "name_de": "Gallenblase 4",
+      "name_chinese": "",
+      "translation": "Mitläufer des Kinnbackens",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0709,
+        0.835,
+        0.0216
+      ],
+      "normal": [
+        0.9473,
+        0.1041,
+        0.303
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Am Haaransatz der Schläfe, die Stelle bewegt sich beim Kauen (M. temporalis)."
+    },
+    {
+      "id": "GB_14",
+      "aliases": [],
+      "name_de": "Gallenblase 14",
+      "name_chinese": "",
+      "translation": "Entfaltung des Hellen",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0371,
+        0.8253,
+        0.0777
+      ],
+      "normal": [
+        0.5093,
+        0.3015,
+        0.806
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Zwei Daumenbreiten über der Mitte der Augenbraue, senkrecht über der Pupillenmitte."
+    },
+    {
+      "id": "GB_19",
+      "aliases": [],
+      "name_de": "Gallenblase 19",
+      "name_chinese": "",
+      "translation": "Kopfleere",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.045,
+        0.7808,
+        -0.1156
+      ],
+      "normal": [
+        0.5714,
+        -0.4654,
+        -0.6759
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Seitlich des Hinterhaupthöckers, eine Daumenbreite oberhalb der Ohrmuschel, zwei Daumenbreiten lateral dieser Linie."
+    },
+    {
+      "id": "GB_20",
+      "aliases": [],
+      "name_de": "Gallenblase 20",
+      "name_chinese": "",
+      "translation": "Wind-Teich",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0375,
+        0.7357,
+        -0.0897
+      ],
+      "normal": [
+        0.5633,
+        -0.4372,
+        -0.7011
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Am unteren Okzipitalrand, hinter dem Mastoid, zwischen den Ursprüngen des M. trapezius und des M. sternocleidomastoideus."
+    },
+    {
+      "id": "GB_21",
+      "aliases": [],
+      "name_de": "Gallenblase 21",
+      "name_chinese": "",
+      "translation": "Brunnen der Schulter",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0578,
+        0.6489,
+        0.0011
+      ],
+      "normal": [
+        0.7468,
+        0.2082,
+        0.6316
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "In der Mitte der Verbindunglinie zwischen Acromion und TH 1."
+    },
+    {
+      "id": "GB_23",
+      "aliases": [],
+      "name_de": "Gallenblase 23",
+      "name_chinese": "",
+      "translation": "Flanken-Muskel",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1442,
+        0.4101,
+        0.0794
+      ],
+      "normal": [
+        0.84,
+        -0.3121,
+        0.4439
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Auf der Axillarlinie, im 6. Intercostalraum, auf Höhe der Brustwarze."
+    },
+    {
+      "id": "GB_24",
+      "aliases": [],
+      "name_de": "Gallenblase 24",
+      "name_chinese": "",
+      "translation": "Sonne-Mond",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1054,
+        0.3447,
+        0.1131
+      ],
+      "normal": [
+        0.3998,
+        -0.1322,
+        0.907
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Auf der Axillarlinie, im 6. Intercostalraum."
+    },
+    {
+      "id": "GB_25",
+      "aliases": [],
+      "name_de": "Gallenblase 25",
+      "name_chinese": "",
+      "translation": "Tor der Hauptstadt",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1338,
+        0.2391,
+        -0.0332
+      ],
+      "normal": [
+        0.8922,
+        -0.0499,
+        -0.4488
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Am freien Ende der 12. Rippe."
+    },
+    {
+      "id": "GB_26",
+      "aliases": [],
+      "name_de": "Gallenblase 26",
+      "name_chinese": "",
+      "translation": "Gürtelgefäß",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1447,
+        0.184,
+        0.0441
+      ],
+      "normal": [
+        0.8537,
+        0.219,
+        0.4725
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "In der Mitte zwischen den freien Enden der 11. und 12. Rippen, auf Höhe des Nabels."
+    },
+    {
+      "id": "GB_30",
+      "aliases": [],
+      "name_de": "Gallenblase 30",
+      "name_chinese": "",
+      "translation": "In den Reifen springen",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1419,
+        0.0036,
+        -0.0922
+      ],
+      "normal": [
+        0.8407,
+        0.0678,
+        -0.5372
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Seitlich am Gesäß, vom höchsten Punkt des Trochanter major ausgehend etwas nach hinten versetzt, am unteren Drittel auf der Linie des Rollhügels zum unteren Rand des Kreuzbeins. Der Punkt ist bei bestehender Indikation oft sehr druckschmerzhaft."
+    },
+    {
+      "id": "GB_34",
+      "aliases": [],
+      "name_de": "Gallenblase 34",
+      "name_chinese": "",
+      "translation": "Yang-Hügel-Quelle",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1294,
+        -0.4553,
+        0.0025
+      ],
+      "normal": [
+        0.8499,
+        0.0394,
+        0.5254
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Im Grübchen vor und unter dem Wadenbeinköpfchen."
+    },
+    {
+      "id": "GB_37",
+      "aliases": [],
+      "name_de": "Gallenblase 37",
+      "name_chinese": "",
+      "translation": "Strahlendes Licht",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1179,
+        -0.6762,
+        -0.0127
+      ],
+      "normal": [
+        0.8304,
+        -0.1523,
+        0.536
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Fünf Daumenbreiten oberhalb der höchsten Erhebung des Außenknöchels."
+    },
+    {
+      "id": "GB_39",
+      "aliases": [],
+      "name_de": "Gallenblase 39",
+      "name_chinese": "",
+      "translation": "Herabhängende Glocke",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1038,
+        -0.7643,
+        -0.0087
+      ],
+      "normal": [
+        0.7959,
+        -0.0526,
+        0.6031
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Vier Daumenbreiten oberhalb des Außenknöchels."
+    },
+    {
+      "id": "GB_40",
+      "aliases": [],
+      "name_de": "Gallenblase 40",
+      "name_chinese": "",
+      "translation": "Das Feld am Hügel",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.1079,
+        -0.8272,
+        0.0455
+      ],
+      "normal": [
+        0.1933,
+        0.8381,
+        0.5102
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Vor und unter dem äußeren Knöchel, in einer Vertiefung auf dem Fußrücken."
+    },
+    {
+      "id": "GB_41",
+      "aliases": [],
+      "name_de": "Gallenblase 41",
+      "name_chinese": "",
+      "translation": "Am Fuß dem Weinen nah",
+      "meridian": "Gallenblasen-Leitbahn",
+      "meridian_id": "gallenblase",
+      "position": [
+        0.0885,
+        -0.8634,
+        0.0951
+      ],
+      "normal": [
+        -0.6224,
+        0.6076,
+        0.4934
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_gallenblase.png",
+      "localisation_text": "Am Fußrücken, zwischen Metatarsale 4 und 5. Der Punkt ist bei bestehender Indikation oft sehr druckschmerzhaft."
+    },
+    {
+      "id": "LR_2",
+      "aliases": [],
+      "name_de": "Leber 2",
+      "name_chinese": "",
+      "translation": "Zwischengang",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.0846,
+        -0.8853,
+        0.1055
+      ],
+      "normal": [
+        -0.8491,
+        0.1136,
+        0.5158
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Zwischen der 1. und 2. Zehe, in der Schwimmhaut, lateral."
+    },
+    {
+      "id": "LR_3",
+      "aliases": [],
+      "name_de": "Leber 3",
+      "name_chinese": "",
+      "translation": "Höchster Angriffspunkt",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.072,
+        -0.8791,
+        0.0768
+      ],
+      "normal": [
+        -0.9573,
+        0.0719,
+        0.2801
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Im proximalen Winkel von Mittelfußknochen 1 und 2. Entspricht der Lage von Di 4 an der Hand und hat ein ähnliches Wirkungsspektrum."
+    },
+    {
+      "id": "LR_5",
+      "aliases": [],
+      "name_de": "Leber 5",
+      "name_chinese": "",
+      "translation": "Rinne der Muschel",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.0497,
+        -0.6597,
+        -0.0098
+      ],
+      "normal": [
+        -0.6849,
+        -0.1096,
+        0.7204
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Fünf Daumenbreiten über der höchsten Erhebung des Innenknöchels, am Innenrand des Schienbeins."
+    },
+    {
+      "id": "LR_6",
+      "aliases": [],
+      "name_de": "Leber 6",
+      "name_chinese": "",
+      "translation": "Mitte der Hauptstadt",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.0461,
+        -0.5974,
+        -0.005
+      ],
+      "normal": [
+        -0.4992,
+        -0.0746,
+        0.8633
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Am hinteren Rand der Tibia, zwei Daumenbreiten unter der Linie von der oberen Schienbeinkante zum inneren Knöchel."
+    },
+    {
+      "id": "LR_8",
+      "aliases": [],
+      "name_de": "Leber 8",
+      "name_chinese": "",
+      "translation": "Quelle an der Krümmung",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.0254,
+        -0.4224,
+        -0.0068
+      ],
+      "normal": [
+        -0.8917,
+        -0.188,
+        0.4116
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Am medialen Ende der Kniegelenksfalte, in einer Vertiefung am Rand des M. semimembranosus und M. semitendinosus."
+    },
+    {
+      "id": "LR_13",
+      "aliases": [],
+      "name_de": "Leber 13",
+      "name_chinese": "",
+      "translation": "Gesetzestor",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.1254,
+        0.2512,
+        0.0584
+      ],
+      "normal": [
+        0.7371,
+        -0.1854,
+        0.6499
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Am freien Ende der 11. Rippe."
+    },
+    {
+      "id": "LR_14",
+      "aliases": [],
+      "name_de": "Leber 14",
+      "name_chinese": "",
+      "translation": "Tor des Zyklus",
+      "meridian": "Leber-Leitbahn",
+      "meridian_id": "leber",
+      "position": [
+        0.087,
+        0.3888,
+        0.1211
+      ],
+      "normal": [
+        0.2578,
+        0.0729,
+        0.9634
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_leber.png",
+      "localisation_text": "Am 6. ICR, senkrecht caudal in der Mitte."
+    },
+    {
+      "id": "LI_1",
+      "aliases": [],
+      "name_de": "Dickdarm 1",
+      "name_chinese": "",
+      "translation": "Berater des Yang",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.3323,
+        -0.1218,
+        0.0812
+      ],
+      "normal": [
+        0.808,
+        -0.3928,
+        -0.4391
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "Im radialen Winkel des Zeigefingers."
+    },
+    {
+      "id": "LI_3",
+      "aliases": [],
+      "name_de": "Dickdarm 3",
+      "name_chinese": "",
+      "translation": "Drittes Fingerglied",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.3133,
+        -0.0572,
+        0.0244
+      ],
+      "normal": [
+        0.6385,
+        -0.112,
+        -0.7615
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "Am Grübchen, das bei geschlossener Faust (Daumen eingechlagen) proximal vom Zeigefingergrundgelenk entsteht"
+    },
+    {
+      "id": "LI_4",
+      "aliases": [],
+      "name_de": "Dickdarm 4",
+      "name_chinese": "",
+      "translation": "Vereinte Täler",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.3064,
+        -0.02,
+        0.0125
+      ],
+      "normal": [
+        0.3815,
+        -0.1811,
+        -0.9065
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "Am Handrücken, auf der Höhe des Muskelbauches bei angelegtem Daumen. Bei Erkrankungen der oberen Körperhälfte oft schmerzhaft."
+    },
+    {
+      "id": "LI_6",
+      "aliases": [],
+      "name_de": "Dickdarm 6",
+      "name_chinese": "",
+      "translation": "Schräger Durchgang",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.2844,
+        0.0862,
+        -0.0204
+      ],
+      "normal": [
+        0.7562,
+        -0.1661,
+        -0.6329
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "An der Außenseite des Unterarmes, zwischen Radiusapophyse und Radiusköpfchen, au dem distalen Drittel (beim Überkreuzen der Daumen zeigt die Spitze des gestreckten Zeigefingers der oben liegenden Hand, an der Außenseite des Radius angelegt, direkt auf den Punkt)."
+    },
+    {
+      "id": "LI_11",
+      "aliases": [],
+      "name_de": "Dickdarm 11",
+      "name_chinese": "",
+      "translation": "Gekrümmter Teich",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.2724,
+        0.273,
+        -0.0106
+      ],
+      "normal": [
+        0.8152,
+        0.2716,
+        0.5115
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "Am lateralen Ende der Beugefalte des Ellbogens. Der Punkt ist oft deutlich druckschmerzhaft."
+    },
+    {
+      "id": "LI_15",
+      "aliases": [],
+      "name_de": "Dickdarm 15",
+      "name_chinese": "",
+      "translation": "Schulterknochen",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.2345,
+        0.5599,
+        -0.0214
+      ],
+      "normal": [
+        0.8303,
+        0.4927,
+        0.2605
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "Am lateralen Schulterrand, in einer Vertiefung unter dem Akromion, das beim Heben des Armes entsteht. Bei bestehender Indikation ist der Punkt meist sehr druckschmerzhaft."
+    },
+    {
+      "id": "LI_19",
+      "aliases": [],
+      "name_de": "Dickdarm 19",
+      "name_chinese": "",
+      "translation": "Körnchen-Grube",
+      "meridian": "Dickdarm-Leitbahn",
+      "meridian_id": "dickdarm",
+      "position": [
+        0.018,
+        0.753,
+        0.0909
+      ],
+      "normal": [
+        0.6704,
+        0.359,
+        0.6494
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_dickdarm.png",
+      "localisation_text": "In der Nasolabialfalte, auf Höhe der Nasenlöcher."
+    },
+    {
+      "id": "ST_1",
+      "aliases": [],
+      "name_de": "Magen 1",
+      "name_chinese": "",
+      "translation": "Winkel am Kopf",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0306,
+        0.786,
+        0.062
+      ],
+      "normal": [
+        0.012,
+        0.8778,
+        0.4789
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Im Stirn-Schläfenwinkel, vier Daumenbreiten oberhalb und eine Daumenbreite hinter dem Orbital- Jochbeinwinkel/."
+    },
+    {
+      "id": "ST_4",
+      "aliases": [],
+      "name_de": "Magen 4",
+      "name_chinese": "",
+      "translation": "Zwischenspeicher der Erde",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0264,
+        0.7455,
+        0.0861
+      ],
+      "normal": [
+        0.472,
+        0.0691,
+        0.8789
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Eine Daumenbreite neben dem Mundwinkel."
+    },
+    {
+      "id": "ST_10",
+      "aliases": [],
+      "name_de": "Magen 10",
+      "name_chinese": "",
+      "translation": "Tor des Wassers",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0156,
+        0.6586,
+        0.0722
+      ],
+      "normal": [
+        0.4091,
+        -0.8188,
+        0.4027
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Am Vorderrand des M. sternocleidomastoideus, auf Höhe des Schildknorpels."
+    },
+    {
+      "id": "ST_12",
+      "aliases": [],
+      "name_de": "Magen 12",
+      "name_chinese": "",
+      "translation": "Grube über dem Schlüsselbein",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0786,
+        0.5589,
+        0.0679
+      ],
+      "normal": [
+        0.2315,
+        0.6543,
+        0.72
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Am oberen Rand des Schlüsselbeins, auf der Mamillarlinie."
+    },
+    {
+      "id": "ST_16",
+      "aliases": [],
+      "name_de": "Magen 16",
+      "name_chinese": "",
+      "translation": "Fenster der Brust",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0752,
+        0.4827,
+        0.1179
+      ],
+      "normal": [
+        0.1968,
+        0.3472,
+        0.9169
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Im dritten ICR, auf der Mamilllarlinie."
+    },
+    {
+      "id": "ST_21",
+      "aliases": [],
+      "name_de": "Magen 21",
+      "name_chinese": "",
+      "translation": "Tor der Scheidewand",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0447,
+        0.2853,
+        0.1237
+      ],
+      "normal": [
+        0.1428,
+        -0.2064,
+        0.968
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Im Winkel zwischen dem 9. und 10. Rippenknorpel."
+    },
+    {
+      "id": "ST_25",
+      "aliases": [],
+      "name_de": "Magen 25",
+      "name_chinese": "",
+      "translation": "Angel des Himmels",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0436,
+        0.182,
+        0.1115
+      ],
+      "normal": [
+        0.1542,
+        -0.0953,
+        0.9834
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "In der Mitte der Verbindungslinie zwischen Magen und oberem Darmbeinkamm."
+    },
+    {
+      "id": "ST_32_34_MANN",
+      "aliases": [],
+      "name_de": "Magen 32-34",
+      "name_chinese": "",
+      "translation": "Zone nach Felix Mann",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0844,
+        -0.2565,
+        0.0692
+      ],
+      "normal": [
+        -0.233,
+        -0.1115,
+        0.9661
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Am distalen drittel des M. quadrizeps, auf der vorderen lateralen Seite des M. vastus lateralis. Auf einer Linie von der Spina iliaca anterior superior und der oberen lateralen Ecke der Patella. Behandelt wird der druckempfindlichste Punkt in diesem Bereich."
+    },
+    {
+      "id": "ST_36",
+      "aliases": [],
+      "name_de": "Magen 36",
+      "name_chinese": "",
+      "translation": "Dritter Weiler am Fluss",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0717,
+        -0.4669,
+        0.0225
+      ],
+      "normal": [
+        -0.4191,
+        -0.0596,
+        0.906
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "In einer Vertiefung am Ansatz des M. tibialis anterior, etwa eine Fingerbreite lateral des Unterrandes des Tuberositas tibiae."
+    },
+    {
+      "id": "ST_42",
+      "aliases": [],
+      "name_de": "Magen 42",
+      "name_chinese": "",
+      "translation": "Yang der großen Straße",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0727,
+        -0.8657,
+        0.068
+      ],
+      "normal": [
+        -0.8414,
+        0.3726,
+        0.3915
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Am Fußrücken, zwischen 2. und 3. Os metatarsale."
+    },
+    {
+      "id": "ST_44",
+      "aliases": [],
+      "name_de": "Magen 44",
+      "name_chinese": "",
+      "translation": "Innere Vorhalle",
+      "meridian": "Magen-Leitbahn",
+      "meridian_id": "magen",
+      "position": [
+        0.0867,
+        -0.8823,
+        0.1074
+      ],
+      "normal": [
+        -0.803,
+        0.2016,
+        0.5609
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_magen.png",
+      "localisation_text": "Im Winkel der Grundgelenke der 2. und 3. Zehe."
+    },
+    {
+      "id": "SP_3",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 3",
+      "name_chinese": "",
+      "translation": "Höchste Quelle",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.0734,
+        -0.8838,
+        0.083
+      ],
+      "normal": [
+        -0.9716,
+        -0.084,
+        0.221
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "Am inneren Fußrand, in der Vertiefung proximal des Großzehengrundgelenks."
+    },
+    {
+      "id": "SP_4",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 4",
+      "name_chinese": "",
+      "translation": "Enkel des Fürsten",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.0603,
+        -0.8704,
+        0.0413
+      ],
+      "normal": [
+        -0.9329,
+        -0.0944,
+        0.3475
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "Am inneren Fußrand, in einer Vertiefung distal der Basis des ersten Os metatarsale. Der Punkt ist bei der Nadelung oft sehr schmerzhaft."
+    },
+    {
+      "id": "SP_5",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 5",
+      "name_chinese": "",
+      "translation": "Kleiner Fersenberg",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.053,
+        -0.8417,
+        0.0196
+      ],
+      "normal": [
+        -0.8821,
+        0.1713,
+        0.4388
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "In der Vertiefung distal und unterhalb des Innenknöchels."
+    },
+    {
+      "id": "SP_6",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 6",
+      "name_chinese": "",
+      "translation": "Die Verbindung der drei Yin",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.05,
+        -0.7176,
+        -0.0217
+      ],
+      "normal": [
+        -0.8278,
+        -0.097,
+        0.5526
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "Drei Daumenbreiten über dem Innenknöchel."
+    },
+    {
+      "id": "SP_9",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 9",
+      "name_chinese": "",
+      "translation": "Die Quelle am Yin-Grabhügel",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.0335,
+        -0.4549,
+        -0.005
+      ],
+      "normal": [
+        -0.8347,
+        -0.133,
+        0.5344
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "Auf der medialen Seite des Kniegelenks, im Winkel zwischen Condylus und Tibiaschaft. Der Punkt ist bei bestehender Indikation oft sehr druckschmerzhaft."
+    },
+    {
+      "id": "SP_15",
+      "aliases": [],
+      "name_de": "Milz-Pankreas 15",
+      "name_chinese": "",
+      "translation": "Große Horizontale",
+      "meridian": "Milz-Pankreas-Leitbahn",
+      "meridian_id": "milz_pankreas",
+      "position": [
+        0.0772,
+        0.1725,
+        0.0974
+      ],
+      "normal": [
+        0.4041,
+        -0.0554,
+        0.913
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_milz_pankreas.png",
+      "localisation_text": "Vier Daumenbreiten lateral des Nabels."
+    },
+    {
+      "id": "CV_3",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 3",
+      "name_chinese": "",
+      "translation": "Mittlerer Gipfelpunkt",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.0178,
+        0.0763
+      ],
+      "normal": [
+        0.0,
+        -0.3369,
+        0.9415
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Zwei Daumenbreiten über der Oberkante der Symphyse."
+    },
+    {
+      "id": "CV_4",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 4",
+      "name_chinese": "",
+      "translation": "Grenz-Vorsprung",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.0763,
+        0.0992
+      ],
+      "normal": [
+        0.0,
+        -0.3266,
+        0.9452
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Auf 2/5 der Verbindungslinie zwischen Nabel und Symphyse."
+    },
+    {
+      "id": "CV_5",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 5",
+      "name_chinese": "",
+      "translation": "Stein-Tor",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.0998,
+        0.1039
+      ],
+      "normal": [
+        0.0,
+        -0.1441,
+        0.9896
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Auf 3/5 der Verbindungslinie zwischen Nabel und Symphyse."
+    },
+    {
+      "id": "CV_6",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 6",
+      "name_chinese": "",
+      "translation": "Meer des Qi",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.1191,
+        0.1071
+      ],
+      "normal": [
+        0.0,
+        -0.1744,
+        0.9847
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "In der Mitte des vierten Fünftels der Verbindungslinie zwischen Nabel und Symphyse."
+    },
+    {
+      "id": "CV_7",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 7",
+      "name_chinese": "",
+      "translation": "Yin-Vereinigung",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.156,
+        0.1103
+      ],
+      "normal": [
+        0.0,
+        -0.0066,
+        1.0
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Eine Daumenbreite unterhalb des Nabels."
+    },
+    {
+      "id": "CV_9",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 9",
+      "name_chinese": "",
+      "translation": "Wasserverteilung",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.2071,
+        0.1108
+      ],
+      "normal": [
+        0.0,
+        -0.2834,
+        0.959
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Eine Daumenbreite oberhalb des Nabels."
+    },
+    {
+      "id": "CV_12",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 12",
+      "name_chinese": "",
+      "translation": "Mittlerer Kanal",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.2859,
+        0.1232
+      ],
+      "normal": [
+        0.0,
+        -0.081,
+        0.9967
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "In der Mitte der Verbindungslinie zwischen Nabel und Xiphoid."
+    },
+    {
+      "id": "CV_13",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 13",
+      "name_chinese": "",
+      "translation": "Oberer Kanal",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.3098,
+        0.1241
+      ],
+      "normal": [
+        0.0,
+        -0.0244,
+        0.9997
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Fünf Daumenbreiten oberhalb des Nabels."
+    },
+    {
+      "id": "CV_14",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 14",
+      "name_chinese": "",
+      "translation": "Großer Palast",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.3377,
+        0.1245
+      ],
+      "normal": [
+        0.0,
+        -0.0167,
+        0.9999
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Sechs Daumenbreiten oberhalb des Nabels."
+    },
+    {
+      "id": "CV_15",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 15",
+      "name_chinese": "",
+      "translation": "Taubenschwanz",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.3841,
+        0.123
+      ],
+      "normal": [
+        0.0,
+        0.2282,
+        0.9736
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Unmittelbar unterhalb der Spitze des Schwertfortsatzes."
+    },
+    {
+      "id": "CV_17",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 17",
+      "name_chinese": "",
+      "translation": "Mitte des Zwerchfells",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.4393,
+        0.1201
+      ],
+      "normal": [
+        0.0,
+        0.0192,
+        0.9998
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "In der Mitte des Brustbeins, zwischen den Brustwarzen, auf Höhe des 4. Intercostalraumes."
+    },
+    {
+      "id": "CV_21",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 21",
+      "name_chinese": "",
+      "translation": "Jadeperle",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.5541,
+        0.0724
+      ],
+      "normal": [
+        0.0,
+        0.6199,
+        0.7846
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "Am oberen Rand des Brustbeins, an der Incisura jugularis."
+    },
+    {
+      "id": "CV_22",
+      "aliases": [],
+      "name_de": "Konzeptionsgefäß 22",
+      "name_chinese": "",
+      "translation": "Himmelspfad",
+      "meridian": "Konzeptionsgefäß",
+      "meridian_id": "konzeptionsgefaess",
+      "position": [
+        0.0,
+        0.57,
+        0.0574
+      ],
+      "normal": [
+        0.0,
+        0.6954,
+        0.7187
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_konzeptionsgefaess.png",
+      "localisation_text": "In der Mitte der Furcht zwischen Kinnspitze und Unterlippe."
+    },
+    {
+      "id": "GV_4",
+      "aliases": [],
+      "name_de": "Lenkergefäß 4",
+      "name_chinese": "",
+      "translation": "Tor des Lebens",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.2016,
+        -0.1027
+      ],
+      "normal": [
+        0.0,
+        0.013,
+        -0.9999
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "An der Spitze des Dornfortsatzes von L 2, auf Höhe der untersten Rippen."
+    },
+    {
+      "id": "GV_9",
+      "aliases": [],
+      "name_de": "Lenkergefäß 9",
+      "name_chinese": "",
+      "translation": "Geisterstraße",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.3936,
+        -0.1192
+      ],
+      "normal": [
+        0.0,
+        -0.1914,
+        -0.9815
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "An der Spitze des Dornfortsatzes von Th 8."
+    },
+    {
+      "id": "GV_11",
+      "aliases": [],
+      "name_de": "Lenkergefäß 11",
+      "name_chinese": "",
+      "translation": "Göttlicher Weg",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.4395,
+        -0.1261
+      ],
+      "normal": [
+        0.0,
+        -0.1209,
+        -0.9927
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "An der Spitze des Dornfortsatzes von Th 5."
+    },
+    {
+      "id": "GV_12",
+      "aliases": [],
+      "name_de": "Lenkergefäß 12",
+      "name_chinese": "",
+      "translation": "Stütze des Charakters",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.4798,
+        -0.1291
+      ],
+      "normal": [
+        0.0,
+        0.0619,
+        -0.9981
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "An der Spitze des Dornfortsatzes von Th3."
+    },
+    {
+      "id": "GV_13",
+      "aliases": [],
+      "name_de": "Lenkergefäß 13",
+      "name_chinese": "",
+      "translation": "Hundert Mühen",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.552,
+        -0.1266
+      ],
+      "normal": [
+        0.0,
+        0.0132,
+        -0.9999
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Auf TH 1."
+    },
+    {
+      "id": "GV_14",
+      "aliases": [],
+      "name_de": "Lenkergefäß 14",
+      "name_chinese": "",
+      "translation": "Großer Hammer",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.5886,
+        -0.1238
+      ],
+      "normal": [
+        0.0,
+        0.2241,
+        -0.9746
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Auf C 7."
+    },
+    {
+      "id": "GV_15",
+      "aliases": [],
+      "name_de": "Lenkergefäß 15",
+      "name_chinese": "",
+      "translation": "Zugang zum Schweigen",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.7185,
+        -0.0946
+      ],
+      "normal": [
+        0.0,
+        -0.2975,
+        -0.9547
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Zwischen den Dornfortsätzen von C1 und C2."
+    },
+    {
+      "id": "GV_16",
+      "aliases": [],
+      "name_de": "Lenkergefäß 16",
+      "name_chinese": "",
+      "translation": "Versammlungshalle des Windes",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.7401,
+        -0.1059
+      ],
+      "normal": [
+        0.0,
+        -0.511,
+        -0.8596
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Auf der Mittellinie, am Unterrand des Okziputs. Gilt aufgrund der Nähe zur Medulla oblongata als einer der gefährlichsten Punkte der klassischen Akupunktur."
+    },
+    {
+      "id": "GV_19",
+      "aliases": [],
+      "name_de": "Lenkergefäß 19",
+      "name_chinese": "",
+      "translation": "Hinterer Kopfhügel",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.8729,
+        -0.1062
+      ],
+      "normal": [
+        0.0,
+        0.6943,
+        -0.7197
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "In einer Vertiefung im Schnittpunkt von Lambda und Pfeilnaht."
+    },
+    {
+      "id": "GV_20",
+      "aliases": [],
+      "name_de": "Lenkergefäß 20",
+      "name_chinese": "",
+      "translation": "Zusammenkunft aller Leitbahnen",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.9032,
+        -0.0268
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.005
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Am höchsten Punkt des Scheitels, auf der Verbindungslinie zwischen beiden Ohrspitzen und der Mitte des Schädeldachs, in einer kleinen Vertiefung (oft druckschmerzhaft)."
+    },
+    {
+      "id": "GV_21",
+      "aliases": [],
+      "name_de": "Lenkergefäß 21",
+      "name_chinese": "",
+      "translation": "Vorderer Hügel",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.8987,
+        0.0191
+      ],
+      "normal": [
+        0.0,
+        0.9566,
+        0.2915
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Am höchsten Punkt des Scheitels, vor der Verbindungslinie zwischen beiden Ohrspitzen, in einer kleinen Vertiefung."
+    },
+    {
+      "id": "GV_24",
+      "aliases": [],
+      "name_de": "Lenkergefäß 24",
+      "name_chinese": "",
+      "translation": "Gerichtshof des Minenspiels",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.855,
+        0.0754
+      ],
+      "normal": [
+        0.0,
+        0.4504,
+        0.8928
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Eine halbe Daumenbreite innerhalb der Haargrenze."
+    },
+    {
+      "id": "GV_25",
+      "aliases": [],
+      "name_de": "Lenkergefäß 25",
+      "name_chinese": "",
+      "translation": "Einfacher Knochenspalt",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.7761,
+        0.0945
+      ],
+      "normal": [
+        0.0,
+        0.4741,
+        0.8805
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Auf der Nasenspitze."
+    },
+    {
+      "id": "GV_26",
+      "aliases": [],
+      "name_de": "Lenkergefäß 26",
+      "name_chinese": "",
+      "translation": "Wassergraben",
+      "meridian": "Lenkergefäß",
+      "meridian_id": "lenkergefaess",
+      "position": [
+        0.0,
+        0.765,
+        0.1006
+      ],
+      "normal": [
+        0.0,
+        0.4934,
+        0.8698
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Zwischen mittlerem und oberem Drittel der Linie von der Nase zur Oberlippe."
+    },
+    {
+      "id": "EX_1",
+      "aliases": [],
+      "name_de": "Shishencong",
+      "name_chinese": "",
+      "translation": "4 Bewusstseinspunkte",
+      "meridian": "Extrapunkte",
+      "meridian_id": "extrapunkte",
+      "position": [
+        0.0,
+        0.8084,
+        0.0895
+      ],
+      "normal": [
+        0.0,
+        0.008,
+        1.0
+      ],
+      "is_pilot": false,
+      "in_similapunktur_db": true,
+      "image_filename": "meridian_lenkergefaess.png",
+      "localisation_text": "Eine Gruppe von vier Punkten am Scheitel, ."
+    }
+  ]
+}

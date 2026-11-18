@@ -68,6 +68,8 @@ echo - Frontend (mit Auto-Reload): http://localhost:3000
 echo - Backend (API):             http://localhost:8000
 echo =======================================================================
 echo.
+echo Oeffne Frontend im Browser (http://localhost:3000)...
+start "" cmd /c "timeout /t 3 /nobreak >nul && start http://localhost:3000"
 pause
 goto MENU
 
@@ -100,6 +102,8 @@ echo --- Starte Python Backend ---
 echo Das Backend serviert nun das gebaute Frontend und die APIs auf Port 8000.
 echo Druecken Sie STRG+C im Server-Fenster, um es zu beenden.
 echo.
+echo Oeffne Frontend im Browser (http://localhost:8000)...
+start "" cmd /c "timeout /t 2 /nobreak >nul && start http://localhost:8000"
 python server.py
 pause
 goto MENU
@@ -130,6 +134,7 @@ if not exist node_modules (
     call npm install
 )
 echo Starte Vite Frontend...
+start "" cmd /c "timeout /t 2 /nobreak >nul && start http://localhost:3000"
 call npm run dev
 cd ..
 pause

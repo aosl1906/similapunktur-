@@ -27,3 +27,5 @@ out/*.db-journal
 Thumbs.db
 Desktop.ini
 .DS_Store
+archive/
+models_raw/

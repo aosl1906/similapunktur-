@@ -661,6 +661,30 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_error_response(500, str(e))
             return
+        elif path == "/api/update-point-3d-coordinate":
+            try:
+                content_length = int(self.headers.get('Content-Length', 0))
+                post_data = self.rfile.read(content_length)
+                payload = json.loads(post_data.decode('utf-8'))
+                point_id = payload.get("point_id")
+                position = payload.get("position")
+                if not point_id or not isinstance(position, list) or len(position) != 3:
+                    self.send_error_response(400, "Missing parameters (point_id, position [x,y,z])")
+                    return
+                p3d_path = 'frontend/public/data/points_3d.json'
+                if os.path.exists(p3d_path):
+                    with open(p3d_path, 'r', encoding='utf-8') as f:
+                        p3d_data = json.load(f)
+                    for pt in p3d_data.get('points', []):
+                        if pt.get('id') == point_id:
+                            pt['position'] = [round(float(position[0]), 4), round(float(position[1]), 4), round(float(position[2]), 4)]
+                            break
+                    with open(p3d_path, 'w', encoding='utf-8') as f:
+                        json.dump(p3d_data, f, indent=2, ensure_ascii=False)
+                self.send_json_response({"success": True, "message": f"3D coordinates for {point_id} persisted to points_3d.json"})
+            except Exception as e:
+                self.send_error_response(500, str(e))
+            return
         else:
             self.send_error_response(404, "Endpoint not found")
             return
@@ -680,6 +704,8 @@ class SimilapunkturHandler(SimpleHTTPRequestHandler):
             content_type = "image/svg+xml"
         elif file_path.endswith(".json"):
             content_type = "application/json; charset=utf-8"
+        elif file_path.endswith(".glb"):
+            content_type = "model/gltf-binary"
             
         try:
             with open(file_path, "rb") as f:
